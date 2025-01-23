@@ -1,0 +1,13 @@
+material BrickMaterial
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture ../textures/frontend.jpg
+      }
+    }
+  }
+}

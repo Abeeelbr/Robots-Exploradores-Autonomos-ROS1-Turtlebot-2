@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <model name="toilet_ornament">
+    <pose>0 0 0 0 0 0</pose>
+    <static>true</static> <!-- El objeto no se moverá -->
+    <link name="link">
+      <collision name="collision">
+        <geometry>
+          <mesh>
+            <uri>model://toilet_ornament/meshes/Toilet_ornament.stl</uri>
+            <scale>0.02 0.02 0.02</scale>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <uri>model://toilet_ornament/meshes/Toilet_ornament.stl</uri>
+            <scale>0.02 0.02 0.02</scale>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+  </model>
+</sdf>

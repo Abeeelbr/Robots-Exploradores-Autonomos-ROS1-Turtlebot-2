@@ -1,0 +1,35 @@
+slam_gmapping:
+  map_update_interval: 0.5         # Intervalo de actualización del mapa en segundos
+  maxUrange: 17.0                    # Rango máximo útil del láser en metros (ajustado para Astra)
+  maxRange: 18.0                     # Rango máximo del láser en metros (según especificaciones del Astra)
+  sigma: 0.05                       # Desviación estándar para el filtro gaussiano
+  kernelSize: 1                     # Tamaño del kernel del filtro
+  lstep: 0.05                       # Paso lineal para muestreo de posición en metros
+  astep: 0.05                       # Paso angular para muestreo de orientación en radianes
+  iterations: 5                     # Número de iteraciones del algoritmo de optimización
+  lsigma: 0.075                     # Ruido en odometría para movimiento lineal en metros
+  ogain: 3.0                        # Ganancia de orientación
+  lskip: 0                          # Número de lecturas láser omitidas entre actualizaciones
+  minimumScore: 200                 # Puntaje mínimo para considerar una actualización exitosa
+  srr: 0.1                          # Varianza de rotación debido a rotación
+  srt: 0.2                          # Varianza de rotación debido a traslación
+  str: 0.1                          # Varianza de traslación debido a rotación
+  stt: 0.2                          # Varianza de traslación debido a traslación
+  linearUpdate: 0.2                 # Actualiza el mapa tras recorrer esta distancia en metros
+  angularUpdate: 0.1                # Actualiza el mapa tras rotar este ángulo en radianes
+  temporalUpdate: -1.0              # Desactiva las actualizaciones temporales
+  resampleThreshold: 0.5            # Umbral para resampleo de partículas
+  particles: 30                     # Número de partículas en el filtro de partículas
+  xmin: -1.0                       # Límite mínimo en el eje X del mapa en metros
+  ymin: -1.0                       # Límite mínimo en el eje Y del mapa en metros
+  xmax: 1.0                        # Límite máximo en el eje X del mapa en metros
+  ymax: 1.0                        # Límite máximo en el eje Y del mapa en metros
+  delta: 0.05                       # Resolución del mapa en metros por celda
+  llsamplerange: 0.01               # Rango de muestreo lineal en el modelo de movimiento
+  llsamplestep: 0.01                # Paso de muestreo lineal en el modelo de movimiento
+  lasamplerange: 0.005              # Rango de muestreo angular en el modelo de movimiento
+  lasamplestep: 0.005               # Paso de muestreo angular en el modelo de movimiento
+
+
+
+

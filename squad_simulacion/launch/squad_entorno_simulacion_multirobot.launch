@@ -1,0 +1,23 @@
+<launch>
+  <!-- Argumentos configurables -->
+  <arg name="gui" default="true"/>
+  <arg name="world_name" default="$(find gazebo_ros)/worlds/empty.world"/>
+
+  <!-- Rutas de Gazebo -->
+  <env name="GAZEBO_RESOURCE_PATH" value="$(optenv GAZEBO_RESOURCE_PATH):$(find squad_simulacion)/worlds"/>
+  <env name="GAZEBO_MODEL_PATH" value="$(optenv GAZEBO_MODEL_PATH):$(find squad_simulacion)/models"/>
+
+  <!-- Lanzar Gazebo con un mundo -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+      <arg name="world_name" value="$(arg world_name)"/>
+      <arg name="gui" value="$(arg gui)"/>
+  </include>
+  
+  <!-- Spawn del modelo de mapa u objetos en Gazebo -->
+  <node name="spawn_model" pkg="gazebo_ros" type="spawn_model" output="screen"
+    args="-file $(find squad_simulacion)/models/map/model.sdf -sdf -model my_map_model" />
+
+  <!-- Lanzar objetos adicionales -->
+  <include file="$(find squad_simulacion)/launch/squad_spawn_objects_simulacion.launch"/>
+
+</launch>

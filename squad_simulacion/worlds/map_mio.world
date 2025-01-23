@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <world name="default">
+    <!-- Luz -->
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    <!-- Piso plano -->
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+    <!-- Tu mapa -->
+    <include>
+      <uri>model://map/meshes/mapa_moviles.stl</uri>
+      <pose>0 0 0 0 0 0</pose> <!-- Ajusta la posición si es necesario -->
+    </include>
+  </world>
+</sdf>

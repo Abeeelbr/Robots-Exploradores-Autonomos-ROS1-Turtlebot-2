@@ -1,0 +1,508 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>squad_autonomous_control_action &mdash; documentación de Robots Exploradores - Práctica 3 - 1.0</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=eafc0fe6" />
+
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=8e0ebba5"></script>
+      <script src="../_static/doctools.js?v=888ff710"></script>
+      <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../_static/translations.js?v=efdbd0b9"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Robots Exploradores - Práctica 3
+              <img src="../_static/logo.png" class="logo" alt="Logotipo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contenidos:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduccion.html">Introducción</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuracion.html">Configuración del Entorno</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../uso.html">Uso del Sistema</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../uso.html#pasos-para-lanzar-el-sistema">Pasos para Lanzar el Sistema</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../uso.html#flujo-del-sistema">Flujo del Sistema</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../uso.html#detalles-de-la-interfaz-grafica">Detalles de la Interfaz Gráfica</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../uso.html#configuracion-de-la-maquina-de-estados">Configuración de la Máquina de Estados</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../uso.html#comandos-y-transiciones">Comandos y Transiciones</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../uso.html#parametros-configurables">Parámetros Configurables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../uso.html#topicos-importantes">Tópicos Importantes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../squad_state_manager.html">Máquina de Estados (squad_state_manager)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.BaseState"><code class="docutils literal notranslate"><span class="pre">BaseState</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.BaseState.execute"><code class="docutils literal notranslate"><span class="pre">BaseState.execute()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.BaseState.state_callback"><code class="docutils literal notranslate"><span class="pre">BaseState.state_callback()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.EstadoApproach"><code class="docutils literal notranslate"><span class="pre">EstadoApproach</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.EstadoApproach.control_mode_callback"><code class="docutils literal notranslate"><span class="pre">EstadoApproach.control_mode_callback()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.EstadoApproach.execute"><code class="docutils literal notranslate"><span class="pre">EstadoApproach.execute()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.EstadoApproach.feedback_cb"><code class="docutils literal notranslate"><span class="pre">EstadoApproach.feedback_cb()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.EstadoExploracion"><code class="docutils literal notranslate"><span class="pre">EstadoExploracion</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.EstadoExploracion.control_mode_callback"><code class="docutils literal notranslate"><span class="pre">EstadoExploracion.control_mode_callback()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.EstadoExploracion.execute"><code class="docutils literal notranslate"><span class="pre">EstadoExploracion.execute()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.EstadoExploracion.feedback_cb"><code class="docutils literal notranslate"><span class="pre">EstadoExploracion.feedback_cb()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.EstadoExploracion.object_callback"><code class="docutils literal notranslate"><span class="pre">EstadoExploracion.object_callback()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.EstadoNavegacion"><code class="docutils literal notranslate"><span class="pre">EstadoNavegacion</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.EstadoNavegacion.command_callback"><code class="docutils literal notranslate"><span class="pre">EstadoNavegacion.command_callback()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.EstadoNavegacion.control_mode_callback"><code class="docutils literal notranslate"><span class="pre">EstadoNavegacion.control_mode_callback()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.EstadoNavegacion.execute"><code class="docutils literal notranslate"><span class="pre">EstadoNavegacion.execute()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.EstadoNavegacion.moveTo"><code class="docutils literal notranslate"><span class="pre">EstadoNavegacion.moveTo()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.EstadoReposo"><code class="docutils literal notranslate"><span class="pre">EstadoReposo</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.EstadoReposo.execute"><code class="docutils literal notranslate"><span class="pre">EstadoReposo.execute()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.InterfazManager"><code class="docutils literal notranslate"><span class="pre">InterfazManager</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.InterfazManager.camera_callback"><code class="docutils literal notranslate"><span class="pre">InterfazManager.camera_callback()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.InterfazManager.change_exploration_mode"><code class="docutils literal notranslate"><span class="pre">InterfazManager.change_exploration_mode()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.InterfazManager.control_mode_callback"><code class="docutils literal notranslate"><span class="pre">InterfazManager.control_mode_callback()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.InterfazManager.create_exploration_controls"><code class="docutils literal notranslate"><span class="pre">InterfazManager.create_exploration_controls()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.InterfazManager.current_state_callback"><code class="docutils literal notranslate"><span class="pre">InterfazManager.current_state_callback()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.InterfazManager.get_command_for_state"><code class="docutils literal notranslate"><span class="pre">InterfazManager.get_command_for_state()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.InterfazManager.go_to_station"><code class="docutils literal notranslate"><span class="pre">InterfazManager.go_to_station()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.InterfazManager.on_arrow_down"><code class="docutils literal notranslate"><span class="pre">InterfazManager.on_arrow_down()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.InterfazManager.on_arrow_left"><code class="docutils literal notranslate"><span class="pre">InterfazManager.on_arrow_left()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.InterfazManager.on_arrow_right"><code class="docutils literal notranslate"><span class="pre">InterfazManager.on_arrow_right()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.InterfazManager.on_arrow_up"><code class="docutils literal notranslate"><span class="pre">InterfazManager.on_arrow_up()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.InterfazManager.on_closing"><code class="docutils literal notranslate"><span class="pre">InterfazManager.on_closing()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.InterfazManager.on_key_release"><code class="docutils literal notranslate"><span class="pre">InterfazManager.on_key_release()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.InterfazManager.on_state_button_click"><code class="docutils literal notranslate"><span class="pre">InterfazManager.on_state_button_click()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.InterfazManager.setup_gui"><code class="docutils literal notranslate"><span class="pre">InterfazManager.setup_gui()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.InterfazManager.signal_handler"><code class="docutils literal notranslate"><span class="pre">InterfazManager.signal_handler()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.InterfazManager.stations_callback"><code class="docutils literal notranslate"><span class="pre">InterfazManager.stations_callback()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.InterfazManager.subscribe_to_camera"><code class="docutils literal notranslate"><span class="pre">InterfazManager.subscribe_to_camera()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.InterfazManager.switch_camera_topic"><code class="docutils literal notranslate"><span class="pre">InterfazManager.switch_camera_topic()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.InterfazManager.update_state_highlight"><code class="docutils literal notranslate"><span class="pre">InterfazManager.update_state_highlight()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.InterfazManager.update_station_list"><code class="docutils literal notranslate"><span class="pre">InterfazManager.update_station_list()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.TurtleBotStateManager"><code class="docutils literal notranslate"><span class="pre">TurtleBotStateManager</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.TurtleBotStateManager.run_state_machine"><code class="docutils literal notranslate"><span class="pre">TurtleBotStateManager.run_state_machine()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../pkg_exploracion.html">Paquete de Exploración</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../squad_object_detection_action.html">Detección de Objetos (squad_object_detection_action)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.calculate_world_coordinates"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.calculate_world_coordinates()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.callback"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.callback()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.camera_info_callback"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.camera_info_callback()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.detect_objects"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.detect_objects()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.display_debug_info"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.display_debug_info()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.execute"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.execute()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.get_depth_at_pixel"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.get_depth_at_pixel()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.get_robot_pose"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.get_robot_pose()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.load_parameters"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.load_parameters()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.process_latest_data"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.process_latest_data()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.subscribe_to_topics"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.subscribe_to_topics()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../squad_approach_control_action.html">Aproximación a Objetos (squad_approach_control_action)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.ApproachObjectActionServer"><code class="docutils literal notranslate"><span class="pre">ApproachObjectActionServer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.ApproachObjectActionServer.execute_cb"><code class="docutils literal notranslate"><span class="pre">ApproachObjectActionServer.execute_cb()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.ApproachObjectActionServer.get_robot_pose"><code class="docutils literal notranslate"><span class="pre">ApproachObjectActionServer.get_robot_pose()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.ApproachObjectActionServer.object_callback"><code class="docutils literal notranslate"><span class="pre">ApproachObjectActionServer.object_callback()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.ApproachObjectActionServer.preempt_cb"><code class="docutils literal notranslate"><span class="pre">ApproachObjectActionServer.preempt_cb()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.ApproachObjectState"><code class="docutils literal notranslate"><span class="pre">ApproachObjectState</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.ApproachObjectState.execute"><code class="docutils literal notranslate"><span class="pre">ApproachObjectState.execute()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.ApproachObjectState.object_callback"><code class="docutils literal notranslate"><span class="pre">ApproachObjectState.object_callback()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.CenterObjectState"><code class="docutils literal notranslate"><span class="pre">CenterObjectState</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.CenterObjectState.execute"><code class="docutils literal notranslate"><span class="pre">CenterObjectState.execute()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.CenterObjectState.object_callback"><code class="docutils literal notranslate"><span class="pre">CenterObjectState.object_callback()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.CheckPositionState"><code class="docutils literal notranslate"><span class="pre">CheckPositionState</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.CheckPositionState.calculate_distance"><code class="docutils literal notranslate"><span class="pre">CheckPositionState.calculate_distance()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.CheckPositionState.calculate_orientation_diff"><code class="docutils literal notranslate"><span class="pre">CheckPositionState.calculate_orientation_diff()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.CheckPositionState.execute"><code class="docutils literal notranslate"><span class="pre">CheckPositionState.execute()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.CheckPositionState.quaternion_to_yaw"><code class="docutils literal notranslate"><span class="pre">CheckPositionState.quaternion_to_yaw()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.MoveToPositionState"><code class="docutils literal notranslate"><span class="pre">MoveToPositionState</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.MoveToPositionState.execute"><code class="docutils literal notranslate"><span class="pre">MoveToPositionState.execute()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.StartObjectDetectionState"><code class="docutils literal notranslate"><span class="pre">StartObjectDetectionState</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.StartObjectDetectionState.execute"><code class="docutils literal notranslate"><span class="pre">StartObjectDetectionState.execute()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.StopObjectDetectionState"><code class="docutils literal notranslate"><span class="pre">StopObjectDetectionState</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.StopObjectDetectionState.execute"><code class="docutils literal notranslate"><span class="pre">StopObjectDetectionState.execute()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.WaitState"><code class="docutils literal notranslate"><span class="pre">WaitState</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.WaitState.execute"><code class="docutils literal notranslate"><span class="pre">WaitState.execute()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../squad_autonomous_control_action.html">Control Autónomo (squad_autonomous_control_action)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../squad_autonomous_control_action.html#squad_autonomous_control_action.AutonomousControlActionServer"><code class="docutils literal notranslate"><span class="pre">AutonomousControlActionServer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../squad_autonomous_control_action.html#squad_autonomous_control_action.AutonomousControlActionServer.decide_motion"><code class="docutils literal notranslate"><span class="pre">AutonomousControlActionServer.decide_motion()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_autonomous_control_action.html#squad_autonomous_control_action.AutonomousControlActionServer.execute_cb"><code class="docutils literal notranslate"><span class="pre">AutonomousControlActionServer.execute_cb()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_autonomous_control_action.html#squad_autonomous_control_action.AutonomousControlActionServer.get_laser_regions"><code class="docutils literal notranslate"><span class="pre">AutonomousControlActionServer.get_laser_regions()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_autonomous_control_action.html#squad_autonomous_control_action.AutonomousControlActionServer.laser_callback"><code class="docutils literal notranslate"><span class="pre">AutonomousControlActionServer.laser_callback()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_autonomous_control_action.html#squad_autonomous_control_action.AutonomousControlActionServer.stop_robot"><code class="docutils literal notranslate"><span class="pre">AutonomousControlActionServer.stop_robot()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Robots Exploradores - Práctica 3</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Código de módulo</a></li>
+      <li class="breadcrumb-item active">squad_autonomous_control_action</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Código fuente para squad_autonomous_control_action</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Servidor de acción para el control autónomo del robot.</span>
+
+<span class="sd">Este nodo implementa una acción que permite controlar el robot de manera autónoma,</span>
+<span class="sd">evitando obstáculos y colisiones con las paredes. La acción puede ser activada o</span>
+<span class="sd">cancelada mientras se cambia de modo. Está diseñada para ser extendida con algoritmos</span>
+<span class="sd">de control más avanzados en el futuro.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># ************************************************</span>
+<span class="c1">#                 IMPORTACIÓN DE MÓDULOS</span>
+<span class="c1"># ************************************************</span>
+
+<span class="kn">import</span> <span class="nn">rospy</span>
+<span class="kn">import</span> <span class="nn">actionlib</span>
+<span class="kn">from</span> <span class="nn">sensor_msgs.msg</span> <span class="kn">import</span> <span class="n">LaserScan</span>
+<span class="kn">from</span> <span class="nn">geometry_msgs.msg</span> <span class="kn">import</span> <span class="n">Twist</span>
+<span class="kn">from</span> <span class="nn">std_msgs.msg</span> <span class="kn">import</span> <span class="n">String</span>
+<span class="kn">from</span> <span class="nn">squad_exploracion.msg</span> <span class="kn">import</span> <span class="n">AutonomousControlAction</span><span class="p">,</span> <span class="n">AutonomousControlFeedback</span><span class="p">,</span> <span class="n">AutonomousControlResult</span>
+
+<span class="c1"># ************************************************</span>
+<span class="c1">#               CLASE DEL SERVIDOR DE ACCIÓN</span>
+<span class="c1"># ************************************************</span>
+
+<div class="viewcode-block" id="AutonomousControlActionServer"><a class="viewcode-back" href="../squad_autonomous_control_action.html#squad_autonomous_control_action.AutonomousControlActionServer">[documentos]</a><span class="k">class</span> <span class="nc">AutonomousControlActionServer</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Servidor de acción para el control autónomo del robot.</span>
+
+<span class="sd">    Esta clase implementa la lógica para controlar el robot de manera autónoma,</span>
+<span class="sd">    evitando colisiones con obstáculos detectados por el sensor LIDAR.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructor de la clase AutonomousControlActionServer.</span>
+
+<span class="sd">        Inicializa el nodo, los suscriptores, publicadores y el servidor de acción.</span>
+
+<span class="sd">        :param name: Nombre del servidor de acción.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># ********************************************</span>
+        <span class="c1">#          INICIALIZACIÓN DEL NODO</span>
+        <span class="c1"># ********************************************</span>
+
+        <span class="n">rospy</span><span class="o">.</span><span class="n">init_node</span><span class="p">(</span><span class="s1">&#39;autonomous_control_server&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_action_name</span> <span class="o">=</span> <span class="n">name</span>
+
+        <span class="c1"># ********************************************</span>
+        <span class="c1">#          VARIABLES Y PARÁMETROS</span>
+        <span class="c1"># ********************************************</span>
+
+        <span class="c1"># Velocidades lineal y angular</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">linear_speed</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">get_param</span><span class="p">(</span><span class="s1">&#39;/autonomous_control/linear_speed&#39;</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">angular_speed</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">get_param</span><span class="p">(</span><span class="s1">&#39;/autonomous_control/angular_speed&#39;</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+
+        <span class="c1"># Distancia mínima para evitar obstáculos</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">min_distance</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">get_param</span><span class="p">(</span><span class="s1">&#39;/autonomous_control/min_distance&#39;</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+
+        <span class="c1"># Tasa de procesamiento</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rate</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Rate</span><span class="p">(</span><span class="n">rospy</span><span class="o">.</span><span class="n">get_param</span><span class="p">(</span><span class="s1">&#39;/autonomous_control/processing_rate&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">ejecucion_mode</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">get_param</span><span class="p">(</span> <span class="s1">&#39;/MODO_EJECUCION&#39;</span><span class="p">,</span> <span class="s1">&#39;REAL&#39;</span> <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">control_teleop_topic</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">get_param</span><span class="p">(</span> <span class="sa">f</span><span class="s1">&#39;/</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">ejecucion_mode</span><span class="si">}</span><span class="s1">/control_teleop_topic&#39;</span><span class="p">,</span> <span class="s1">&#39;/cmd_vel_mux/input/teleop&#39;</span><span class="p">)</span>
+
+        <span class="c1"># Variable para almacenar los datos del LIDAR</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">laser_data</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="c1"># ********************************************</span>
+        <span class="c1">#      SUSCRIPTORES Y PUBLICADORES</span>
+        <span class="c1"># ********************************************</span>
+
+        <span class="c1"># Suscriptor al tópico del LIDAR</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">laser_sub</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Subscriber</span><span class="p">(</span><span class="s1">&#39;/base_scan&#39;</span><span class="p">,</span> <span class="n">LaserScan</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">laser_callback</span><span class="p">)</span>
+
+        <span class="c1"># Publicador al tópico de velocidades</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cmd_pub</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Publisher</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">control_teleop_topic</span><span class="p">,</span> <span class="n">Twist</span><span class="p">,</span> <span class="n">queue_size</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># ********************************************</span>
+        <span class="c1">#        INICIALIZACIÓN DEL SERVIDOR</span>
+        <span class="c1"># ********************************************</span>
+
+        <span class="c1"># Servidor de acción</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_as</span> <span class="o">=</span> <span class="n">actionlib</span><span class="o">.</span><span class="n">SimpleActionServer</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_action_name</span><span class="p">,</span>
+            <span class="n">AutonomousControlAction</span><span class="p">,</span>
+            <span class="n">execute_cb</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">execute_cb</span><span class="p">,</span>
+            <span class="n">auto_start</span><span class="o">=</span><span class="kc">False</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_as</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+        <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;Servidor de acción &#39;</span><span class="si">%s</span><span class="s2">&#39; iniciado.&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_action_name</span><span class="p">)</span>
+
+    <span class="c1"># ************************************************</span>
+    <span class="c1">#          CALLBACK DEL SENSOR LIDAR</span>
+    <span class="c1"># ************************************************</span>
+
+<div class="viewcode-block" id="AutonomousControlActionServer.laser_callback"><a class="viewcode-back" href="../squad_autonomous_control_action.html#squad_autonomous_control_action.AutonomousControlActionServer.laser_callback">[documentos]</a>    <span class="k">def</span> <span class="nf">laser_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Callback para almacenar los datos del LIDAR.</span>
+
+<span class="sd">        :param data: Mensaje de tipo LaserScan con los datos del sensor.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">laser_data</span> <span class="o">=</span> <span class="n">data</span></div>
+
+    <span class="c1"># ************************************************</span>
+    <span class="c1">#          CALLBACK DE EJECUCIÓN DE LA ACCIÓN</span>
+    <span class="c1"># ************************************************</span>
+
+<div class="viewcode-block" id="AutonomousControlActionServer.execute_cb"><a class="viewcode-back" href="../squad_autonomous_control_action.html#squad_autonomous_control_action.AutonomousControlActionServer.execute_cb">[documentos]</a>    <span class="k">def</span> <span class="nf">execute_cb</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">goal</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Método de ejecución de la acción.</span>
+
+<span class="sd">        Controla el robot de manera autónoma, evitando obstáculos basados en los</span>
+<span class="sd">        datos del LIDAR. La acción puede ser preempted si se recibe una solicitud</span>
+<span class="sd">        de cancelación.</span>
+
+<span class="sd">        :param goal: Objetivo de la acción (no utilizado en este caso).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;Control autónomo iniciado.&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Inicializar feedback y resultado</span>
+        <span class="n">feedback</span> <span class="o">=</span> <span class="n">AutonomousControlFeedback</span><span class="p">()</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">AutonomousControlResult</span><span class="p">()</span>
+
+        <span class="k">while</span> <span class="ow">not</span> <span class="n">rospy</span><span class="o">.</span><span class="n">is_shutdown</span><span class="p">():</span>
+            <span class="c1"># Verificar si se solicitó la preempción de la acción</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_as</span><span class="o">.</span><span class="n">is_preempt_requested</span><span class="p">():</span>
+                <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;Control autónomo preempted.&quot;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">stop_robot</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_as</span><span class="o">.</span><span class="n">set_preempted</span><span class="p">()</span>
+                <span class="k">return</span>
+
+            <span class="c1"># Verificar si hay datos del LIDAR disponibles</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">laser_data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">rospy</span><span class="o">.</span><span class="n">logwarn</span><span class="p">(</span><span class="s2">&quot;Esperando datos del LIDAR...&quot;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">rate</span><span class="o">.</span><span class="n">sleep</span><span class="p">()</span>
+                <span class="k">continue</span>
+
+            <span class="c1"># Obtener las regiones de interés del LIDAR</span>
+            <span class="n">regions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_laser_regions</span><span class="p">()</span>
+
+            <span class="c1"># Tomar decisiones basadas en las lecturas del LIDAR</span>
+            <span class="n">twist_msg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">decide_motion</span><span class="p">(</span><span class="n">regions</span><span class="p">)</span>
+
+            <span class="c1"># Publicar el mensaje de velocidad</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cmd_pub</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">twist_msg</span><span class="p">)</span>
+
+            <span class="c1"># Actualizar el feedback</span>
+            <span class="n">feedback</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="s2">&quot;Control autónomo en ejecución.&quot;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_as</span><span class="o">.</span><span class="n">publish_feedback</span><span class="p">(</span><span class="n">feedback</span><span class="p">)</span>
+
+            <span class="c1"># Esperar al siguiente ciclo</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">rate</span><span class="o">.</span><span class="n">sleep</span><span class="p">()</span>
+
+        <span class="c1"># Finalizar la acción</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;Control autónomo completado.&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stop_robot</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_as</span><span class="o">.</span><span class="n">set_succeeded</span><span class="p">(</span><span class="n">result</span><span class="p">)</span></div>
+
+    <span class="c1"># ************************************************</span>
+    <span class="c1">#            MÉTODOS DE CONTROL DEL ROBOT</span>
+    <span class="c1"># ************************************************</span>
+
+<div class="viewcode-block" id="AutonomousControlActionServer.get_laser_regions"><a class="viewcode-back" href="../squad_autonomous_control_action.html#squad_autonomous_control_action.AutonomousControlActionServer.get_laser_regions">[documentos]</a>    <span class="k">def</span> <span class="nf">get_laser_regions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Divide las lecturas del LIDAR en regiones.</span>
+
+<span class="sd">        :return: Diccionario con las distancias mínimas en cada región.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ranges</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">laser_data</span><span class="o">.</span><span class="n">ranges</span>
+        <span class="n">regions</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;right&#39;</span><span class="p">:</span>  <span class="nb">min</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">ranges</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">143</span><span class="p">]),</span> <span class="mi">10</span><span class="p">),</span>
+            <span class="s1">&#39;fright&#39;</span><span class="p">:</span> <span class="nb">min</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">ranges</span><span class="p">[</span><span class="mi">144</span><span class="p">:</span><span class="mi">287</span><span class="p">]),</span> <span class="mi">10</span><span class="p">),</span>
+            <span class="s1">&#39;front&#39;</span><span class="p">:</span>  <span class="nb">min</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">ranges</span><span class="p">[</span><span class="mi">288</span><span class="p">:</span><span class="mi">431</span><span class="p">]),</span> <span class="mi">10</span><span class="p">),</span>
+            <span class="s1">&#39;fleft&#39;</span><span class="p">:</span>  <span class="nb">min</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">ranges</span><span class="p">[</span><span class="mi">432</span><span class="p">:</span><span class="mi">575</span><span class="p">]),</span> <span class="mi">10</span><span class="p">),</span>
+            <span class="s1">&#39;left&#39;</span><span class="p">:</span>   <span class="nb">min</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">ranges</span><span class="p">[</span><span class="mi">576</span><span class="p">:</span><span class="mi">719</span><span class="p">]),</span> <span class="mi">10</span><span class="p">),</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">regions</span></div>
+
+<div class="viewcode-block" id="AutonomousControlActionServer.decide_motion"><a class="viewcode-back" href="../squad_autonomous_control_action.html#squad_autonomous_control_action.AutonomousControlActionServer.decide_motion">[documentos]</a>    <span class="k">def</span> <span class="nf">decide_motion</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">regions</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Decide el movimiento del robot basado en las regiones del LIDAR.</span>
+
+<span class="sd">        :param regions: Diccionario con las distancias mínimas en cada región.</span>
+<span class="sd">        :return: Mensaje Twist con las velocidades lineal y angular.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="n">Twist</span><span class="p">()</span>
+        <span class="n">linear_x</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="n">angular_z</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+        <span class="n">state_description</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+        <span class="k">if</span> <span class="n">regions</span><span class="p">[</span><span class="s1">&#39;front&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_distance</span> <span class="ow">and</span> <span class="n">regions</span><span class="p">[</span><span class="s1">&#39;fleft&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_distance</span> <span class="ow">and</span> <span class="n">regions</span><span class="p">[</span><span class="s1">&#39;fright&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_distance</span><span class="p">:</span>
+            <span class="n">state_description</span> <span class="o">=</span> <span class="s1">&#39;case 1 - sin obstáculos&#39;</span>
+            <span class="n">linear_x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">linear_speed</span>
+            <span class="n">angular_z</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="k">elif</span> <span class="n">regions</span><span class="p">[</span><span class="s1">&#39;front&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_distance</span> <span class="ow">and</span> <span class="n">regions</span><span class="p">[</span><span class="s1">&#39;fleft&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_distance</span> <span class="ow">and</span> <span class="n">regions</span><span class="p">[</span><span class="s1">&#39;fright&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_distance</span><span class="p">:</span>
+            <span class="n">state_description</span> <span class="o">=</span> <span class="s1">&#39;case 2 - obstáculo al frente&#39;</span>
+            <span class="n">linear_x</span> <span class="o">=</span> <span class="mf">0.0</span>
+            <span class="n">angular_z</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">angular_speed</span>
+        <span class="k">elif</span> <span class="n">regions</span><span class="p">[</span><span class="s1">&#39;front&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_distance</span> <span class="ow">and</span> <span class="n">regions</span><span class="p">[</span><span class="s1">&#39;fleft&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_distance</span> <span class="ow">and</span> <span class="n">regions</span><span class="p">[</span><span class="s1">&#39;fright&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_distance</span><span class="p">:</span>
+            <span class="n">state_description</span> <span class="o">=</span> <span class="s1">&#39;case 3 - obstáculo al frente-derecha&#39;</span>
+            <span class="n">linear_x</span> <span class="o">=</span> <span class="mf">0.0</span>
+            <span class="n">angular_z</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">angular_speed</span>
+        <span class="k">elif</span> <span class="n">regions</span><span class="p">[</span><span class="s1">&#39;front&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_distance</span> <span class="ow">and</span> <span class="n">regions</span><span class="p">[</span><span class="s1">&#39;fleft&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_distance</span> <span class="ow">and</span> <span class="n">regions</span><span class="p">[</span><span class="s1">&#39;fright&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_distance</span><span class="p">:</span>
+            <span class="n">state_description</span> <span class="o">=</span> <span class="s1">&#39;case 4 - obstáculo al frente-izquierda&#39;</span>
+            <span class="n">linear_x</span> <span class="o">=</span> <span class="mf">0.0</span>
+            <span class="n">angular_z</span> <span class="o">=</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">angular_speed</span>
+        <span class="k">elif</span> <span class="n">regions</span><span class="p">[</span><span class="s1">&#39;front&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_distance</span> <span class="ow">and</span> <span class="n">regions</span><span class="p">[</span><span class="s1">&#39;fleft&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_distance</span> <span class="ow">and</span> <span class="n">regions</span><span class="p">[</span><span class="s1">&#39;fright&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_distance</span><span class="p">:</span>
+            <span class="n">state_description</span> <span class="o">=</span> <span class="s1">&#39;case 5 - obstáculo al frente y derecha&#39;</span>
+            <span class="n">linear_x</span> <span class="o">=</span> <span class="mf">0.0</span>
+            <span class="n">angular_z</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">angular_speed</span>
+        <span class="k">elif</span> <span class="n">regions</span><span class="p">[</span><span class="s1">&#39;front&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_distance</span> <span class="ow">and</span> <span class="n">regions</span><span class="p">[</span><span class="s1">&#39;fleft&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_distance</span> <span class="ow">and</span> <span class="n">regions</span><span class="p">[</span><span class="s1">&#39;fright&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_distance</span><span class="p">:</span>
+            <span class="n">state_description</span> <span class="o">=</span> <span class="s1">&#39;case 6 - obstáculo al frente y izquierda&#39;</span>
+            <span class="n">linear_x</span> <span class="o">=</span> <span class="mf">0.0</span>
+            <span class="n">angular_z</span> <span class="o">=</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">angular_speed</span>
+        <span class="k">elif</span> <span class="n">regions</span><span class="p">[</span><span class="s1">&#39;front&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_distance</span> <span class="ow">and</span> <span class="n">regions</span><span class="p">[</span><span class="s1">&#39;fleft&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_distance</span> <span class="ow">and</span> <span class="n">regions</span><span class="p">[</span><span class="s1">&#39;fright&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_distance</span><span class="p">:</span>
+            <span class="n">state_description</span> <span class="o">=</span> <span class="s1">&#39;case 7 - obstáculo en todas las direcciones&#39;</span>
+            <span class="n">linear_x</span> <span class="o">=</span> <span class="mf">0.0</span>
+            <span class="n">angular_z</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">angular_speed</span>
+        <span class="k">elif</span> <span class="n">regions</span><span class="p">[</span><span class="s1">&#39;front&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_distance</span> <span class="ow">and</span> <span class="n">regions</span><span class="p">[</span><span class="s1">&#39;fleft&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_distance</span> <span class="ow">and</span> <span class="n">regions</span><span class="p">[</span><span class="s1">&#39;fright&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_distance</span><span class="p">:</span>
+            <span class="n">state_description</span> <span class="o">=</span> <span class="s1">&#39;case 8 - obstáculos a izquierda y derecha&#39;</span>
+            <span class="n">linear_x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">linear_speed</span>
+            <span class="n">angular_z</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">state_description</span> <span class="o">=</span> <span class="s1">&#39;unknown case&#39;</span>
+            <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="n">regions</span><span class="p">)</span>
+
+        <span class="n">rospy</span><span class="o">.</span><span class="n">logdebug</span><span class="p">(</span><span class="n">state_description</span><span class="p">)</span>
+
+        <span class="n">msg</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">linear_x</span>
+        <span class="n">msg</span><span class="o">.</span><span class="n">angular</span><span class="o">.</span><span class="n">z</span> <span class="o">=</span> <span class="n">angular_z</span>
+        <span class="k">return</span> <span class="n">msg</span></div>
+
+<div class="viewcode-block" id="AutonomousControlActionServer.stop_robot"><a class="viewcode-back" href="../squad_autonomous_control_action.html#squad_autonomous_control_action.AutonomousControlActionServer.stop_robot">[documentos]</a>    <span class="k">def</span> <span class="nf">stop_robot</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Detiene el robot publicando velocidades cero.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="n">Twist</span><span class="p">()</span>
+        <span class="n">msg</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="n">msg</span><span class="o">.</span><span class="n">angular</span><span class="o">.</span><span class="n">z</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cmd_pub</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span></div></div>
+
+
+<span class="c1"># ************************************************</span>
+<span class="c1">#                   FUNCIÓN MAIN</span>
+<span class="c1"># ************************************************</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">server</span> <span class="o">=</span> <span class="n">AutonomousControlActionServer</span><span class="p">(</span><span class="s1">&#39;autonomous_control&#39;</span><span class="p">)</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">spin</span><span class="p">()</span>
+    <span class="k">except</span> <span class="n">rospy</span><span class="o">.</span><span class="n">ROSInterruptException</span><span class="p">:</span>
+        <span class="k">pass</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Derechos de autor 2024, Abel Belhaki Rivas.</p>
+  </div>
+
+  Compilado con <a href="https://www.sphinx-doc.org/">Sphinx</a> usando un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    proporcionado por <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

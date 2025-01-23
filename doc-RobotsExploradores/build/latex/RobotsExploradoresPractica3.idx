@@ -1,0 +1,87 @@
+\indexentry{module@\spxentry{module}!squad\_state\_manager@\spxentry{squad\_state\_manager}|hyperpage}{6}
+\indexentry{squad\_state\_manager@\spxentry{squad\_state\_manager}!module@\spxentry{module}|hyperpage}{6}
+\indexentry{BaseState (clase en squad\_state\_manager)@\spxentry{BaseState}\spxextra{clase en squad\_state\_manager}|hyperpage}{7}
+\indexentry{execute() (método de squad\_state\_manager.BaseState)@\spxentry{execute()}\spxextra{método de squad\_state\_manager.BaseState}|hyperpage}{7}
+\indexentry{state\_callback() (método de squad\_state\_manager.BaseState)@\spxentry{state\_callback()}\spxextra{método de squad\_state\_manager.BaseState}|hyperpage}{7}
+\indexentry{EstadoApproach (clase en squad\_state\_manager)@\spxentry{EstadoApproach}\spxextra{clase en squad\_state\_manager}|hyperpage}{7}
+\indexentry{control\_mode\_callback() (método de squad\_state\_manager.EstadoApproach)@\spxentry{control\_mode\_callback()}\spxextra{método de squad\_state\_manager.EstadoApproach}|hyperpage}{8}
+\indexentry{execute() (método de squad\_state\_manager.EstadoApproach)@\spxentry{execute()}\spxextra{método de squad\_state\_manager.EstadoApproach}|hyperpage}{8}
+\indexentry{feedback\_cb() (método de squad\_state\_manager.EstadoApproach)@\spxentry{feedback\_cb()}\spxextra{método de squad\_state\_manager.EstadoApproach}|hyperpage}{8}
+\indexentry{EstadoExploracion (clase en squad\_state\_manager)@\spxentry{EstadoExploracion}\spxextra{clase en squad\_state\_manager}|hyperpage}{8}
+\indexentry{control\_mode\_callback() (método de squad\_state\_manager.EstadoExploracion)@\spxentry{control\_mode\_callback()}\spxextra{método de squad\_state\_manager.EstadoExploracion}|hyperpage}{8}
+\indexentry{execute() (método de squad\_state\_manager.EstadoExploracion)@\spxentry{execute()}\spxextra{método de squad\_state\_manager.EstadoExploracion}|hyperpage}{9}
+\indexentry{feedback\_cb() (método de squad\_state\_manager.EstadoExploracion)@\spxentry{feedback\_cb()}\spxextra{método de squad\_state\_manager.EstadoExploracion}|hyperpage}{9}
+\indexentry{object\_callback() (método de squad\_state\_manager.EstadoExploracion)@\spxentry{object\_callback()}\spxextra{método de squad\_state\_manager.EstadoExploracion}|hyperpage}{9}
+\indexentry{EstadoNavegacion (clase en squad\_state\_manager)@\spxentry{EstadoNavegacion}\spxextra{clase en squad\_state\_manager}|hyperpage}{9}
+\indexentry{control\_mode\_callback() (método de squad\_state\_manager.EstadoNavegacion)@\spxentry{control\_mode\_callback()}\spxextra{método de squad\_state\_manager.EstadoNavegacion}|hyperpage}{9}
+\indexentry{execute() (método de squad\_state\_manager.EstadoNavegacion)@\spxentry{execute()}\spxextra{método de squad\_state\_manager.EstadoNavegacion}|hyperpage}{9}
+\indexentry{moveTo() (método de squad\_state\_manager.EstadoNavegacion)@\spxentry{moveTo()}\spxextra{método de squad\_state\_manager.EstadoNavegacion}|hyperpage}{10}
+\indexentry{EstadoReposo (clase en squad\_state\_manager)@\spxentry{EstadoReposo}\spxextra{clase en squad\_state\_manager}|hyperpage}{10}
+\indexentry{execute() (método de squad\_state\_manager.EstadoReposo)@\spxentry{execute()}\spxextra{método de squad\_state\_manager.EstadoReposo}|hyperpage}{10}
+\indexentry{InterfazManager (clase en squad\_state\_manager)@\spxentry{InterfazManager}\spxextra{clase en squad\_state\_manager}|hyperpage}{10}
+\indexentry{camera\_callback() (método de squad\_state\_manager.InterfazManager)@\spxentry{camera\_callback()}\spxextra{método de squad\_state\_manager.InterfazManager}|hyperpage}{10}
+\indexentry{change\_exploration\_mode() (método de squad\_state\_manager.InterfazManager)@\spxentry{change\_exploration\_mode()}\spxextra{método de squad\_state\_manager.InterfazManager}|hyperpage}{11}
+\indexentry{control\_mode\_callback() (método de squad\_state\_manager.InterfazManager)@\spxentry{control\_mode\_callback()}\spxextra{método de squad\_state\_manager.InterfazManager}|hyperpage}{11}
+\indexentry{create\_exploration\_controls() (método de squad\_state\_manager.InterfazManager)@\spxentry{create\_exploration\_controls()}\spxextra{método de squad\_state\_manager.InterfazManager}|hyperpage}{11}
+\indexentry{current\_state\_callback() (método de squad\_state\_manager.InterfazManager)@\spxentry{current\_state\_callback()}\spxextra{método de squad\_state\_manager.InterfazManager}|hyperpage}{11}
+\indexentry{get\_command\_for\_state() (método de squad\_state\_manager.InterfazManager)@\spxentry{get\_command\_for\_state()}\spxextra{método de squad\_state\_manager.InterfazManager}|hyperpage}{11}
+\indexentry{on\_arrow\_down() (método de squad\_state\_manager.InterfazManager)@\spxentry{on\_arrow\_down()}\spxextra{método de squad\_state\_manager.InterfazManager}|hyperpage}{11}
+\indexentry{on\_arrow\_left() (método de squad\_state\_manager.InterfazManager)@\spxentry{on\_arrow\_left()}\spxextra{método de squad\_state\_manager.InterfazManager}|hyperpage}{11}
+\indexentry{on\_arrow\_right() (método de squad\_state\_manager.InterfazManager)@\spxentry{on\_arrow\_right()}\spxextra{método de squad\_state\_manager.InterfazManager}|hyperpage}{11}
+\indexentry{on\_arrow\_up() (método de squad\_state\_manager.InterfazManager)@\spxentry{on\_arrow\_up()}\spxextra{método de squad\_state\_manager.InterfazManager}|hyperpage}{11}
+\indexentry{on\_key\_release() (método de squad\_state\_manager.InterfazManager)@\spxentry{on\_key\_release()}\spxextra{método de squad\_state\_manager.InterfazManager}|hyperpage}{12}
+\indexentry{on\_state\_button\_click() (método de squad\_state\_manager.InterfazManager)@\spxentry{on\_state\_button\_click()}\spxextra{método de squad\_state\_manager.InterfazManager}|hyperpage}{12}
+\indexentry{setup\_gui() (método de squad\_state\_manager.InterfazManager)@\spxentry{setup\_gui()}\spxextra{método de squad\_state\_manager.InterfazManager}|hyperpage}{12}
+\indexentry{subscribe\_to\_camera() (método de squad\_state\_manager.InterfazManager)@\spxentry{subscribe\_to\_camera()}\spxextra{método de squad\_state\_manager.InterfazManager}|hyperpage}{12}
+\indexentry{switch\_camera\_topic() (método de squad\_state\_manager.InterfazManager)@\spxentry{switch\_camera\_topic()}\spxextra{método de squad\_state\_manager.InterfazManager}|hyperpage}{12}
+\indexentry{update\_state\_highlight() (método de squad\_state\_manager.InterfazManager)@\spxentry{update\_state\_highlight()}\spxextra{método de squad\_state\_manager.InterfazManager}|hyperpage}{12}
+\indexentry{TurtleBotStateManager (clase en squad\_state\_manager)@\spxentry{TurtleBotStateManager}\spxextra{clase en squad\_state\_manager}|hyperpage}{12}
+\indexentry{run\_state\_machine() (método de squad\_state\_manager.TurtleBotStateManager)@\spxentry{run\_state\_machine()}\spxextra{método de squad\_state\_manager.TurtleBotStateManager}|hyperpage}{12}
+\indexentry{module@\spxentry{module}!squad\_object\_detection\_action@\spxentry{squad\_object\_detection\_action}|hyperpage}{13}
+\indexentry{squad\_object\_detection\_action@\spxentry{squad\_object\_detection\_action}!module@\spxentry{module}|hyperpage}{13}
+\indexentry{TurtleBotObjectDetectionAction (clase en squad\_object\_detection\_action)@\spxentry{TurtleBotObjectDetectionAction}\spxextra{clase en squad\_object\_detection\_action}|hyperpage}{13}
+\indexentry{calculate\_world\_coordinates() (método de squad\_object\_detection\_action.TurtleBotObjectDetectionAction)@\spxentry{calculate\_world\_coordinates()}\spxextra{método de squad\_object\_detection\_action.TurtleBotObjectDetectionAction}|hyperpage}{14}
+\indexentry{callback() (método de squad\_object\_detection\_action.TurtleBotObjectDetectionAction)@\spxentry{callback()}\spxextra{método de squad\_object\_detection\_action.TurtleBotObjectDetectionAction}|hyperpage}{14}
+\indexentry{camera\_info\_callback() (método de squad\_object\_detection\_action.TurtleBotObjectDetectionAction)@\spxentry{camera\_info\_callback()}\spxextra{método de squad\_object\_detection\_action.TurtleBotObjectDetectionAction}|hyperpage}{14}
+\indexentry{detect\_objects() (método de squad\_object\_detection\_action.TurtleBotObjectDetectionAction)@\spxentry{detect\_objects()}\spxextra{método de squad\_object\_detection\_action.TurtleBotObjectDetectionAction}|hyperpage}{14}
+\indexentry{display\_debug\_info() (método de squad\_object\_detection\_action.TurtleBotObjectDetectionAction)@\spxentry{display\_debug\_info()}\spxextra{método de squad\_object\_detection\_action.TurtleBotObjectDetectionAction}|hyperpage}{15}
+\indexentry{execute() (método de squad\_object\_detection\_action.TurtleBotObjectDetectionAction)@\spxentry{execute()}\spxextra{método de squad\_object\_detection\_action.TurtleBotObjectDetectionAction}|hyperpage}{15}
+\indexentry{get\_depth\_at\_pixel() (método de squad\_object\_detection\_action.TurtleBotObjectDetectionAction)@\spxentry{get\_depth\_at\_pixel()}\spxextra{método de squad\_object\_detection\_action.TurtleBotObjectDetectionAction}|hyperpage}{15}
+\indexentry{load\_parameters() (método de squad\_object\_detection\_action.TurtleBotObjectDetectionAction)@\spxentry{load\_parameters()}\spxextra{método de squad\_object\_detection\_action.TurtleBotObjectDetectionAction}|hyperpage}{15}
+\indexentry{process\_latest\_data() (método de squad\_object\_detection\_action.TurtleBotObjectDetectionAction)@\spxentry{process\_latest\_data()}\spxextra{método de squad\_object\_detection\_action.TurtleBotObjectDetectionAction}|hyperpage}{15}
+\indexentry{subscribe\_to\_topics() (método de squad\_object\_detection\_action.TurtleBotObjectDetectionAction)@\spxentry{subscribe\_to\_topics()}\spxextra{método de squad\_object\_detection\_action.TurtleBotObjectDetectionAction}|hyperpage}{15}
+\indexentry{transform\_camera\_to\_global() (método de squad\_object\_detection\_action.TurtleBotObjectDetectionAction)@\spxentry{transform\_camera\_to\_global()}\spxextra{método de squad\_object\_detection\_action.TurtleBotObjectDetectionAction}|hyperpage}{16}
+\indexentry{module@\spxentry{module}!squad\_approach\_control\_action@\spxentry{squad\_approach\_control\_action}|hyperpage}{16}
+\indexentry{squad\_approach\_control\_action@\spxentry{squad\_approach\_control\_action}!module@\spxentry{module}|hyperpage}{16}
+\indexentry{ApproachObjectActionServer (clase en squad\_approach\_control\_action)@\spxentry{ApproachObjectActionServer}\spxextra{clase en squad\_approach\_control\_action}|hyperpage}{16}
+\indexentry{execute\_cb() (método de squad\_approach\_control\_action.ApproachObjectActionServer)@\spxentry{execute\_cb()}\spxextra{método de squad\_approach\_control\_action.ApproachObjectActionServer}|hyperpage}{16}
+\indexentry{object\_callback() (método de squad\_approach\_control\_action.ApproachObjectActionServer)@\spxentry{object\_callback()}\spxextra{método de squad\_approach\_control\_action.ApproachObjectActionServer}|hyperpage}{16}
+\indexentry{odom\_callback() (método de squad\_approach\_control\_action.ApproachObjectActionServer)@\spxentry{odom\_callback()}\spxextra{método de squad\_approach\_control\_action.ApproachObjectActionServer}|hyperpage}{17}
+\indexentry{preempt\_cb() (método de squad\_approach\_control\_action.ApproachObjectActionServer)@\spxentry{preempt\_cb()}\spxextra{método de squad\_approach\_control\_action.ApproachObjectActionServer}|hyperpage}{17}
+\indexentry{ApproachObjectState (clase en squad\_approach\_control\_action)@\spxentry{ApproachObjectState}\spxextra{clase en squad\_approach\_control\_action}|hyperpage}{17}
+\indexentry{execute() (método de squad\_approach\_control\_action.ApproachObjectState)@\spxentry{execute()}\spxextra{método de squad\_approach\_control\_action.ApproachObjectState}|hyperpage}{17}
+\indexentry{object\_callback() (método de squad\_approach\_control\_action.ApproachObjectState)@\spxentry{object\_callback()}\spxextra{método de squad\_approach\_control\_action.ApproachObjectState}|hyperpage}{17}
+\indexentry{CenterObjectState (clase en squad\_approach\_control\_action)@\spxentry{CenterObjectState}\spxextra{clase en squad\_approach\_control\_action}|hyperpage}{17}
+\indexentry{execute() (método de squad\_approach\_control\_action.CenterObjectState)@\spxentry{execute()}\spxextra{método de squad\_approach\_control\_action.CenterObjectState}|hyperpage}{17}
+\indexentry{object\_callback() (método de squad\_approach\_control\_action.CenterObjectState)@\spxentry{object\_callback()}\spxextra{método de squad\_approach\_control\_action.CenterObjectState}|hyperpage}{18}
+\indexentry{CheckPositionState (clase en squad\_approach\_control\_action)@\spxentry{CheckPositionState}\spxextra{clase en squad\_approach\_control\_action}|hyperpage}{18}
+\indexentry{calculate\_distance() (método de squad\_approach\_control\_action.CheckPositionState)@\spxentry{calculate\_distance()}\spxextra{método de squad\_approach\_control\_action.CheckPositionState}|hyperpage}{18}
+\indexentry{calculate\_orientation\_diff() (método de squad\_approach\_control\_action.CheckPositionState)@\spxentry{calculate\_orientation\_diff()}\spxextra{método de squad\_approach\_control\_action.CheckPositionState}|hyperpage}{18}
+\indexentry{execute() (método de squad\_approach\_control\_action.CheckPositionState)@\spxentry{execute()}\spxextra{método de squad\_approach\_control\_action.CheckPositionState}|hyperpage}{18}
+\indexentry{quaternion\_to\_yaw() (método de squad\_approach\_control\_action.CheckPositionState)@\spxentry{quaternion\_to\_yaw()}\spxextra{método de squad\_approach\_control\_action.CheckPositionState}|hyperpage}{19}
+\indexentry{MoveToPositionState (clase en squad\_approach\_control\_action)@\spxentry{MoveToPositionState}\spxextra{clase en squad\_approach\_control\_action}|hyperpage}{19}
+\indexentry{execute() (método de squad\_approach\_control\_action.MoveToPositionState)@\spxentry{execute()}\spxextra{método de squad\_approach\_control\_action.MoveToPositionState}|hyperpage}{19}
+\indexentry{StartObjectDetectionState (clase en squad\_approach\_control\_action)@\spxentry{StartObjectDetectionState}\spxextra{clase en squad\_approach\_control\_action}|hyperpage}{19}
+\indexentry{execute() (método de squad\_approach\_control\_action.StartObjectDetectionState)@\spxentry{execute()}\spxextra{método de squad\_approach\_control\_action.StartObjectDetectionState}|hyperpage}{19}
+\indexentry{StopObjectDetectionState (clase en squad\_approach\_control\_action)@\spxentry{StopObjectDetectionState}\spxextra{clase en squad\_approach\_control\_action}|hyperpage}{19}
+\indexentry{execute() (método de squad\_approach\_control\_action.StopObjectDetectionState)@\spxentry{execute()}\spxextra{método de squad\_approach\_control\_action.StopObjectDetectionState}|hyperpage}{20}
+\indexentry{WaitState (clase en squad\_approach\_control\_action)@\spxentry{WaitState}\spxextra{clase en squad\_approach\_control\_action}|hyperpage}{20}
+\indexentry{execute() (método de squad\_approach\_control\_action.WaitState)@\spxentry{execute()}\spxextra{método de squad\_approach\_control\_action.WaitState}|hyperpage}{20}
+\indexentry{module@\spxentry{module}!squad\_autonomous\_control\_action@\spxentry{squad\_autonomous\_control\_action}|hyperpage}{21}
+\indexentry{squad\_autonomous\_control\_action@\spxentry{squad\_autonomous\_control\_action}!module@\spxentry{module}|hyperpage}{21}
+\indexentry{AutonomousControlActionServer (clase en squad\_autonomous\_control\_action)@\spxentry{AutonomousControlActionServer}\spxextra{clase en squad\_autonomous\_control\_action}|hyperpage}{21}
+\indexentry{decide\_motion() (método de squad\_autonomous\_control\_action.AutonomousControlActionServer)@\spxentry{decide\_motion()}\spxextra{método de squad\_autonomous\_control\_action.AutonomousControlActionServer}|hyperpage}{21}
+\indexentry{execute\_cb() (método de squad\_autonomous\_control\_action.AutonomousControlActionServer)@\spxentry{execute\_cb()}\spxextra{método de squad\_autonomous\_control\_action.AutonomousControlActionServer}|hyperpage}{21}
+\indexentry{get\_laser\_regions() (método de squad\_autonomous\_control\_action.AutonomousControlActionServer)@\spxentry{get\_laser\_regions()}\spxextra{método de squad\_autonomous\_control\_action.AutonomousControlActionServer}|hyperpage}{21}
+\indexentry{laser\_callback() (método de squad\_autonomous\_control\_action.AutonomousControlActionServer)@\spxentry{laser\_callback()}\spxextra{método de squad\_autonomous\_control\_action.AutonomousControlActionServer}|hyperpage}{21}
+\indexentry{stop\_robot() (método de squad\_autonomous\_control\_action.AutonomousControlActionServer)@\spxentry{stop\_robot()}\spxextra{método de squad\_autonomous\_control\_action.AutonomousControlActionServer}|hyperpage}{21}

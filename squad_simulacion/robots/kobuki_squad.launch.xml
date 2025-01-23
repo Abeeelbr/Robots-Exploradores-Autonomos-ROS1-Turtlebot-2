@@ -1,0 +1,35 @@
+<launch>
+  <!-- Argumentos existentes -->
+  <arg name="base" default="kobuki"/>
+  <arg name="stacks" default="hexagons"/>
+  <arg name="3d_sensor" default="astra"/>
+  <arg name="x" default="10.0"/>
+  <arg name="y" default="0.0"/>
+  <arg name="z" default="0.0"/>
+
+
+  <!-- Añadimos un argumento extra para el namespace -->
+  <arg name="namespace" default="robot_1"/>
+
+  <!-- Generamos la URDF con los xacro -->
+  <arg name="urdf_file" default="$(find xacro)/xacro '$(find squad_simulacion)/robots/turtlebot_description/$(arg base)_$(arg stacks)_$(arg 3d_sensor).urdf.xacro'"/>
+  <param name="robot_description" command="$(arg urdf_file)" />
+  
+
+
+  <!-- Gazebo model spawner -->
+  <!-- Usamos -model $(arg namespace)_mobile_base para que no se repita 'mobile_base' -->
+  <node name="spawn_turtlebot_model" pkg="gazebo_ros" type="spawn_model"
+        args="$(optenv ROBOT_INITIAL_POSE) -unpause -urdf -param robot_description -robot_namespace $(arg namespace) -model $(arg namespace)_mobile_base -x $(arg x) -y $(arg y) -z $(arg z)"/>
+
+  <!-- Velocity muxer -->
+  <node pkg="nodelet" type="nodelet" name="mobile_base_nodelet_manager" args="manager"/>
+  <node pkg="nodelet" type="nodelet" name="cmd_vel_mux"
+        args="load yocs_cmd_vel_mux/CmdVelMuxNodelet mobile_base_nodelet_manager">
+    <param name="yaml_cfg_file" value="$(find turtlebot_bringup)/param/mux.yaml"/>
+    <remap from="cmd_vel_mux/output" to="mobile_base/commands/velocity"/>
+  </node>
+
+  <!-- Bumper/cliff to pointcloud -->
+  <include file="$(find turtlebot_bringup)/launch/includes/kobuki/bumper2pc.launch.xml"/>
+</launch>

@@ -1,0 +1,30 @@
+<launch>
+    <!-- Cargar los parámetros de configuración -->
+     <rosparam command="load" file="$(find squad_main)/config/configGeneral.yaml"/>
+    <rosparam file="$(find squad_exploracion)/config/config.yaml" command="load"/>
+    <rosparam file="$(find squad_navegacion)/config/gmapping_params.yaml" command="load" />
+
+    <!-- Sobrescribir el valor del parámetro MODO_EJECUCION a GAZEBO -->
+    <param name="MODO_EJECUCION" value="GAZEBO"/>
+
+    <!-- Incluir el entorno de simulación de gazebo -->
+    <include file="$(find squad_simulacion)/launch/squad_entorno_simulacion.launch"/>
+
+    <!-- Lanzar el nodo de gestión de estados con remapeo -->
+    <node pkg="squad_main" type="squad_state_manager.py" name="squad_state_manager" output="screen"></node>
+
+    <!-- Lanzar el nodo de la interfaz -->
+    <node pkg="squad_main" type="squad_interfaz.py" name="interfaz" output="screen"/>
+
+    <!-- Incluir el archivo de lanzamiento del paquete de exploración -->
+    <include file="$(find squad_exploracion)/launch/exploracion.launch"/>
+
+    <!-- Incluir el archivo de lanzamiento del paquete de navegación -->
+    <include file="$(find squad_navegacion)/launch/squad_navegacion.launch"/>
+
+    <!-- Incluir el archivo de lanzamiento del paquete de planificacion -->
+    <node pkg="squad_planificacion" type="squad_station_manager_node.py" name="squad_planificacion" output="screen"></node>
+
+    <!-- Lanzar RViz (fuera del group para asegurar que se ejecute) -->
+    <include file="$(find turtlebot_rviz_launchers)/launch/view_navigation.launch"/>
+</launch>

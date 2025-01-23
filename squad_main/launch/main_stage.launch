@@ -1,0 +1,23 @@
+<launch>
+    <!-- Cargar los parametros de la configuración de la aplicación -->
+    <rosparam command="load" file="$(find squad_main)/config/configGeneral.yaml"/>
+
+    <!-- Sobrescribir el valor del parámetro MODO_EJECUCION a STAGE -->
+    <param name="MODO_EJECUCION" value="STAGE"/>
+
+    <!-- Incluir el archivo de lanzamiento de stage -->
+    <include file="$(find navigation_stage)/launch/mi_navigation.launch"/>
+
+    <!-- Lanzar el nodo de gestión de estados -->
+    <node pkg="squad_main" type="squad_state_manager.py" name="squad_state_manager" output="screen"/>
+
+    <!-- Lanzar el nodo de la interfaz -->
+    <node pkg="squad_main" type="squad_interfaz.py" name="interfaz" output="screen"/>
+
+
+    <!-- Incluir el archivo de lanzamiento del paquete de exploración -->
+    <include file="$(find squad_exploracion)/launch/exploracion.launch"/>
+    
+
+
+</launch>

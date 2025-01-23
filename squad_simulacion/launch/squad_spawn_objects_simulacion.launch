@@ -1,0 +1,118 @@
+  <launch>
+  <node name="spawn_fire_hydrant" pkg="gazebo_ros" type="spawn_model" output="screen" args="
+    -file $(find squad_simulacion)/models/fire_hydrant/model.sdf
+    -sdf
+    -model fire_hydrant
+    -x -15.0 -y 10.0 -z 0.0" />
+
+  <node name="bus_stop" pkg="gazebo_ros" type="spawn_model" output="screen" args="
+    -file $(find squad_simulacion)/models/bus_stop/model.sdf
+    -sdf
+    -model bus_stop
+    -x 22.0 -y 8.0 -z 0.0" />
+
+  <node name="bus" pkg="gazebo_ros" type="spawn_model" output="screen" args="
+  -file $(find squad_simulacion)/models/bus/model.sdf
+  -sdf
+  -model bus
+  -x 27 -y 8 -z 0.0" />
+
+  <node name="person_standing" pkg="gazebo_ros" type="spawn_model" output="screen" args="
+  -file $(find squad_simulacion)/models/person_standing/model.sdf
+  -sdf
+  -model person_standing
+  -x -2 -y 7 -z 0.0" />
+
+  <node name="person_delado" pkg="gazebo_ros" type="spawn_model" output="screen" args="
+  -file $(find squad_simulacion)/models/person_delado/model.sdf
+  -sdf
+  -model person_delado
+  -x 8 -y 10 -z 0.0" />
+
+  <node name="pickup" pkg="gazebo_ros" type="spawn_model" output="screen" args="
+  -file $(find squad_simulacion)/models/pickup/model.sdf
+  -sdf
+  -model pickup
+  -x -18 -y 15 -z 0.0" />
+
+  <node name="ambulance" pkg="gazebo_ros" type="spawn_model" output="screen" args="
+  -file $(find squad_simulacion)/models/ambulance/model.sdf
+  -sdf
+  -model ambulance
+  -x -23 -y 12 -z 0.0" />
+
+  <node name="toilet_ornament" pkg="gazebo_ros" type="spawn_model" output="screen" args="
+  -file $(find squad_simulacion)/models/toilet_ornament/model.sdf
+  -sdf
+  -model toilet_ornament
+  -x -7.2 -y 14.6 -z 0.0" />
+
+  <node name="toilet_ornament_delado" pkg="gazebo_ros" type="spawn_model" output="screen" args="
+  -file $(find squad_simulacion)/models/toilet_ornament_delado/model.sdf
+  -sdf
+  -model toilet_ornament_delado
+  -x -1 -y 14 -z 0.0" />
+
+  <node name="sofa" pkg="gazebo_ros" type="spawn_model" output="screen" args="
+  -file $(find squad_simulacion)/models/chair_set_2/model.sdf
+  -sdf
+  -model sofa
+  -x 1 -y 3.8 -z 0.0" />
+  
+
+  <node name="monitor" pkg="gazebo_ros" type="spawn_model" output="screen" args="
+  -file $(find squad_simulacion)/models/monitor_3/model.sdf
+  -sdf
+  -model monitor
+  -x 1.5 -y -2 -z 0.0" />
+
+  <node name="mesa" pkg="gazebo_ros" type="spawn_model" output="screen" args="
+  -file $(find squad_simulacion)/models/table_dining/model.sdf
+  -sdf
+  -model mesa
+  -x -2 -y 0.5 -z 0.0" />
+
+  <node name="silla1" pkg="gazebo_ros" type="spawn_model" output="screen" args="
+  -file $(find squad_simulacion)/models/chair_1/model.sdf
+  -sdf
+  -model silla1
+  -x -3 -y 0.5 -z 0.0" />
+
+  <node name="silla1_girada" pkg="gazebo_ros" type="spawn_model" output="screen" args="
+  -file $(find squad_simulacion)/models/chair_1_girada/model.sdf
+  -sdf
+  -model silla1_girada
+  -x -1.5 -y 0 -z 0.0" />
+
+  <node name="silla3" pkg="gazebo_ros" type="spawn_model" output="screen" args="
+  -file $(find squad_simulacion)/models/chair_3/model.sdf
+  -sdf
+  -model silla3
+  -x -2 -y 1 -z 0.0" />
+  
+  <node name="sillaruedas" pkg="gazebo_ros" type="spawn_model" output="screen" args="
+  -file $(find squad_simulacion)/models/PatientWheelChair/model.sdf
+  -sdf
+  -model sillaruedas
+  -x -6 -y 11 -z 0.0" />
+
+  <node name="coche" pkg="gazebo_ros" type="spawn_model" output="screen" args="
+  -file $(find squad_simulacion)/models/Hatchback/model.sdf
+  -sdf
+  -model coche
+  -x 23 -y 14 -z 0.0" />
+
+  <node name="nevera" pkg="gazebo_ros" type="spawn_model" output="screen" args="
+  -file $(find squad_simulacion)/models/Fridge/model.sdf
+  -sdf
+  -model nevera
+  -x 3 -y 8 -z 0.0" />
+
+  <!-- <node name="cama" pkg="gazebo_ros" type="spawn_model" output="screen" args="
+  -file $(find squad_simulacion)/models/Bed/model.sdf
+  -sdf
+  -model cama
+  -x 15 -y 12 -z 0.0" /> -->
+
+  </launch>
+

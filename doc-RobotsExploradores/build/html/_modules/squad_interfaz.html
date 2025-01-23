@@ -1,0 +1,1141 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>squad_interfaz &mdash; documentación de Robots Exploradores - Práctica 3 - 1.0</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=eafc0fe6" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=8e0ebba5"></script>
+      <script src="../_static/doctools.js?v=888ff710"></script>
+      <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../_static/translations.js?v=efdbd0b9"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Robots Exploradores - Práctica 3
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contenidos:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduccion.html">Introducción</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuracion.html">Configuración del Entorno</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../uso.html">Uso del Sistema</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../uso.html#pasos-para-lanzar-el-sistema">Pasos para Lanzar el Sistema</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../uso.html#flujo-del-sistema">Flujo del Sistema</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../uso.html#detalles-de-la-interfaz-grafica">Detalles de la Interfaz Gráfica</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../uso.html#configuracion-de-la-maquina-de-estados">Configuración de la Máquina de Estados</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../uso.html#comandos-y-transiciones">Comandos y Transiciones</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../uso.html#parametros-configurables">Parámetros Configurables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../uso.html#topicos-importantes">Tópicos Importantes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../squad_state_manager.html">Máquina de Estados (squad_state_manager)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.BaseState"><code class="docutils literal notranslate"><span class="pre">BaseState</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.BaseState.command_callback"><code class="docutils literal notranslate"><span class="pre">BaseState.command_callback()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.BaseState.execute"><code class="docutils literal notranslate"><span class="pre">BaseState.execute()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.EstadoExploracion"><code class="docutils literal notranslate"><span class="pre">EstadoExploracion</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.EstadoExploracion.control_mode_callback"><code class="docutils literal notranslate"><span class="pre">EstadoExploracion.control_mode_callback()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.EstadoExploracion.execute"><code class="docutils literal notranslate"><span class="pre">EstadoExploracion.execute()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.EstadoExploracion.feedback_cb"><code class="docutils literal notranslate"><span class="pre">EstadoExploracion.feedback_cb()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.EstadoExploracion.object_callback"><code class="docutils literal notranslate"><span class="pre">EstadoExploracion.object_callback()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.EstadoNavegacion"><code class="docutils literal notranslate"><span class="pre">EstadoNavegacion</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.EstadoNavegacion.command_callback"><code class="docutils literal notranslate"><span class="pre">EstadoNavegacion.command_callback()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.EstadoNavegacion.control_mode_callback"><code class="docutils literal notranslate"><span class="pre">EstadoNavegacion.control_mode_callback()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.EstadoNavegacion.execute"><code class="docutils literal notranslate"><span class="pre">EstadoNavegacion.execute()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.EstadoNavegacion.moveTo"><code class="docutils literal notranslate"><span class="pre">EstadoNavegacion.moveTo()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.EstadoNavegacion.stations_callback"><code class="docutils literal notranslate"><span class="pre">EstadoNavegacion.stations_callback()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.EstadoReposo"><code class="docutils literal notranslate"><span class="pre">EstadoReposo</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.EstadoReposo.execute"><code class="docutils literal notranslate"><span class="pre">EstadoReposo.execute()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.TurtleBotStateManager"><code class="docutils literal notranslate"><span class="pre">TurtleBotStateManager</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.TurtleBotStateManager.run_state_machine"><code class="docutils literal notranslate"><span class="pre">TurtleBotStateManager.run_state_machine()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../squad_state_manager.html#squad_interfaz.InterfazManager"><code class="docutils literal notranslate"><span class="pre">InterfazManager</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_interfaz.InterfazManager.camera_callback"><code class="docutils literal notranslate"><span class="pre">InterfazManager.camera_callback()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_interfaz.InterfazManager.control_mode_callback"><code class="docutils literal notranslate"><span class="pre">InterfazManager.control_mode_callback()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_interfaz.InterfazManager.create_exploration_controls"><code class="docutils literal notranslate"><span class="pre">InterfazManager.create_exploration_controls()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_interfaz.InterfazManager.current_state_callback"><code class="docutils literal notranslate"><span class="pre">InterfazManager.current_state_callback()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_interfaz.InterfazManager.get_command_for_state"><code class="docutils literal notranslate"><span class="pre">InterfazManager.get_command_for_state()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_interfaz.InterfazManager.get_robot_pose"><code class="docutils literal notranslate"><span class="pre">InterfazManager.get_robot_pose()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_interfaz.InterfazManager.go_to_station"><code class="docutils literal notranslate"><span class="pre">InterfazManager.go_to_station()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_interfaz.InterfazManager.map_callback"><code class="docutils literal notranslate"><span class="pre">InterfazManager.map_callback()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_interfaz.InterfazManager.on_arrow_down"><code class="docutils literal notranslate"><span class="pre">InterfazManager.on_arrow_down()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_interfaz.InterfazManager.on_arrow_left"><code class="docutils literal notranslate"><span class="pre">InterfazManager.on_arrow_left()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_interfaz.InterfazManager.on_arrow_right"><code class="docutils literal notranslate"><span class="pre">InterfazManager.on_arrow_right()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_interfaz.InterfazManager.on_arrow_up"><code class="docutils literal notranslate"><span class="pre">InterfazManager.on_arrow_up()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_interfaz.InterfazManager.on_closing"><code class="docutils literal notranslate"><span class="pre">InterfazManager.on_closing()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_interfaz.InterfazManager.on_key_release"><code class="docutils literal notranslate"><span class="pre">InterfazManager.on_key_release()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_interfaz.InterfazManager.on_state_button_click"><code class="docutils literal notranslate"><span class="pre">InterfazManager.on_state_button_click()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_interfaz.InterfazManager.set_switch_state"><code class="docutils literal notranslate"><span class="pre">InterfazManager.set_switch_state()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_interfaz.InterfazManager.setup_gui"><code class="docutils literal notranslate"><span class="pre">InterfazManager.setup_gui()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_interfaz.InterfazManager.signal_handler"><code class="docutils literal notranslate"><span class="pre">InterfazManager.signal_handler()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_interfaz.InterfazManager.stations_callback"><code class="docutils literal notranslate"><span class="pre">InterfazManager.stations_callback()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_interfaz.InterfazManager.subscribe_to_camera"><code class="docutils literal notranslate"><span class="pre">InterfazManager.subscribe_to_camera()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_interfaz.InterfazManager.switch_camera_topic"><code class="docutils literal notranslate"><span class="pre">InterfazManager.switch_camera_topic()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_interfaz.InterfazManager.update_state_highlight"><code class="docutils literal notranslate"><span class="pre">InterfazManager.update_state_highlight()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_interfaz.InterfazManager.update_station_list"><code class="docutils literal notranslate"><span class="pre">InterfazManager.update_station_list()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_interfaz.InterfazManager.update_visualization"><code class="docutils literal notranslate"><span class="pre">InterfazManager.update_visualization()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../pkg_exploracion.html">Paquete de Exploración</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../squad_object_detection_action.html">Detección de Objetos (squad_object_detection_action)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.calculate_world_coordinates"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.calculate_world_coordinates()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.callback"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.callback()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.camera_info_callback"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.camera_info_callback()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.detect_objects"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.detect_objects()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.display_debug_info"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.display_debug_info()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.execute"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.execute()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.get_depth_at_pixel"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.get_depth_at_pixel()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.get_robot_pose"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.get_robot_pose()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.load_parameters"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.load_parameters()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.process_latest_data"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.process_latest_data()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.subscribe_to_topics"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.subscribe_to_topics()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../squad_approach_control_action.html">Aproximación a Objetos (squad_approach_control_action)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.ApproachObjectActionServer"><code class="docutils literal notranslate"><span class="pre">ApproachObjectActionServer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.ApproachObjectActionServer.execute_cb"><code class="docutils literal notranslate"><span class="pre">ApproachObjectActionServer.execute_cb()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.ApproachObjectActionServer.get_robot_pose"><code class="docutils literal notranslate"><span class="pre">ApproachObjectActionServer.get_robot_pose()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.ApproachObjectActionServer.object_callback"><code class="docutils literal notranslate"><span class="pre">ApproachObjectActionServer.object_callback()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.ApproachObjectActionServer.preempt_cb"><code class="docutils literal notranslate"><span class="pre">ApproachObjectActionServer.preempt_cb()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.ApproachObjectState"><code class="docutils literal notranslate"><span class="pre">ApproachObjectState</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.ApproachObjectState.execute"><code class="docutils literal notranslate"><span class="pre">ApproachObjectState.execute()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.ApproachObjectState.object_callback"><code class="docutils literal notranslate"><span class="pre">ApproachObjectState.object_callback()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.CenterObjectState"><code class="docutils literal notranslate"><span class="pre">CenterObjectState</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.CenterObjectState.execute"><code class="docutils literal notranslate"><span class="pre">CenterObjectState.execute()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.CenterObjectState.object_callback"><code class="docutils literal notranslate"><span class="pre">CenterObjectState.object_callback()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.CheckPositionState"><code class="docutils literal notranslate"><span class="pre">CheckPositionState</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.CheckPositionState.calculate_distance"><code class="docutils literal notranslate"><span class="pre">CheckPositionState.calculate_distance()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.CheckPositionState.calculate_orientation_diff"><code class="docutils literal notranslate"><span class="pre">CheckPositionState.calculate_orientation_diff()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.CheckPositionState.execute"><code class="docutils literal notranslate"><span class="pre">CheckPositionState.execute()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.CheckPositionState.quaternion_to_yaw"><code class="docutils literal notranslate"><span class="pre">CheckPositionState.quaternion_to_yaw()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.MoveToPositionState"><code class="docutils literal notranslate"><span class="pre">MoveToPositionState</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.MoveToPositionState.execute"><code class="docutils literal notranslate"><span class="pre">MoveToPositionState.execute()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.StartObjectDetectionState"><code class="docutils literal notranslate"><span class="pre">StartObjectDetectionState</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.StartObjectDetectionState.execute"><code class="docutils literal notranslate"><span class="pre">StartObjectDetectionState.execute()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.StopObjectDetectionState"><code class="docutils literal notranslate"><span class="pre">StopObjectDetectionState</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.StopObjectDetectionState.execute"><code class="docutils literal notranslate"><span class="pre">StopObjectDetectionState.execute()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.WaitState"><code class="docutils literal notranslate"><span class="pre">WaitState</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.WaitState.execute"><code class="docutils literal notranslate"><span class="pre">WaitState.execute()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../squad_autonomous_control_action.html">Control Autónomo (squad_autonomous_control_action)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../squad_autonomous_control_action.html#squad_autonomous_control_action.AutonomousControlActionServer"><code class="docutils literal notranslate"><span class="pre">AutonomousControlActionServer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../squad_autonomous_control_action.html#squad_autonomous_control_action.AutonomousControlActionServer.decide_motion"><code class="docutils literal notranslate"><span class="pre">AutonomousControlActionServer.decide_motion()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_autonomous_control_action.html#squad_autonomous_control_action.AutonomousControlActionServer.execute_cb"><code class="docutils literal notranslate"><span class="pre">AutonomousControlActionServer.execute_cb()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_autonomous_control_action.html#squad_autonomous_control_action.AutonomousControlActionServer.get_laser_regions"><code class="docutils literal notranslate"><span class="pre">AutonomousControlActionServer.get_laser_regions()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_autonomous_control_action.html#squad_autonomous_control_action.AutonomousControlActionServer.laser_callback"><code class="docutils literal notranslate"><span class="pre">AutonomousControlActionServer.laser_callback()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_autonomous_control_action.html#squad_autonomous_control_action.AutonomousControlActionServer.stop_robot"><code class="docutils literal notranslate"><span class="pre">AutonomousControlActionServer.stop_robot()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Robots Exploradores - Práctica 3</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Código de módulo</a></li>
+      <li class="breadcrumb-item active">squad_interfaz</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Código fuente para squad_interfaz</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">TurtleBot State Manager</span>
+
+<span class="sd">Este script integra una interfaz gráfica de usuario (GUI) construida con Tkinter para permitir la interacción</span>
+<span class="sd">manual y visualización del estado actual del robot, la imagen de la cámara y el mapa del entorno.</span>
+
+<span class="sd">Dependencias:</span>
+<span class="sd">    - rospy</span>
+<span class="sd">    - smach</span>
+<span class="sd">    - smach_ros</span>
+<span class="sd">    - actionlib</span>
+<span class="sd">    - std_msgs.msg</span>
+<span class="sd">    - squad_exploracion.msg</span>
+<span class="sd">    - sensor_msgs.msg</span>
+<span class="sd">    - cv_bridge</span>
+<span class="sd">    - PIL (Pillow)</span>
+<span class="sd">    - cv2 (OpenCV)</span>
+<span class="sd">    - move_base_msgs.msg</span>
+<span class="sd">    - geometry_msgs.msg</span>
+<span class="sd">    - threading</span>
+<span class="sd">    - tkinter</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">rospy</span>
+<span class="kn">from</span> <span class="nn">std_msgs.msg</span> <span class="kn">import</span> <span class="n">String</span>
+<span class="kn">import</span> <span class="nn">tf</span>
+<span class="kn">from</span> <span class="nn">geometry_msgs.msg</span> <span class="kn">import</span> <span class="n">Pose</span><span class="p">,</span> <span class="n">Point</span><span class="p">,</span> <span class="n">Quaternion</span>
+<span class="kn">from</span> <span class="nn">sensor_msgs.msg</span> <span class="kn">import</span> <span class="n">Image</span> <span class="k">as</span> <span class="n">ROSImage</span>
+<span class="kn">from</span> <span class="nn">cv_bridge</span> <span class="kn">import</span> <span class="n">CvBridge</span><span class="p">,</span> <span class="n">CvBridgeError</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageTk</span><span class="p">,</span> <span class="n">ImageDraw</span><span class="p">,</span> <span class="n">ImageFont</span>
+<span class="kn">import</span> <span class="nn">cv2</span>
+<span class="kn">import</span> <span class="nn">signal</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">squad_planificacion.msg</span> <span class="kn">import</span> <span class="n">StationInfo</span><span class="p">,</span> <span class="n">StationsInfo</span>
+<span class="kn">from</span> <span class="nn">move_base_msgs.msg</span> <span class="kn">import</span> <span class="n">MoveBaseAction</span><span class="p">,</span> <span class="n">MoveBaseGoal</span>
+<span class="kn">from</span> <span class="nn">geometry_msgs.msg</span> <span class="kn">import</span> <span class="n">Twist</span>
+<span class="kn">import</span> <span class="nn">threading</span>
+<span class="kn">import</span> <span class="nn">tkinter</span> <span class="k">as</span> <span class="nn">tk</span>
+<span class="kn">from</span> <span class="nn">nav_msgs.msg</span> <span class="kn">import</span> <span class="n">OccupancyGrid</span>
+<span class="kn">import</span> <span class="nn">math</span>
+
+<span class="c1"># Almacén de estaciones inicializado</span>
+<span class="n">almacen_estaciones</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;HOME&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)}</span>
+
+<div class="viewcode-block" id="InterfazManager"><a class="viewcode-back" href="../squad_state_manager.html#squad_interfaz.InterfazManager">[documentos]</a><span class="k">class</span> <span class="nc">InterfazManager</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Gestor de la Interfaz Gráfica de Usuario (GUI) para la Máquina de Estados del TurtleBot.</span>
+
+<span class="sd">    Esta clase maneja la creación y actualización de la interfaz gráfica, la interacción con</span>
+<span class="sd">    los tópicos de ROS para enviar comandos y recibir actualizaciones del estado del robot.</span>
+<span class="sd">    También gestiona la visualización de imágenes de la cámara en tiempo real, cómo se va construyendo el mapa del entorno y la gestión dinámica</span>
+<span class="sd">    de estaciones.</span>
+
+<span class="sd">    Atributos:</span>
+<span class="sd">        state_machine (StateMachine): Máquina de estados finita (SMACH) para gestionar los estados del robot.</span>
+<span class="sd">        state_names (list): Lista de nombres de los estados definidos en la máquina de estados.</span>
+<span class="sd">        current_state (str): Nombre del estado actual del robot.</span>
+<span class="sd">        command_state_mapping (dict): Mapeo de comandos a nombres de estados.</span>
+<span class="sd">        cmd_vel_pub (Publisher): Publicador al tópico &#39;/cmd_vel&#39; para enviar comandos de movimiento.</span>
+<span class="sd">        state_pub (Publisher): Publicador al tópico &#39;/command&#39; para enviar comandos de estado.</span>
+<span class="sd">        ejecucion_mode (str): Modo de ejecución actual (&#39;REAL&#39;, &#39;GAZEBO&#39; o &#39;STAGE&#39;).</span>
+<span class="sd">        control_teleop_topic (str): Tópico de control de teleoperación que depende del modo de ejecución.</span>
+<span class="sd">        control_mode_pub (Publisher): Publicador al tópico &#39;/control_mode&#39; para cambiar el modo de control.</span>
+<span class="sd">        control_mode_sub (Subscriber): Suscriptor al tópico &#39;/control_mode&#39; para recibir actualizaciones del modo de control.</span>
+<span class="sd">        bridge (CvBridge): Objeto para convertir mensajes de ROS Image a OpenCV.</span>
+<span class="sd">        camera_sub (Subscriber): Suscriptor al tópico de la cámara.</span>
+<span class="sd">        normal_camera_topic (str): Tópico de la cámara normal.</span>
+<span class="sd">        action_camera_topic (str): Tópico de la cámara procesada para acciones.</span>
+<span class="sd">        current_camera_topic (str): Tópico de la cámara actualmente suscrito.</span>
+<span class="sd">        camera_image (ImageTk.PhotoImage): Imagen actual de la cámara para visualizar en la GUI.</span>
+<span class="sd">        control_mode (str): Modo de control actual (&#39;manual&#39; o &#39;autonomous&#39;).</span>
+<span class="sd">        window (Tk): Ventana principal de la GUI.</span>
+<span class="sd">        state_buttons (dict): Diccionario de botones de estado en la GUI.</span>
+<span class="sd">        exploration_controls_frame (Frame): Marco para los controles de exploración en la GUI.</span>
+<span class="sd">        station_selection_frame (Frame): Marco para la selección de estaciones.</span>
+<span class="sd">        station_label (Label): Etiqueta para el desplegable de estaciones.</span>
+<span class="sd">        selected_station (StringVar): Variable para almacenar la estación seleccionada.</span>
+<span class="sd">        station_dropdown (OptionMenu): Desplegable para seleccionar estaciones.</span>
+<span class="sd">        go_button (Button): Botón para enviar el comando &quot;Ir&quot; a la estación seleccionada.</span>
+<span class="sd">        map_label (Label): Etiqueta para la visualización del mapa.</span>
+<span class="sd">        map_resolution (float): Resolución del mapa en metros por píxel.</span>
+<span class="sd">        map_origin_x (float): Coordenada X del origen del mapa en el sistema de coordenadas mundial.</span>
+<span class="sd">        map_origin_y (float): Coordenada Y del origen del mapa en el sistema de coordenadas mundial.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Inicializa el gestor de la interfaz gráfica, configurando publicadores, suscriptores,</span>
+<span class="sd">        la GUI y los controles de exploración.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            state_machine (StateMachine): Máquina de estados finita (SMACH) para gestionar los estados del robot.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">init_node</span><span class="p">(</span><span class="s1">&#39;interfaz&#39;</span><span class="p">,</span> <span class="n">anonymous</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s1">&#39;Nodo interfaz inicializado&#39;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">state_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;REPOSO&#39;</span><span class="p">,</span> <span class="s1">&#39;EXPLORACION&#39;</span><span class="p">,</span> <span class="s1">&#39;NAVEGACION&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_state</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="c1"># ************************************************</span>
+        <span class="c1">#          MAPEADO DE COMANDOS A ESTADOS</span>
+        <span class="c1"># ************************************************</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">command_state_mapping</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;parar&#39;</span><span class="p">:</span> <span class="s1">&#39;REPOSO&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;modo exploracion&#39;</span><span class="p">:</span> <span class="s1">&#39;EXPLORACION&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;ir a&#39;</span><span class="p">:</span> <span class="s1">&#39;NAVEGACION&#39;</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state_buttons</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="c1"># ************************************************</span>
+        <span class="c1">#       INICIALIZACIÓN DE PUBLICADORES Y SUSCRIPTORES</span>
+        <span class="c1"># ************************************************</span>
+        <span class="c1"># Publicador para comandos de movimiento</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ejecucion_mode</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">get_param</span><span class="p">(</span><span class="s1">&#39;MODO_EJECUCION&#39;</span><span class="p">,</span> <span class="s1">&#39;REAL&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">control_teleop_topic</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">get_param</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">ejecucion_mode</span><span class="si">}</span><span class="s1">/control_teleop_topic&#39;</span><span class="p">,</span> <span class="s1">&#39;cmd_vel_mux/input/teleop&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cmd_vel_pub</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Publisher</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">control_teleop_topic</span><span class="p">,</span> <span class="n">Twist</span><span class="p">,</span> <span class="n">queue_size</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># Publicador para enviar comandos de estado</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state_pub</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Publisher</span><span class="p">(</span><span class="s1">&#39;command&#39;</span><span class="p">,</span> <span class="n">String</span><span class="p">,</span> <span class="n">queue_size</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># Publicador y suscriptor para el modo de control</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">control_mode_pub</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Publisher</span><span class="p">(</span><span class="s1">&#39;control_mode&#39;</span><span class="p">,</span> <span class="n">String</span><span class="p">,</span> <span class="n">queue_size</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">control_mode_sub</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Subscriber</span><span class="p">(</span><span class="s1">&#39;control_mode&#39;</span><span class="p">,</span> <span class="n">String</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">control_mode_callback</span><span class="p">)</span>
+
+        <span class="c1"># Suscriptor para obtener el estado actual del robot</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">Subscriber</span><span class="p">(</span><span class="s1">&#39;current_state&#39;</span><span class="p">,</span> <span class="n">String</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_state_callback</span><span class="p">)</span>
+
+        <span class="c1"># Suscriptor para la cámara</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bridge</span> <span class="o">=</span> <span class="n">CvBridge</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">camera_sub</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">normal_camera_topic</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">get_param</span><span class="p">(</span><span class="s1">&#39;image_topic&#39;</span><span class="p">,</span> <span class="s1">&#39;camera/rgb/image_raw&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">action_camera_topic</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">get_param</span><span class="p">(</span><span class="s1">&#39;processed_image_topic&#39;</span><span class="p">,</span> <span class="s1">&#39;processed_image&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">map_topic</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">get_param</span><span class="p">(</span><span class="s1">&#39;TOPIC_MAPA&#39;</span><span class="p">,</span> <span class="s1">&#39;map&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_camera_topic</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">normal_camera_topic</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">camera_image</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="c1"># Suscriptor para estaciones</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">Subscriber</span><span class="p">(</span><span class="s1">&#39;stations_info&#39;</span><span class="p">,</span> <span class="n">StationsInfo</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stations_callback</span><span class="p">)</span>  <span class="c1"># Ajusta el nombre del tópico si es necesario</span>
+
+        <span class="c1"># ************************************************</span>
+        <span class="c1">#              MODOS DE EXPLORACIÓN</span>
+        <span class="c1"># ************************************************</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">control_mode</span> <span class="o">=</span> <span class="s1">&#39;manual&#39;</span>
+
+        <span class="c1"># ************************************************</span>
+        <span class="c1">#       PARAMETROS PARA LA TRANSFORMACIÓN DE COORDENADAS</span>
+        <span class="c1"># ************************************************</span>
+        <span class="c1"># Inicializar el listener de TF</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tf_listener</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">TransformListener</span><span class="p">()</span>
+
+        <span class="c1"># ************************************************</span>
+        <span class="c1">#           VISUALIZACIÓN DEL MAPA</span>
+        <span class="c1"># ************************************************</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">map_image</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">map_resolution</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">map_origin_x</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">map_origin_y</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">map_width</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">map_height</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">original_map_image</span> <span class="o">=</span> <span class="kc">None</span>
+
+
+        <span class="c1"># Iniciar la suscripción al mapa</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">map_sub</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Subscriber</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">map_topic</span><span class="p">,</span> <span class="n">OccupancyGrid</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">map_callback</span><span class="p">)</span>
+
+        
+        <span class="c1"># ************************************************</span>
+        <span class="c1">#           INICIALIZACIÓN DE LA INTERFAZ</span>
+        <span class="c1"># ************************************************</span>
+        <span class="c1"># Configurar la interfaz gráfica</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setup_gui</span><span class="p">()</span>
+
+        <span class="c1"># Iniciar la suscripción a la cámara</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">subscribe_to_camera</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">current_camera_topic</span><span class="p">)</span>
+
+        <span class="c1"># Actualizar la visualización del mapa</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">update_visualization</span><span class="p">()</span>
+
+        <span class="c1"># Iniciar el spinning de ROS en un hilo separado</span>
+        <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">rospy</span><span class="o">.</span><span class="n">spin</span><span class="p">)</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+        <span class="c1"># Manejar el evento de cierre de la ventana</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">protocol</span><span class="p">(</span><span class="s2">&quot;WM_DELETE_WINDOW&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_closing</span><span class="p">)</span>
+
+        <span class="c1"># Manejar la señal Ctrl+C</span>
+        <span class="n">signal</span><span class="o">.</span><span class="n">signal</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">SIGINT</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">signal_handler</span><span class="p">)</span>
+
+        <span class="c1"># Iniciar el bucle principal de la GUI</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">mainloop</span><span class="p">()</span>
+
+<div class="viewcode-block" id="InterfazManager.stations_callback"><a class="viewcode-back" href="../squad_state_manager.html#squad_interfaz.InterfazManager.stations_callback">[documentos]</a>    <span class="k">def</span> <span class="nf">stations_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Callback para el suscriptor del tópico de estaciones.</span>
+
+<span class="sd">        Actualiza la variable global &#39;almacen_estaciones&#39; con los datos recibidos.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            msg (Stations): Mensaje con los datos de estaciones.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">global</span> <span class="n">almacen_estaciones</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">estaciones</span> <span class="o">=</span> <span class="n">almacen_estaciones</span>
+            <span class="k">for</span> <span class="n">station</span> <span class="ow">in</span> <span class="n">msg</span><span class="o">.</span><span class="n">stations</span><span class="p">:</span>
+                <span class="n">station_id</span> <span class="o">=</span> <span class="n">station</span><span class="o">.</span><span class="n">station_id</span>
+                <span class="n">coordinates</span> <span class="o">=</span> <span class="p">(</span><span class="n">station</span><span class="o">.</span><span class="n">coordinates</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">station</span><span class="o">.</span><span class="n">coordinates</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+                <span class="c1"># Puedes incluir el polígono si es necesario</span>
+                <span class="c1"># polygon = [(point.x, point.y) for point in station.polygon]</span>
+                <span class="n">estaciones</span><span class="p">[</span><span class="n">station_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">coordinates</span>
+            <span class="n">almacen_estaciones</span> <span class="o">=</span> <span class="n">estaciones</span>
+            <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Actualizado almacen_estaciones: </span><span class="si">{</span><span class="n">almacen_estaciones</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">rospy</span><span class="o">.</span><span class="n">logerr</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error en el acceso a atributos del mensaje de estaciones: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">rospy</span><span class="o">.</span><span class="n">logerr</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error inesperado en stations_callback: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+<div class="viewcode-block" id="InterfazManager.get_robot_pose"><a class="viewcode-back" href="../squad_state_manager.html#squad_interfaz.InterfazManager.get_robot_pose">[documentos]</a>    <span class="k">def</span> <span class="nf">get_robot_pose</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Obtiene la posición actual del robot en el marco &#39;map&#39;.</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            tuple: (x, y, theta) si la transformación es exitosa, de lo contrario, None.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># Esperar a que la transformación esté disponible</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tf_listener</span><span class="o">.</span><span class="n">waitForTransform</span><span class="p">(</span><span class="s1">&#39;map&#39;</span><span class="p">,</span> <span class="s1">&#39;base_link&#39;</span><span class="p">,</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Time</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Duration</span><span class="p">(</span><span class="mf">4.0</span><span class="p">))</span>
+            <span class="p">(</span><span class="n">trans</span><span class="p">,</span> <span class="n">rot</span><span class="p">)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tf_listener</span><span class="o">.</span><span class="n">lookupTransform</span><span class="p">(</span><span class="s1">&#39;map&#39;</span><span class="p">,</span> <span class="s1">&#39;base_link&#39;</span><span class="p">,</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Time</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+            <span class="n">position</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="o">*</span><span class="n">trans</span><span class="p">)</span>
+            <span class="n">orientation</span> <span class="o">=</span> <span class="n">Quaternion</span><span class="p">(</span><span class="o">*</span><span class="n">rot</span><span class="p">)</span>
+            
+            <span class="c1"># Convertir la orientación de cuaterniones a ángulo yaw (theta)</span>
+            <span class="n">euler</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">transformations</span><span class="o">.</span><span class="n">euler_from_quaternion</span><span class="p">([</span><span class="n">orientation</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">orientation</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">orientation</span><span class="o">.</span><span class="n">z</span><span class="p">,</span> <span class="n">orientation</span><span class="o">.</span><span class="n">w</span><span class="p">])</span>
+            <span class="n">theta</span> <span class="o">=</span> <span class="n">euler</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>  <span class="c1"># Yaw</span>
+            
+            <span class="k">return</span> <span class="p">(</span><span class="n">position</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">position</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">theta</span><span class="p">)</span>
+        <span class="k">except</span> <span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">LookupException</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">ConnectivityException</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">ExtrapolationException</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">rospy</span><span class="o">.</span><span class="n">logerr</span><span class="p">(</span><span class="s2">&quot;No se pudo obtener la transformación de &#39;map&#39; a &#39;base_link&#39;: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">None</span></div>
+
+<div class="viewcode-block" id="InterfazManager.current_state_callback"><a class="viewcode-back" href="../squad_state_manager.html#squad_interfaz.InterfazManager.current_state_callback">[documentos]</a>    <span class="k">def</span> <span class="nf">current_state_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Callback para el suscriptor del estado actual.</span>
+
+<span class="sd">        Actualiza el estado actual y resalta el botón correspondiente en la GUI.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            msg (String): Mensaje con el nombre del estado actual.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_state</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">data</span>
+        <span class="c1"># Actualizar la GUI para resaltar el estado actual</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">update_state_highlight</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="InterfazManager.setup_gui"><a class="viewcode-back" href="../squad_state_manager.html#squad_interfaz.InterfazManager.setup_gui">[documentos]</a>    <span class="k">def</span> <span class="nf">setup_gui</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Configura la interfaz gráfica de usuario utilizando Tkinter.</span>
+
+<span class="sd">        Crea la ventana principal, los botones de control, la visualización de la cámara,</span>
+<span class="sd">        la visualización del mapa y los controles de exploración.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">window</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Tk</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Interfaz de la Máquina de Estados&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">bg</span><span class="o">=</span><span class="s1">&#39;#f0f0f0&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">geometry</span><span class="p">(</span><span class="s2">&quot;1400x800&quot;</span><span class="p">)</span>  
+        <span class="bp">self</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">minsize</span><span class="p">(</span><span class="mi">900</span><span class="p">,</span> <span class="mi">600</span><span class="p">)</span>      <span class="c1"># Tamaño mínimo: ancho=800, alto=600</span>
+
+
+        <span class="c1"># Título</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">title_label</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">window</span><span class="p">,</span>
+            <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Interfaz Gráfica&quot;</span><span class="p">,</span>
+            <span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;Arial&#39;</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="s1">&#39;bold&#39;</span><span class="p">),</span>
+            <span class="n">bg</span><span class="o">=</span><span class="s1">&#39;#f0f0f0&#39;</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">title_label</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">pady</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+        <span class="c1"># ** Marco superior **</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">top_frame</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">window</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s2">&quot;#f0f0f0&quot;</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">top_frame</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>  <span class="c1"># Llena todo el ancho horizontalmente</span>
+
+        <span class="c1"># ** Marco inferior **</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bottom_frame</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">window</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s2">&quot;#e0e0e0&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bottom_frame</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">BOTH</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>  <span class="c1"># Llena el espacio restante</span>
+
+        <span class="c1"># ** Marco izquierdo: Mapa **</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">left_frame</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bottom_frame</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s1">&#39;#d0d0d0&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">left_frame</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">LEFT</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">BOTH</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">map_label</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">left_frame</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s1">&#39;#d0d0d0&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">map_label</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">BOTH</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+        <span class="c1"># ** Marco derecho: Estados, Cámara y Controles **</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">right_frame</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bottom_frame</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s1">&#39;#c0c0c0&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">700</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">right_frame</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">RIGHT</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">BOTH</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+        <span class="c1"># Submarcos dentro del marco derecho</span>
+
+        <span class="c1"># ** Submarco central derecho: Cámara **</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">camera_frame</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">right_frame</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s1">&#39;#d0d0d0&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">camera_frame</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">TOP</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">BOTH</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">camera_label</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">camera_frame</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s1">&#39;#d0d0d0&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">camera_label</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
+
+        <span class="c1"># ** Submarco inferior derecho: Controles y Selección **</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">right_bottom_frame</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">right_frame</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s2">&quot;#a0a0a0&quot;</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">right_bottom_frame</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">BOTTOM</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">BOTH</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+        <span class="c1"># ************************************************</span>
+        <span class="c1">#              BOTONES DE CONTROL</span>
+        <span class="c1"># ************************************************</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state_buttons</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="k">for</span> <span class="n">state_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">state_names</span><span class="p">:</span>
+            <span class="n">command</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_command_for_state</span><span class="p">(</span><span class="n">state_name</span><span class="p">)</span>
+            <span class="n">initial_color</span> <span class="o">=</span> <span class="s1">&#39;#2196F3&#39;</span> <span class="k">if</span> <span class="n">state_name</span> <span class="o">==</span> <span class="s1">&#39;REPOSO&#39;</span> <span class="k">else</span> <span class="s1">&#39;#4CAF50&#39;</span>
+
+            <span class="n">button</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">top_frame</span><span class="p">,</span>
+                <span class="n">text</span><span class="o">=</span><span class="n">state_name</span><span class="p">,</span>
+                <span class="n">command</span><span class="o">=</span><span class="k">lambda</span> <span class="n">c</span><span class="o">=</span><span class="n">command</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_state_button_click</span><span class="p">(</span><span class="n">c</span><span class="p">),</span>
+                <span class="n">width</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>  <span class="c1"># Botones más pequeños</span>
+                <span class="n">height</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>  <span class="c1"># Altura ajustada</span>
+                <span class="n">bg</span><span class="o">=</span><span class="n">initial_color</span><span class="p">,</span>
+                <span class="n">fg</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span>
+                <span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;Arial&#39;</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
+            <span class="p">)</span>
+            <span class="n">button</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">LEFT</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">BOTH</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>  <span class="c1"># Distribuye equitativamente</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">state_buttons</span><span class="p">[</span><span class="n">state_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">button</span>
+
+        <span class="c1"># ************************************************</span>
+        <span class="c1">#        CONTROLES DE EXPLORACIÓN</span>
+        <span class="c1"># ************************************************</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">exploration_controls_frame</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">right_bottom_frame</span><span class="p">,</span>
+            <span class="n">bg</span><span class="o">=</span><span class="s1">&#39;#d0d0d0&#39;</span><span class="p">,</span>
+            <span class="n">padx</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+            <span class="n">pady</span><span class="o">=</span><span class="mi">20</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">exploration_controls_frame</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">pady</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+        <span class="c1"># Crear controles de exploración</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">create_exploration_controls</span><span class="p">()</span>
+
+        <span class="c1"># ************************************************</span>
+        <span class="c1">#              SELECCIÓN DE ESTACIONES</span>
+        <span class="c1"># ************************************************</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">station_selection_frame</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">right_bottom_frame</span><span class="p">,</span>
+            <span class="n">bg</span><span class="o">=</span><span class="s1">&#39;#d0d0d0&#39;</span><span class="p">,</span>
+            <span class="n">padx</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+            <span class="n">pady</span><span class="o">=</span><span class="mi">20</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">station_selection_frame</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">pady</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">station_label</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">station_selection_frame</span><span class="p">,</span>
+            <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Seleccionar Estación&quot;</span><span class="p">,</span>
+            <span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;Arial&#39;</span><span class="p">,</span> <span class="mi">14</span><span class="p">),</span>
+            <span class="n">bg</span><span class="o">=</span><span class="s1">&#39;#d0d0d0&#39;</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">station_label</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">selected_station</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">StringVar</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">selected_station</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;Seleccionar...&quot;</span><span class="p">)</span>  <span class="c1"># Valor por defecto</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">station_dropdown</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">OptionMenu</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">station_selection_frame</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">selected_station</span><span class="p">,</span>
+            <span class="o">*</span><span class="n">almacen_estaciones</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">station_dropdown</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">,</span><span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">go_button</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">station_selection_frame</span><span class="p">,</span>
+            <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Ir&quot;</span><span class="p">,</span>
+            <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">go_to_station</span><span class="p">,</span>
+            <span class="n">width</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+            <span class="n">height</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+            <span class="n">bg</span><span class="o">=</span><span class="s1">&#39;#2196F3&#39;</span><span class="p">,</span>
+            <span class="n">fg</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span>
+            <span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;Arial&#39;</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">go_button</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+        <span class="c1"># Iniciar la actualización periódica de la lista de estaciones</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">update_station_list</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="InterfazManager.create_exploration_controls"><a class="viewcode-back" href="../squad_state_manager.html#squad_interfaz.InterfazManager.create_exploration_controls">[documentos]</a>    <span class="k">def</span> <span class="nf">create_exploration_controls</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Crea los controles de exploración en la interfaz gráfica.</span>
+
+<span class="sd">        Incluye botones para cambiar el modo de exploración y las instrucciones para el</span>
+<span class="sd">        control manual mediante el teclado.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">exploration_label</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">exploration_controls_frame</span><span class="p">,</span>
+            <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Controles de Exploración&quot;</span><span class="p">,</span>
+            <span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;Arial&#39;</span><span class="p">,</span> <span class="mi">14</span><span class="p">),</span>
+            <span class="n">bg</span><span class="o">=</span><span class="s1">&#39;#d0d0d0&#39;</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">exploration_label</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">pady</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+        <span class="c1"># Crear variable para controlar el estado actual</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">switch_state</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">StringVar</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s2">&quot;manual&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Crear los dos botones</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">button_manual</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">exploration_controls_frame</span><span class="p">,</span>
+            <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Modo Manual&quot;</span><span class="p">,</span>
+            <span class="n">command</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_switch_state</span><span class="p">(</span><span class="s2">&quot;manual&quot;</span><span class="p">),</span>
+            <span class="n">bg</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">,</span>
+            <span class="n">width</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span>
+            <span class="n">height</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+            <span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;Arial&#39;</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">button_manual</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">button_automatic</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">exploration_controls_frame</span><span class="p">,</span>
+            <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Modo Automático&quot;</span><span class="p">,</span>
+            <span class="n">command</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_switch_state</span><span class="p">(</span><span class="s2">&quot;automatico&quot;</span><span class="p">),</span>
+            <span class="n">bg</span><span class="o">=</span><span class="s2">&quot;lightgray&quot;</span><span class="p">,</span>
+            <span class="n">width</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span>
+            <span class="n">height</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+            <span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;Arial&#39;</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">button_automatic</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">exploration_controls_frame</span><span class="o">.</span><span class="n">pack_forget</span><span class="p">()</span>  <span class="c1"># Ocultar los controles de exploración por defecto</span>
+
+        <span class="c1"># Vincular teclas de flecha para control manual</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s1">&#39;&lt;Up&gt;&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_arrow_up</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s1">&#39;&lt;Down&gt;&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_arrow_down</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s1">&#39;&lt;Left&gt;&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_arrow_left</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s1">&#39;&lt;Right&gt;&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_arrow_right</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s1">&#39;&lt;KeyRelease&gt;&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_key_release</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="InterfazManager.get_command_for_state"><a class="viewcode-back" href="../squad_state_manager.html#squad_interfaz.InterfazManager.get_command_for_state">[documentos]</a>    <span class="k">def</span> <span class="nf">get_command_for_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state_name</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Obtiene el comando correspondiente para un nombre de estado dado.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            state_name (str): Nombre del estado.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str or None: Comando asociado al estado o None si no hay mapeo.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">command</span><span class="p">,</span> <span class="n">state</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">command_state_mapping</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">state</span> <span class="o">==</span> <span class="n">state_name</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">command</span>
+        <span class="k">return</span> <span class="kc">None</span></div>
+
+<div class="viewcode-block" id="InterfazManager.on_state_button_click"><a class="viewcode-back" href="../squad_state_manager.html#squad_interfaz.InterfazManager.on_state_button_click">[documentos]</a>    <span class="k">def</span> <span class="nf">on_state_button_click</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">command</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Maneja el evento de clic en un botón de estado.</span>
+
+<span class="sd">        Publica el comando correspondiente al tópico &#39;/command&#39; para cambiar el estado</span>
+<span class="sd">        de la máquina de estados.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            command (str): Comando a publicar.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">command</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">state_pub</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
+            <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;Comando publicado: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">command</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">rospy</span><span class="o">.</span><span class="n">logwarn</span><span class="p">(</span><span class="s2">&quot;No hay comando mapeado para este estado.&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="InterfazManager.update_state_highlight"><a class="viewcode-back" href="../squad_state_manager.html#squad_interfaz.InterfazManager.update_state_highlight">[documentos]</a>    <span class="k">def</span> <span class="nf">update_state_highlight</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Actualiza la interfaz gráfica para resaltar el botón correspondiente al estado actual</span>
+<span class="sd">        y mostrar u ocultar los controles de exploración según sea necesario.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Estado actual: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">current_state</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">state_name</span><span class="p">,</span> <span class="n">button</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">state_buttons</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">state_name</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_state</span><span class="p">:</span>
+                <span class="n">button</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">bg</span><span class="o">=</span><span class="s1">&#39;#FF5722&#39;</span><span class="p">)</span>  <span class="c1"># Color resaltado</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">button</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">bg</span><span class="o">=</span><span class="s1">&#39;#4CAF50&#39;</span><span class="p">)</span>  <span class="c1"># Color estándar</span>
+
+        <span class="c1"># Mostrar u ocultar controles de exploración según el estado actual</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_state</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;EXPLORACION&quot;</span><span class="p">]:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">exploration_controls_frame</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">padx</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+            <span class="c1"># Cambiar la suscripción de la cámara si es necesario</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">switch_camera_topic</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">action_camera_topic</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">exploration_controls_frame</span><span class="o">.</span><span class="n">pack_forget</span><span class="p">()</span>
+            <span class="c1"># Cambiar la suscripción de la cámara al tópico normal</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">switch_camera_topic</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">normal_camera_topic</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="InterfazManager.go_to_station"><a class="viewcode-back" href="../squad_state_manager.html#squad_interfaz.InterfazManager.go_to_station">[documentos]</a>    <span class="k">def</span> <span class="nf">go_to_station</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Publica el comando &quot;ir a {estacion}&quot; al tópico &#39;/command&#39; para navegar hacia la estación seleccionada.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">station</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">selected_station</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">station</span> <span class="ow">in</span> <span class="n">almacen_estaciones</span><span class="p">:</span>
+            <span class="n">command</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;ir a </span><span class="si">{</span><span class="n">station</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">state_pub</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
+            <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Comando publicado: </span><span class="si">{</span><span class="n">command</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">rospy</span><span class="o">.</span><span class="n">logwarn</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Estación seleccionada &#39;</span><span class="si">{</span><span class="n">station</span><span class="si">}</span><span class="s2">&#39; no es válida.&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="InterfazManager.update_station_list"><a class="viewcode-back" href="../squad_state_manager.html#squad_interfaz.InterfazManager.update_station_list">[documentos]</a>    <span class="k">def</span> <span class="nf">update_station_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Actualiza las opciones del desplegable de estaciones según el contenido de &#39;almacen_estaciones&#39;.</span>
+<span class="sd">        Esta función se llama periódicamente para reflejar cualquier cambio en las estaciones.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Limpiar las opciones actuales del desplegable</span>
+        <span class="n">menu</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">station_dropdown</span><span class="p">[</span><span class="s2">&quot;menu&quot;</span><span class="p">]</span>
+        <span class="n">menu</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;end&quot;</span><span class="p">)</span>
+        <span class="c1"># Añadir las estaciones actuales al desplegable</span>
+        <span class="k">for</span> <span class="n">station</span> <span class="ow">in</span> <span class="n">almacen_estaciones</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="n">menu</span><span class="o">.</span><span class="n">add_command</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="n">station</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="k">lambda</span> <span class="n">value</span><span class="o">=</span><span class="n">station</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">selected_station</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
+        <span class="c1"># Si la estación seleccionada ya no existe, restablecer la selección</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">selected_station</span><span class="o">.</span><span class="n">get</span><span class="p">()</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">almacen_estaciones</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">selected_station</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;Seleccionar...&quot;</span><span class="p">)</span>
+        <span class="c1"># Programar la siguiente actualización después de 1 segundo (1000 ms)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">after</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">update_station_list</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="InterfazManager.on_arrow_up"><a class="viewcode-back" href="../squad_state_manager.html#squad_interfaz.InterfazManager.on_arrow_up">[documentos]</a>    <span class="k">def</span> <span class="nf">on_arrow_up</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Maneja la pulsación de la tecla de flecha hacia arriba para mover el robot hacia adelante.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            event: Evento de la tecla pulsada.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">twist</span> <span class="o">=</span> <span class="n">Twist</span><span class="p">()</span>
+        <span class="n">twist</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="mf">0.7</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cmd_vel_pub</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">twist</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="InterfazManager.on_arrow_down"><a class="viewcode-back" href="../squad_state_manager.html#squad_interfaz.InterfazManager.on_arrow_down">[documentos]</a>    <span class="k">def</span> <span class="nf">on_arrow_down</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Maneja la pulsación de la tecla de flecha hacia abajo para mover el robot hacia atrás.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            event: Evento de la tecla pulsada.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">twist</span> <span class="o">=</span> <span class="n">Twist</span><span class="p">()</span>
+        <span class="n">twist</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.7</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cmd_vel_pub</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">twist</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="InterfazManager.on_arrow_left"><a class="viewcode-back" href="../squad_state_manager.html#squad_interfaz.InterfazManager.on_arrow_left">[documentos]</a>    <span class="k">def</span> <span class="nf">on_arrow_left</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Maneja la pulsación de la tecla de flecha hacia la izquierda para girar el robot a la izquierda.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            event: Evento de la tecla pulsada.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">twist</span> <span class="o">=</span> <span class="n">Twist</span><span class="p">()</span>
+        <span class="n">twist</span><span class="o">.</span><span class="n">angular</span><span class="o">.</span><span class="n">z</span> <span class="o">=</span> <span class="mf">1.5</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cmd_vel_pub</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">twist</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="InterfazManager.on_arrow_right"><a class="viewcode-back" href="../squad_state_manager.html#squad_interfaz.InterfazManager.on_arrow_right">[documentos]</a>    <span class="k">def</span> <span class="nf">on_arrow_right</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Maneja la pulsación de la tecla de flecha hacia la derecha para girar el robot a la derecha.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            event: Evento de la tecla pulsada.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">twist</span> <span class="o">=</span> <span class="n">Twist</span><span class="p">()</span>
+        <span class="n">twist</span><span class="o">.</span><span class="n">angular</span><span class="o">.</span><span class="n">z</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.5</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cmd_vel_pub</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">twist</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="InterfazManager.on_key_release"><a class="viewcode-back" href="../squad_state_manager.html#squad_interfaz.InterfazManager.on_key_release">[documentos]</a>    <span class="k">def</span> <span class="nf">on_key_release</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Maneja el evento de liberación de cualquier tecla para detener el movimiento del robot.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            event: Evento de la tecla liberada.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">twist</span> <span class="o">=</span> <span class="n">Twist</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cmd_vel_pub</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">twist</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="InterfazManager.control_mode_callback"><a class="viewcode-back" href="../squad_state_manager.html#squad_interfaz.InterfazManager.control_mode_callback">[documentos]</a>    <span class="k">def</span> <span class="nf">control_mode_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Callback para el suscriptor del modo de control.</span>
+
+<span class="sd">        Actualiza el modo de control actual y realiza acciones adicionales si es necesario.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            msg (String): Mensaje con el modo de control (&#39;manual&#39; o &#39;autonomous&#39;).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">control_mode</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">data</span></div>
+
+<div class="viewcode-block" id="InterfazManager.set_switch_state"><a class="viewcode-back" href="../squad_state_manager.html#squad_interfaz.InterfazManager.set_switch_state">[documentos]</a>    <span class="k">def</span> <span class="nf">set_switch_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Cambia el estado de los modos de exploración entre manual y automático.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            state (str): Nuevo estado (&#39;manual&#39; o &#39;automatico&#39;).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">switch_state</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">state</span> <span class="o">==</span> <span class="s2">&quot;manual&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">control_mode</span> <span class="o">=</span> <span class="s1">&#39;manual&#39;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">button_manual</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">bg</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">button_automatic</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">bg</span><span class="o">=</span><span class="s2">&quot;lightgray&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">control_mode_pub</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="s1">&#39;manual&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">control_mode</span> <span class="o">=</span> <span class="s1">&#39;autonomous&#39;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">button_manual</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">bg</span><span class="o">=</span><span class="s2">&quot;lightgray&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">button_automatic</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">bg</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">control_mode_pub</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="s1">&#39;autonomous&#39;</span><span class="p">)</span></div>
+
+    <span class="c1"># ************************************************</span>
+    <span class="c1">#                SUSCRIPCIÓN A LA CÁMARA</span>
+    <span class="c1"># ************************************************</span>
+
+<div class="viewcode-block" id="InterfazManager.subscribe_to_camera"><a class="viewcode-back" href="../squad_state_manager.html#squad_interfaz.InterfazManager.subscribe_to_camera">[documentos]</a>    <span class="k">def</span> <span class="nf">subscribe_to_camera</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">topic</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Suscribe al tópico de la cámara especificado.</span>
+
+<span class="sd">        Desuscribe del tópico de cámara anterior si existe y suscribe al nuevo tópico.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            topic (str): Tópico de la cámara al que suscribirse.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">camera_sub</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">camera_sub</span><span class="o">.</span><span class="n">unregister</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_camera_topic</span> <span class="o">=</span> <span class="n">topic</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">camera_sub</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Subscriber</span><span class="p">(</span><span class="n">topic</span><span class="p">,</span> <span class="n">ROSImage</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">camera_callback</span><span class="p">)</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Suscrito al tópico de cámara: </span><span class="si">{</span><span class="n">topic</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="InterfazManager.switch_camera_topic"><a class="viewcode-back" href="../squad_state_manager.html#squad_interfaz.InterfazManager.switch_camera_topic">[documentos]</a>    <span class="k">def</span> <span class="nf">switch_camera_topic</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_topic</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Cambia el tópico de la cámara a uno nuevo si es diferente al actual.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            new_topic (str): Nuevo tópico de la cámara al que suscribirse.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_camera_topic</span> <span class="o">!=</span> <span class="n">new_topic</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">subscribe_to_camera</span><span class="p">(</span><span class="n">new_topic</span><span class="p">)</span></div>
+
+    <span class="c1"># def camera_callback(self, msg):</span>
+    <span class="c1">#     &quot;&quot;&quot;</span>
+    <span class="c1">#     Callback para el suscriptor de la cámara.</span>
+
+    <span class="c1">#     Convierte la imagen recibida de ROS a un formato compatible con Tkinter y la</span>
+    <span class="c1">#     muestra en la GUI.</span>
+
+    <span class="c1">#     Args:</span>
+    <span class="c1">#         msg (ROSImage): Mensaje de imagen recibido del tópico de la cámara.</span>
+    <span class="c1">#     &quot;&quot;&quot;</span>
+    <span class="c1">#     try:</span>
+    <span class="c1">#         cv_image = self.bridge.imgmsg_to_cv2(msg, desired_encoding=&#39;bgr8&#39;)</span>
+    <span class="c1">#         # Convertir la imagen de BGR a RGB</span>
+    <span class="c1">#         cv_image = cv2.cvtColor(cv_image, cv2.COLOR_BGR2RGB)</span>
+    <span class="c1">#         # Convertir la imagen a PIL</span>
+    <span class="c1">#         pil_image = Image.fromarray(cv_image)</span>
+    <span class="c1">#         # Redimensionar la imagen para ajustarla al tamaño del label</span>
+    <span class="c1">#         pil_image = pil_image.resize((400, 300), Image.LANCZOS)  # Tamaño fijo y más pequeño</span>
+    <span class="c1">#         # Convertir la imagen a ImageTk</span>
+    <span class="c1">#         tk_image = ImageTk.PhotoImage(image=pil_image)</span>
+    <span class="c1">#         # Actualizar la imagen en el label</span>
+    <span class="c1">#         self.camera_label.configure(image=tk_image)</span>
+    <span class="c1">#         self.camera_label.image = tk_image</span>
+    <span class="c1">#     except CvBridgeError as e:</span>
+    <span class="c1">#         rospy.logerr(f&quot;Error al convertir la imagen de la cámara: {e}&quot;)</span>
+    <span class="c1">#     except Exception as e:</span>
+    <span class="c1">#         rospy.logerr(f&quot;Error inesperado en camera_callback: {e}&quot;)</span>
+
+<div class="viewcode-block" id="InterfazManager.camera_callback"><a class="viewcode-back" href="../squad_state_manager.html#squad_interfaz.InterfazManager.camera_callback">[documentos]</a>    <span class="k">def</span> <span class="nf">camera_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Callback para el suscriptor de la cámara.</span>
+
+<span class="sd">        Convierte la imagen recibida de ROS a un formato compatible con Tkinter y la</span>
+<span class="sd">        muestra en la GUI.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">cv_image</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bridge</span><span class="o">.</span><span class="n">imgmsg_to_cv2</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">desired_encoding</span><span class="o">=</span><span class="s1">&#39;bgr8&#39;</span><span class="p">)</span>
+            <span class="c1"># Convertir la imagen de BGR a RGB</span>
+            <span class="n">cv_image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">cv_image</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2RGB</span><span class="p">)</span>
+            <span class="c1"># Convertir la imagen a PIL</span>
+            <span class="n">pil_image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">cv_image</span><span class="p">)</span>
+            
+            <span class="c1"># Obtener el tamaño actual del camera_label</span>
+            <span class="n">label_width</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">camera_label</span><span class="o">.</span><span class="n">winfo_width</span><span class="p">()</span>
+            <span class="n">label_height</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">camera_label</span><span class="o">.</span><span class="n">winfo_height</span><span class="p">()</span>
+
+            <span class="k">if</span> <span class="n">label_width</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">label_height</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="c1"># Calcular la escala para mantener la proporción</span>
+                <span class="n">image_width</span><span class="p">,</span> <span class="n">image_height</span> <span class="o">=</span> <span class="n">pil_image</span><span class="o">.</span><span class="n">size</span>
+                <span class="n">aspect_ratio</span> <span class="o">=</span> <span class="n">image_width</span> <span class="o">/</span> <span class="n">image_height</span>
+                
+                <span class="c1"># Ajustar el tamaño manteniendo la relación de aspecto</span>
+                <span class="k">if</span> <span class="n">label_width</span> <span class="o">/</span> <span class="n">label_height</span> <span class="o">&gt;</span> <span class="n">aspect_ratio</span><span class="p">:</span>
+                    <span class="n">new_height</span> <span class="o">=</span> <span class="n">label_height</span>
+                    <span class="n">new_width</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">aspect_ratio</span> <span class="o">*</span> <span class="n">new_height</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">new_width</span> <span class="o">=</span> <span class="n">label_width</span>
+                    <span class="n">new_height</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">new_width</span> <span class="o">/</span> <span class="n">aspect_ratio</span><span class="p">)</span>
+
+                <span class="c1"># Redimensionar la imagen de la cámara</span>
+                <span class="n">pil_image_resized</span> <span class="o">=</span> <span class="n">pil_image</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="n">new_width</span><span class="p">,</span> <span class="n">new_height</span><span class="p">),</span> <span class="n">Image</span><span class="o">.</span><span class="n">LANCZOS</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># Si el tamaño del label aún no está disponible, usar la imagen original</span>
+                <span class="n">pil_image_resized</span> <span class="o">=</span> <span class="n">pil_image</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+            <span class="c1"># Convertir la imagen a ImageTk</span>
+            <span class="n">tk_image</span> <span class="o">=</span> <span class="n">ImageTk</span><span class="o">.</span><span class="n">PhotoImage</span><span class="p">(</span><span class="n">image</span><span class="o">=</span><span class="n">pil_image_resized</span><span class="p">)</span>
+            <span class="c1"># Actualizar la imagen en el label</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">camera_label</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">image</span><span class="o">=</span><span class="n">tk_image</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">camera_label</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="n">tk_image</span>
+        <span class="k">except</span> <span class="n">CvBridgeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">rospy</span><span class="o">.</span><span class="n">logerr</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error al convertir la imagen de la cámara: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">rospy</span><span class="o">.</span><span class="n">logerr</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error inesperado en camera_callback: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+   <span class="c1"># ************************************************</span>
+    <span class="c1">#                SUSCRIPCIÓN AL MAPA</span>
+    <span class="c1"># ************************************************</span>
+
+<div class="viewcode-block" id="InterfazManager.map_callback"><a class="viewcode-back" href="../squad_state_manager.html#squad_interfaz.InterfazManager.map_callback">[documentos]</a>    <span class="k">def</span> <span class="nf">map_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Callback para el suscriptor del mapa.</span>
+
+<span class="sd">        Convierte el OccupancyGrid a una imagen y visualiza en la interfaz.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">width</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">width</span>
+            <span class="n">height</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">height</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">data</span>
+
+            <span class="c1"># Convertir datos de mapa a escala de grises</span>
+            <span class="n">grayscale</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">value</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">grayscale</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span>  <span class="c1"># Libre</span>
+                <span class="k">elif</span> <span class="n">value</span> <span class="o">==</span> <span class="mi">100</span><span class="p">:</span>
+                    <span class="n">grayscale</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>    <span class="c1"># Ocupado</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">grayscale</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span>  <span class="c1"># Desconocido</span>
+
+            <span class="c1"># Crear la imagen de PIL</span>
+            <span class="n">pil_map</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;L&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">))</span>
+            <span class="n">pil_map</span><span class="o">.</span><span class="n">putdata</span><span class="p">(</span><span class="n">grayscale</span><span class="p">)</span>
+            <span class="n">pil_map</span> <span class="o">=</span> <span class="n">pil_map</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">Image</span><span class="o">.</span><span class="n">FLIP_TOP_BOTTOM</span><span class="p">)</span>  <span class="c1"># Corregir inversión del eje Y</span>
+            <span class="n">pil_map</span> <span class="o">=</span> <span class="n">pil_map</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">&#39;RGB&#39;</span><span class="p">)</span>
+
+            <span class="c1"># Configuración de la escala</span>
+            <span class="n">scale_width</span><span class="p">,</span> <span class="n">scale_height</span> <span class="o">=</span> <span class="mi">850</span><span class="p">,</span> <span class="mi">850</span>  <span class="c1"># Dimensiones visualizadas</span>
+            <span class="n">scale_x</span> <span class="o">=</span> <span class="n">scale_width</span> <span class="o">/</span> <span class="n">width</span>
+            <span class="n">scale_y</span> <span class="o">=</span> <span class="n">scale_height</span> <span class="o">/</span> <span class="n">height</span>
+
+            <span class="c1"># Redimensionar la imagen final</span>
+            <span class="n">pil_map</span> <span class="o">=</span> <span class="n">pil_map</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="n">scale_width</span><span class="p">,</span> <span class="n">scale_height</span><span class="p">),</span> <span class="n">Image</span><span class="o">.</span><span class="n">NEAREST</span><span class="p">)</span>
+            <span class="c1"># self.original_map_image = pil_map</span>
+
+            <span class="c1"># Guardar la información del mapa</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">map_resolution</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">resolution</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">map_origin_x</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">origin</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">map_origin_y</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">origin</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">map_width</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">map_height</span> <span class="o">=</span> <span class="n">scale_width</span><span class="p">,</span> <span class="n">scale_height</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">scale_x</span> <span class="o">=</span> <span class="n">scale_x</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">scale_y</span> <span class="o">=</span> <span class="n">scale_y</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">map_image</span> <span class="o">=</span> <span class="n">pil_map</span>  <span class="c1"># Guardar la imagen redimensionada</span>
+
+            <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;Mapa actualizado.&quot;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">rospy</span><span class="o">.</span><span class="n">logerr</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error en map_callback: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+    <span class="c1"># ************************************************</span>
+    <span class="c1">#           ACTUALIZACIÓN VISUAL DEL MAPA</span>
+    <span class="c1"># ************************************************</span>
+
+<div class="viewcode-block" id="InterfazManager.update_visualization"><a class="viewcode-back" href="../squad_state_manager.html#squad_interfaz.InterfazManager.update_visualization">[documentos]</a>    <span class="k">def</span> <span class="nf">update_visualization</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Actualiza la visualización del mapa, robot y estaciones en tiempo real.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># Verificar si hay una imagen base del mapa</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">map_image</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="c1"># Programar la siguiente actualización</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">after</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">update_visualization</span><span class="p">)</span>
+                <span class="k">return</span>  <span class="c1"># Salir si no hay un mapa cargado</span>
+
+            <span class="c1"># Crear una copia de la imagen base para dibujar sobre ella</span>
+            <span class="n">pil_map</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">map_image</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="n">draw</span> <span class="o">=</span> <span class="n">ImageDraw</span><span class="o">.</span><span class="n">Draw</span><span class="p">(</span><span class="n">pil_map</span><span class="p">)</span>
+            <span class="n">font</span> <span class="o">=</span> <span class="n">ImageFont</span><span class="o">.</span><span class="n">load_default</span><span class="p">()</span>
+
+            <span class="c1"># Dibujar estaciones</span>
+            <span class="k">for</span> <span class="n">station_name</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="ow">in</span> <span class="n">almacen_estaciones</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="k">if</span> <span class="n">station_name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;Persona encontrada&quot;</span><span class="p">):</span> 
+                    <span class="c1"># Si es una persona, dibujar una cruz naranja con borde negro para mejor visibilidad</span>
+                    <span class="c1"># Convertir coordenadas del mundo a píxeles </span>
+                    <span class="n">pixel_x</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">x</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">map_origin_x</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">map_resolution</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale_x</span><span class="p">)</span>
+                    <span class="n">pixel_y</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">y</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">map_origin_y</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">map_resolution</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale_y</span><span class="p">)</span>
+
+                    <span class="c1"># Invertir el eje Y para la representación gráfica</span>
+                    <span class="n">pixel_y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">map_height</span> <span class="o">-</span> <span class="n">pixel_y</span>
+
+                    <span class="c1"># Dibujar una cruz con borde</span>
+                    <span class="n">size</span> <span class="o">=</span> <span class="mi">8</span>
+                    <span class="c1"># Línea diagonal positiva (borde negro)</span>
+                    <span class="n">draw</span><span class="o">.</span><span class="n">line</span><span class="p">((</span><span class="n">pixel_x</span> <span class="o">-</span> <span class="n">size</span><span class="p">,</span> <span class="n">pixel_y</span> <span class="o">-</span> <span class="n">size</span><span class="p">,</span> <span class="n">pixel_x</span> <span class="o">+</span> <span class="n">size</span><span class="p">,</span> <span class="n">pixel_y</span> <span class="o">+</span> <span class="n">size</span><span class="p">),</span> <span class="n">fill</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+                    <span class="c1"># Línea diagonal positiva (naranja)</span>
+                    <span class="n">draw</span><span class="o">.</span><span class="n">line</span><span class="p">((</span><span class="n">pixel_x</span> <span class="o">-</span> <span class="n">size</span><span class="p">,</span> <span class="n">pixel_y</span> <span class="o">-</span> <span class="n">size</span><span class="p">,</span> <span class="n">pixel_x</span> <span class="o">+</span> <span class="n">size</span><span class="p">,</span> <span class="n">pixel_y</span> <span class="o">+</span> <span class="n">size</span><span class="p">),</span> <span class="n">fill</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+                    <span class="c1"># Línea diagonal negativa (borde negro)</span>
+                    <span class="n">draw</span><span class="o">.</span><span class="n">line</span><span class="p">((</span><span class="n">pixel_x</span> <span class="o">-</span> <span class="n">size</span><span class="p">,</span> <span class="n">pixel_y</span> <span class="o">+</span> <span class="n">size</span><span class="p">,</span> <span class="n">pixel_x</span> <span class="o">+</span> <span class="n">size</span><span class="p">,</span> <span class="n">pixel_y</span> <span class="o">-</span> <span class="n">size</span><span class="p">),</span> <span class="n">fill</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+                    <span class="c1"># Línea diagonal negativa (naranja)</span>
+                    <span class="n">draw</span><span class="o">.</span><span class="n">line</span><span class="p">((</span><span class="n">pixel_x</span> <span class="o">-</span> <span class="n">size</span><span class="p">,</span> <span class="n">pixel_y</span> <span class="o">+</span> <span class="n">size</span><span class="p">,</span> <span class="n">pixel_x</span> <span class="o">+</span> <span class="n">size</span><span class="p">,</span> <span class="n">pixel_y</span> <span class="o">-</span> <span class="n">size</span><span class="p">),</span> <span class="n">fill</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+                    <span class="n">draw</span><span class="o">.</span><span class="n">text</span><span class="p">((</span><span class="n">pixel_x</span> <span class="o">+</span> <span class="n">size</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="n">pixel_y</span> <span class="o">-</span> <span class="n">size</span> <span class="o">-</span> <span class="mi">2</span><span class="p">),</span> <span class="n">station_name</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="n">font</span><span class="p">)</span>
+
+                <span class="k">elif</span> <span class="n">station_name</span> <span class="o">==</span> <span class="s2">&quot;HOME&quot;</span> <span class="p">:</span>
+
+                    <span class="c1">#Si es HOME pintamos un cuadrado verde</span>
+                    <span class="c1"># Convertir coordenadas del mundo a píxeles</span>
+                    <span class="n">pixel_x</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">x</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">map_origin_x</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">map_resolution</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale_x</span><span class="p">)</span>
+                    <span class="n">pixel_y</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">y</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">map_origin_y</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">map_resolution</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale_y</span><span class="p">)</span>
+
+                    <span class="c1"># Invertir el eje Y para la representación gráfica</span>
+                    <span class="n">pixel_y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">map_height</span> <span class="o">-</span> <span class="n">pixel_y</span>   
+
+                    <span class="c1"># Dibujar un cuadrado representando la estación</span>
+                    <span class="n">size</span> <span class="o">=</span> <span class="mi">5</span>
+                    <span class="n">point1</span> <span class="o">=</span> <span class="p">(</span><span class="n">pixel_x</span> <span class="o">+</span> <span class="n">size</span><span class="p">,</span> <span class="n">pixel_y</span> <span class="o">+</span> <span class="n">size</span><span class="p">)</span>
+                    <span class="n">point2</span> <span class="o">=</span> <span class="p">(</span><span class="n">pixel_x</span> <span class="o">+</span> <span class="n">size</span><span class="p">,</span> <span class="n">pixel_y</span> <span class="o">-</span> <span class="n">size</span><span class="p">)</span>
+                    <span class="n">point3</span> <span class="o">=</span> <span class="p">(</span><span class="n">pixel_x</span> <span class="o">-</span> <span class="n">size</span><span class="p">,</span> <span class="n">pixel_y</span> <span class="o">-</span> <span class="n">size</span><span class="p">)</span>
+                    <span class="n">point4</span> <span class="o">=</span> <span class="p">(</span><span class="n">pixel_x</span> <span class="o">-</span> <span class="n">size</span><span class="p">,</span> <span class="n">pixel_y</span> <span class="o">+</span> <span class="n">size</span><span class="p">)</span>
+                    <span class="n">draw</span><span class="o">.</span><span class="n">polygon</span><span class="p">([</span><span class="n">point1</span><span class="p">,</span> <span class="n">point2</span><span class="p">,</span> <span class="n">point3</span><span class="p">,</span> <span class="n">point4</span><span class="p">],</span> <span class="n">fill</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">outline</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+                    <span class="n">draw</span><span class="o">.</span><span class="n">text</span><span class="p">((</span><span class="n">pixel_x</span> <span class="o">+</span> <span class="n">size</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="n">pixel_y</span> <span class="o">-</span> <span class="n">size</span> <span class="o">-</span> <span class="mi">2</span><span class="p">),</span> <span class="n">station_name</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="n">font</span><span class="p">)</span>                  
+
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="c1"># Convertir coordenadas del mundo a píxeles</span>
+                    <span class="n">pixel_x</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">x</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">map_origin_x</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">map_resolution</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale_x</span><span class="p">)</span>
+                    <span class="n">pixel_y</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">y</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">map_origin_y</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">map_resolution</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale_y</span><span class="p">)</span>
+
+                    <span class="c1"># Invertir el eje Y para la representación gráfica</span>
+                    <span class="n">pixel_y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">map_height</span> <span class="o">-</span> <span class="n">pixel_y</span>
+
+                    <span class="n">radius</span> <span class="o">=</span> <span class="mi">5</span>
+                    <span class="n">draw</span><span class="o">.</span><span class="n">ellipse</span><span class="p">(</span>
+                        <span class="p">(</span><span class="n">pixel_x</span> <span class="o">-</span> <span class="n">radius</span><span class="p">,</span> <span class="n">pixel_y</span> <span class="o">-</span> <span class="n">radius</span><span class="p">,</span> <span class="n">pixel_x</span> <span class="o">+</span> <span class="n">radius</span><span class="p">,</span> <span class="n">pixel_y</span> <span class="o">+</span> <span class="n">radius</span><span class="p">),</span>
+                        <span class="n">fill</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span>
+                        <span class="n">outline</span><span class="o">=</span><span class="s1">&#39;black&#39;</span>
+                    <span class="p">)</span>
+                    <span class="n">draw</span><span class="o">.</span><span class="n">text</span><span class="p">((</span><span class="n">pixel_x</span> <span class="o">+</span> <span class="n">radius</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="n">pixel_y</span> <span class="o">-</span> <span class="n">radius</span> <span class="o">-</span> <span class="mi">2</span><span class="p">),</span> <span class="n">station_name</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="n">font</span><span class="p">)</span>
+
+            <span class="c1"># Obtener y dibujar la posición del robot</span>
+            <span class="n">robot_pose</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_robot_pose</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">robot_pose</span><span class="p">:</span>
+                <span class="n">robot_x</span><span class="p">,</span> <span class="n">robot_y</span><span class="p">,</span> <span class="n">robot_theta</span> <span class="o">=</span> <span class="n">robot_pose</span>
+                <span class="n">pixel_x</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">robot_x</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">map_origin_x</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">map_resolution</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale_x</span><span class="p">)</span>
+                <span class="n">pixel_y</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">robot_y</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">map_origin_y</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">map_resolution</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale_y</span><span class="p">)</span>
+                <span class="n">pixel_y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">map_height</span> <span class="o">-</span> <span class="n">pixel_y</span>  <span class="c1"># Invertir eje Y</span>
+
+                <span class="c1"># Dibujar un triángulo representando el robot</span>
+                <span class="n">size</span> <span class="o">=</span> <span class="mi">10</span>
+                <span class="n">angle</span> <span class="o">=</span> <span class="n">robot_theta</span>
+                <span class="n">point1</span> <span class="o">=</span> <span class="p">(</span><span class="n">pixel_x</span> <span class="o">+</span> <span class="n">size</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angle</span><span class="p">),</span> <span class="n">pixel_y</span> <span class="o">-</span> <span class="n">size</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angle</span><span class="p">))</span>
+                <span class="n">point2</span> <span class="o">=</span> <span class="p">(</span><span class="n">pixel_x</span> <span class="o">+</span> <span class="n">size</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angle</span> <span class="o">+</span> <span class="mf">2.5</span><span class="p">),</span> <span class="n">pixel_y</span> <span class="o">-</span> <span class="n">size</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angle</span> <span class="o">+</span> <span class="mf">2.5</span><span class="p">))</span>
+                <span class="n">point3</span> <span class="o">=</span> <span class="p">(</span><span class="n">pixel_x</span> <span class="o">+</span> <span class="n">size</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angle</span> <span class="o">-</span> <span class="mf">2.5</span><span class="p">),</span> <span class="n">pixel_y</span> <span class="o">-</span> <span class="n">size</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angle</span> <span class="o">-</span> <span class="mf">2.5</span><span class="p">))</span>
+                <span class="n">draw</span><span class="o">.</span><span class="n">polygon</span><span class="p">([</span><span class="n">point1</span><span class="p">,</span> <span class="n">point2</span><span class="p">,</span> <span class="n">point3</span><span class="p">],</span> <span class="n">fill</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">outline</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+                <span class="n">draw</span><span class="o">.</span><span class="n">text</span><span class="p">((</span><span class="n">pixel_x</span> <span class="o">+</span> <span class="n">size</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="n">pixel_y</span> <span class="o">-</span> <span class="n">size</span> <span class="o">-</span> <span class="mi">2</span><span class="p">),</span> <span class="s2">&quot;Robot&quot;</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="n">font</span><span class="p">)</span>
+
+            <span class="c1"># Actualizar la imagen en la interfaz</span>
+            <span class="n">tk_map</span> <span class="o">=</span> <span class="n">ImageTk</span><span class="o">.</span><span class="n">PhotoImage</span><span class="p">(</span><span class="n">image</span><span class="o">=</span><span class="n">pil_map</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">map_label</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">image</span><span class="o">=</span><span class="n">tk_map</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">map_label</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="n">tk_map</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">rospy</span><span class="o">.</span><span class="n">logerr</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error al actualizar la visualización: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Programar la siguiente actualización</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">after</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">update_visualization</span><span class="p">)</span></div>
+
+
+    <span class="c1"># ************************************************</span>
+    <span class="c1">#            GESTION CIERRE PROGRAMA</span>
+    <span class="c1"># ************************************************</span>
+
+<div class="viewcode-block" id="InterfazManager.on_closing"><a class="viewcode-back" href="../squad_state_manager.html#squad_interfaz.InterfazManager.on_closing">[documentos]</a>    <span class="k">def</span> <span class="nf">on_closing</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;Cerrando la interfaz gráfica.&quot;</span><span class="p">)</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">signal_shutdown</span><span class="p">(</span><span class="s2">&quot;Interfaz cerrada por el usuario.&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">destroy</span><span class="p">()</span>
+        <span class="c1"># Asegurarse de que los hilos se detengan</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="InterfazManager.signal_handler"><a class="viewcode-back" href="../squad_state_manager.html#squad_interfaz.InterfazManager.signal_handler">[documentos]</a>    <span class="k">def</span> <span class="nf">signal_handler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sig</span><span class="p">,</span> <span class="n">frame</span><span class="p">):</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;Señal de interrupción recibida. Cerrando la interfaz.&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">signal_shutdown</span><span class="p">(</span><span class="s2">&quot;Interfaz cerrada por señal de interrupción.&quot;</span><span class="p">)</span>
+        <span class="c1"># Asegurarse de que los hilos se detengan</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span></div></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">manager</span> <span class="o">=</span> <span class="n">InterfazManager</span><span class="p">()</span>
+    <span class="k">except</span> <span class="n">rospy</span><span class="o">.</span><span class="n">ROSInterruptException</span><span class="p">:</span>
+        <span class="k">pass</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Derechos de autor 2024, Abel Belhaki Rivas.</p>
+  </div>
+
+  Compilado con <a href="https://www.sphinx-doc.org/">Sphinx</a> usando un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    proporcionado por <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

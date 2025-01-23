@@ -1,0 +1,11 @@
+# Objetivo de la acción
+string method         # Método de acercamiento: 'vision', 'lidar', 'hibrido'
+squad_exploracion/DetectedObject info_objetivo  # Pose del objetivo al que acercarse
+
+---
+# Resultado de la acción
+int32 success        # 1 si tuvo éxito, 0 si hubo un error
+
+---
+# Feedback de la acción
+float32 distance_to_object  # Distancia actual al objeto detectado

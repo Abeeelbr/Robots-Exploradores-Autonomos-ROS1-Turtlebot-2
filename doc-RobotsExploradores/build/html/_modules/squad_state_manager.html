@@ -1,0 +1,957 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>squad_state_manager &mdash; documentación de Robots Exploradores - Práctica 3 - 1.0</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=eafc0fe6" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=8e0ebba5"></script>
+      <script src="../_static/doctools.js?v=888ff710"></script>
+      <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../_static/translations.js?v=efdbd0b9"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Robots Exploradores - Práctica 3
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contenidos:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduccion.html">Introducción</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuracion.html">Configuración del Entorno</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../uso.html">Uso del Sistema</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../uso.html#pasos-para-lanzar-el-sistema">Pasos para Lanzar el Sistema</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../uso.html#flujo-del-sistema">Flujo del Sistema</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../uso.html#detalles-de-la-interfaz-grafica">Detalles de la Interfaz Gráfica</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../uso.html#configuracion-de-la-maquina-de-estados">Configuración de la Máquina de Estados</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../uso.html#comandos-y-transiciones">Comandos y Transiciones</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../uso.html#parametros-configurables">Parámetros Configurables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../uso.html#topicos-importantes">Tópicos Importantes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../squad_state_manager.html">Máquina de Estados (squad_state_manager)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.BaseState"><code class="docutils literal notranslate"><span class="pre">BaseState</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.BaseState.command_callback"><code class="docutils literal notranslate"><span class="pre">BaseState.command_callback()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.BaseState.execute"><code class="docutils literal notranslate"><span class="pre">BaseState.execute()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.EstadoExploracion"><code class="docutils literal notranslate"><span class="pre">EstadoExploracion</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.EstadoExploracion.control_mode_callback"><code class="docutils literal notranslate"><span class="pre">EstadoExploracion.control_mode_callback()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.EstadoExploracion.execute"><code class="docutils literal notranslate"><span class="pre">EstadoExploracion.execute()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.EstadoExploracion.feedback_cb"><code class="docutils literal notranslate"><span class="pre">EstadoExploracion.feedback_cb()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.EstadoExploracion.object_callback"><code class="docutils literal notranslate"><span class="pre">EstadoExploracion.object_callback()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.EstadoNavegacion"><code class="docutils literal notranslate"><span class="pre">EstadoNavegacion</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.EstadoNavegacion.command_callback"><code class="docutils literal notranslate"><span class="pre">EstadoNavegacion.command_callback()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.EstadoNavegacion.control_mode_callback"><code class="docutils literal notranslate"><span class="pre">EstadoNavegacion.control_mode_callback()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.EstadoNavegacion.execute"><code class="docutils literal notranslate"><span class="pre">EstadoNavegacion.execute()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.EstadoNavegacion.moveTo"><code class="docutils literal notranslate"><span class="pre">EstadoNavegacion.moveTo()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.EstadoNavegacion.stations_callback"><code class="docutils literal notranslate"><span class="pre">EstadoNavegacion.stations_callback()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.EstadoReposo"><code class="docutils literal notranslate"><span class="pre">EstadoReposo</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.EstadoReposo.execute"><code class="docutils literal notranslate"><span class="pre">EstadoReposo.execute()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.TurtleBotStateManager"><code class="docutils literal notranslate"><span class="pre">TurtleBotStateManager</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.TurtleBotStateManager.run_state_machine"><code class="docutils literal notranslate"><span class="pre">TurtleBotStateManager.run_state_machine()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../squad_state_manager.html#squad_interfaz.InterfazManager"><code class="docutils literal notranslate"><span class="pre">InterfazManager</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_interfaz.InterfazManager.camera_callback"><code class="docutils literal notranslate"><span class="pre">InterfazManager.camera_callback()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_interfaz.InterfazManager.control_mode_callback"><code class="docutils literal notranslate"><span class="pre">InterfazManager.control_mode_callback()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_interfaz.InterfazManager.create_exploration_controls"><code class="docutils literal notranslate"><span class="pre">InterfazManager.create_exploration_controls()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_interfaz.InterfazManager.current_state_callback"><code class="docutils literal notranslate"><span class="pre">InterfazManager.current_state_callback()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_interfaz.InterfazManager.get_command_for_state"><code class="docutils literal notranslate"><span class="pre">InterfazManager.get_command_for_state()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_interfaz.InterfazManager.get_robot_pose"><code class="docutils literal notranslate"><span class="pre">InterfazManager.get_robot_pose()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_interfaz.InterfazManager.go_to_station"><code class="docutils literal notranslate"><span class="pre">InterfazManager.go_to_station()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_interfaz.InterfazManager.map_callback"><code class="docutils literal notranslate"><span class="pre">InterfazManager.map_callback()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_interfaz.InterfazManager.on_arrow_down"><code class="docutils literal notranslate"><span class="pre">InterfazManager.on_arrow_down()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_interfaz.InterfazManager.on_arrow_left"><code class="docutils literal notranslate"><span class="pre">InterfazManager.on_arrow_left()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_interfaz.InterfazManager.on_arrow_right"><code class="docutils literal notranslate"><span class="pre">InterfazManager.on_arrow_right()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_interfaz.InterfazManager.on_arrow_up"><code class="docutils literal notranslate"><span class="pre">InterfazManager.on_arrow_up()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_interfaz.InterfazManager.on_closing"><code class="docutils literal notranslate"><span class="pre">InterfazManager.on_closing()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_interfaz.InterfazManager.on_key_release"><code class="docutils literal notranslate"><span class="pre">InterfazManager.on_key_release()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_interfaz.InterfazManager.on_state_button_click"><code class="docutils literal notranslate"><span class="pre">InterfazManager.on_state_button_click()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_interfaz.InterfazManager.set_switch_state"><code class="docutils literal notranslate"><span class="pre">InterfazManager.set_switch_state()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_interfaz.InterfazManager.setup_gui"><code class="docutils literal notranslate"><span class="pre">InterfazManager.setup_gui()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_interfaz.InterfazManager.signal_handler"><code class="docutils literal notranslate"><span class="pre">InterfazManager.signal_handler()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_interfaz.InterfazManager.stations_callback"><code class="docutils literal notranslate"><span class="pre">InterfazManager.stations_callback()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_interfaz.InterfazManager.subscribe_to_camera"><code class="docutils literal notranslate"><span class="pre">InterfazManager.subscribe_to_camera()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_interfaz.InterfazManager.switch_camera_topic"><code class="docutils literal notranslate"><span class="pre">InterfazManager.switch_camera_topic()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_interfaz.InterfazManager.update_state_highlight"><code class="docutils literal notranslate"><span class="pre">InterfazManager.update_state_highlight()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_interfaz.InterfazManager.update_station_list"><code class="docutils literal notranslate"><span class="pre">InterfazManager.update_station_list()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_interfaz.InterfazManager.update_visualization"><code class="docutils literal notranslate"><span class="pre">InterfazManager.update_visualization()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../pkg_exploracion.html">Paquete de Exploración</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../squad_object_detection_action.html">Detección de Objetos (squad_object_detection_action)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.calculate_world_coordinates"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.calculate_world_coordinates()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.callback"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.callback()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.camera_info_callback"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.camera_info_callback()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.detect_objects"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.detect_objects()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.display_debug_info"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.display_debug_info()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.execute"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.execute()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.get_depth_at_pixel"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.get_depth_at_pixel()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.get_robot_pose"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.get_robot_pose()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.load_parameters"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.load_parameters()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.process_latest_data"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.process_latest_data()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.subscribe_to_topics"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.subscribe_to_topics()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../squad_approach_control_action.html">Aproximación a Objetos (squad_approach_control_action)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.ApproachObjectActionServer"><code class="docutils literal notranslate"><span class="pre">ApproachObjectActionServer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.ApproachObjectActionServer.execute_cb"><code class="docutils literal notranslate"><span class="pre">ApproachObjectActionServer.execute_cb()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.ApproachObjectActionServer.get_robot_pose"><code class="docutils literal notranslate"><span class="pre">ApproachObjectActionServer.get_robot_pose()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.ApproachObjectActionServer.object_callback"><code class="docutils literal notranslate"><span class="pre">ApproachObjectActionServer.object_callback()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.ApproachObjectActionServer.preempt_cb"><code class="docutils literal notranslate"><span class="pre">ApproachObjectActionServer.preempt_cb()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.ApproachObjectState"><code class="docutils literal notranslate"><span class="pre">ApproachObjectState</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.ApproachObjectState.execute"><code class="docutils literal notranslate"><span class="pre">ApproachObjectState.execute()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.ApproachObjectState.object_callback"><code class="docutils literal notranslate"><span class="pre">ApproachObjectState.object_callback()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.CenterObjectState"><code class="docutils literal notranslate"><span class="pre">CenterObjectState</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.CenterObjectState.execute"><code class="docutils literal notranslate"><span class="pre">CenterObjectState.execute()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.CenterObjectState.object_callback"><code class="docutils literal notranslate"><span class="pre">CenterObjectState.object_callback()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.CheckPositionState"><code class="docutils literal notranslate"><span class="pre">CheckPositionState</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.CheckPositionState.calculate_distance"><code class="docutils literal notranslate"><span class="pre">CheckPositionState.calculate_distance()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.CheckPositionState.calculate_orientation_diff"><code class="docutils literal notranslate"><span class="pre">CheckPositionState.calculate_orientation_diff()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.CheckPositionState.execute"><code class="docutils literal notranslate"><span class="pre">CheckPositionState.execute()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.CheckPositionState.quaternion_to_yaw"><code class="docutils literal notranslate"><span class="pre">CheckPositionState.quaternion_to_yaw()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.MoveToPositionState"><code class="docutils literal notranslate"><span class="pre">MoveToPositionState</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.MoveToPositionState.execute"><code class="docutils literal notranslate"><span class="pre">MoveToPositionState.execute()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.StartObjectDetectionState"><code class="docutils literal notranslate"><span class="pre">StartObjectDetectionState</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.StartObjectDetectionState.execute"><code class="docutils literal notranslate"><span class="pre">StartObjectDetectionState.execute()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.StopObjectDetectionState"><code class="docutils literal notranslate"><span class="pre">StopObjectDetectionState</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.StopObjectDetectionState.execute"><code class="docutils literal notranslate"><span class="pre">StopObjectDetectionState.execute()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.WaitState"><code class="docutils literal notranslate"><span class="pre">WaitState</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.WaitState.execute"><code class="docutils literal notranslate"><span class="pre">WaitState.execute()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../squad_autonomous_control_action.html">Control Autónomo (squad_autonomous_control_action)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../squad_autonomous_control_action.html#squad_autonomous_control_action.AutonomousControlActionServer"><code class="docutils literal notranslate"><span class="pre">AutonomousControlActionServer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../squad_autonomous_control_action.html#squad_autonomous_control_action.AutonomousControlActionServer.decide_motion"><code class="docutils literal notranslate"><span class="pre">AutonomousControlActionServer.decide_motion()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_autonomous_control_action.html#squad_autonomous_control_action.AutonomousControlActionServer.execute_cb"><code class="docutils literal notranslate"><span class="pre">AutonomousControlActionServer.execute_cb()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_autonomous_control_action.html#squad_autonomous_control_action.AutonomousControlActionServer.get_laser_regions"><code class="docutils literal notranslate"><span class="pre">AutonomousControlActionServer.get_laser_regions()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_autonomous_control_action.html#squad_autonomous_control_action.AutonomousControlActionServer.laser_callback"><code class="docutils literal notranslate"><span class="pre">AutonomousControlActionServer.laser_callback()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_autonomous_control_action.html#squad_autonomous_control_action.AutonomousControlActionServer.stop_robot"><code class="docutils literal notranslate"><span class="pre">AutonomousControlActionServer.stop_robot()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Robots Exploradores - Práctica 3</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Código de módulo</a></li>
+      <li class="breadcrumb-item active">squad_state_manager</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Código fuente para squad_state_manager</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">TurtleBot State Manager</span>
+
+<span class="sd">Este script gestiona el estado del TurtleBot utilizando SMACH, una biblioteca de Python</span>
+<span class="sd">para construir máquinas de estados finitas. Define y maneja diferentes estados como</span>
+<span class="sd">reposo, exploración, navegación y aproximación a objetos detectados. </span>
+
+<span class="sd">Dependencias:</span>
+<span class="sd">    - rospy</span>
+<span class="sd">    - smach</span>
+<span class="sd">    - smach_ros</span>
+<span class="sd">    - actionlib</span>
+<span class="sd">    - std_msgs.msg</span>
+<span class="sd">    - squad_exploracion.msg</span>
+<span class="sd">    - sensor_msgs.msg</span>
+<span class="sd">    - cv_bridge</span>
+<span class="sd">    - PIL (Pillow)</span>
+<span class="sd">    - cv2 (OpenCV)</span>
+<span class="sd">    - move_base_msgs.msg</span>
+<span class="sd">    - geometry_msgs.msg</span>
+<span class="sd">    - threading</span>
+<span class="sd">    - tkinter</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">rospy</span>
+<span class="kn">import</span> <span class="nn">smach</span>
+<span class="kn">import</span> <span class="nn">smach_ros</span>
+<span class="kn">from</span> <span class="nn">std_msgs.msg</span> <span class="kn">import</span> <span class="n">String</span><span class="p">,</span> <span class="n">Bool</span>
+<span class="kn">import</span> <span class="nn">actionlib</span>
+<span class="kn">from</span> <span class="nn">squad_exploracion.msg</span> <span class="kn">import</span> <span class="n">ObjectDetectionAction</span><span class="p">,</span> <span class="n">ObjectDetectionGoal</span><span class="p">,</span> <span class="n">ObjectDetectionFeedback</span>
+<span class="kn">from</span> <span class="nn">squad_exploracion.msg</span> <span class="kn">import</span> <span class="n">AutonomousControlAction</span><span class="p">,</span> <span class="n">AutonomousControlGoal</span><span class="p">,</span> <span class="n">AutonomousControlResult</span>
+<span class="kn">from</span> <span class="nn">squad_exploracion.msg</span> <span class="kn">import</span> <span class="n">ApproachControlAction</span><span class="p">,</span> <span class="n">ApproachControlFeedback</span><span class="p">,</span> <span class="n">ApproachControlResult</span><span class="p">,</span><span class="n">ApproachControlGoal</span>
+<span class="kn">from</span> <span class="nn">squad_exploracion.msg</span> <span class="kn">import</span> <span class="n">DetectedObject</span>
+<span class="kn">from</span> <span class="nn">sensor_msgs.msg</span> <span class="kn">import</span> <span class="n">Image</span> <span class="k">as</span> <span class="n">ROSImage</span>
+<span class="kn">from</span> <span class="nn">cv_bridge</span> <span class="kn">import</span> <span class="n">CvBridge</span><span class="p">,</span> <span class="n">CvBridgeError</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageTk</span>
+<span class="kn">import</span> <span class="nn">cv2</span>
+<span class="kn">import</span> <span class="nn">signal</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">squad_planificacion.msg</span> <span class="kn">import</span> <span class="n">StationInfo</span><span class="p">,</span> <span class="n">StationsInfo</span>
+
+
+
+<span class="kn">from</span> <span class="nn">move_base_msgs.msg</span> <span class="kn">import</span> <span class="n">MoveBaseAction</span><span class="p">,</span> <span class="n">MoveBaseGoal</span>
+<span class="kn">from</span> <span class="nn">geometry_msgs.msg</span> <span class="kn">import</span> <span class="n">Twist</span>
+<span class="kn">import</span> <span class="nn">threading</span>
+<span class="kn">import</span> <span class="nn">tkinter</span> <span class="k">as</span> <span class="nn">tk</span>
+
+
+
+<span class="c1"># ************************************************</span>
+<span class="c1">#              VARIABLES GLOBALES</span>
+<span class="c1"># ************************************************</span>
+
+<span class="n">destino</span> <span class="o">=</span> <span class="s2">&quot;HOME&quot;</span>
+<span class="n">last_object_detected</span> <span class="o">=</span> <span class="n">DetectedObject</span><span class="p">()</span>
+
+<span class="n">almacen_estaciones</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;HOME&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)}</span>
+
+
+<span class="c1"># ************************************************</span>
+<span class="c1">#              DEFINICIÓN DE ESTADOS</span>
+<span class="c1"># ************************************************</span>
+
+<div class="viewcode-block" id="BaseState"><a class="viewcode-back" href="../squad_state_manager.html#squad_state_manager.BaseState">[documentos]</a><span class="k">class</span> <span class="nc">BaseState</span><span class="p">(</span><span class="n">smach</span><span class="o">.</span><span class="n">State</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Clase base para todos los estados que publica el estado actual.</span>
+
+<span class="sd">    Esta clase sirve como clase base para los diferentes estados de la máquina de estados finita (SMACH).</span>
+<span class="sd">    Publica el estado actual y suscribe a comandos para gestionar transiciones entre estados.</span>
+
+<span class="sd">    Hereda de:</span>
+<span class="sd">        smach.State: Clase base proporcionada por SMACH para definir estados.</span>
+
+<span class="sd">    Atributos:</span>
+<span class="sd">        state_pub (Publisher): Publicador al tópico &#39;/current_state&#39; para publicar el estado actual.</span>
+<span class="sd">        command_sub (Subscriber): Suscriptor al tópico &#39;/command&#39; para recibir comandos de transición.</span>
+<span class="sd">        comando (str): Comando actual recibido desde el tópico &#39;/command&#39;.</span>
+<span class="sd">        satate_name (str): Nombre del estado actual.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Inicializa la clase base para los estados, configurando el publicador y el suscriptor.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            **kwargs: Argumentos adicionales para pasar a la clase base smach.State.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">BaseState</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state_pub</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Publisher</span><span class="p">(</span><span class="s1">&#39;current_state&#39;</span><span class="p">,</span> <span class="n">String</span><span class="p">,</span> <span class="n">queue_size</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">command_sub</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Subscriber</span><span class="p">(</span><span class="s1">&#39;command&#39;</span><span class="p">,</span> <span class="n">String</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">command_callback</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">comando</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">satate_name</span> <span class="o">=</span> <span class="s2">&quot;BASE&quot;</span>
+
+<div class="viewcode-block" id="BaseState.execute"><a class="viewcode-back" href="../squad_state_manager.html#squad_state_manager.BaseState.execute">[documentos]</a>    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">userdata</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Publica el nombre del estado actual.</span>
+
+<span class="sd">        Este método debe ser implementado en las subclases para definir el comportamiento específico del estado.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            userdata: Datos de usuario proporcionados por SMACH.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: Resultado del estado que determina la transición siguiente.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state_pub</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">satate_name</span><span class="p">)</span>
+        <span class="c1"># Implementar en las subclases</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="BaseState.command_callback"><a class="viewcode-back" href="../squad_state_manager.html#squad_state_manager.BaseState.command_callback">[documentos]</a>    <span class="k">def</span> <span class="nf">command_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Callback para recibir comandos desde el tópico &#39;/command&#39;.</span>
+
+<span class="sd">        Actualiza el atributo &#39;comando&#39; con el comando recibido en minúsculas.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            msg (String): Mensaje con el comando recibido.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">comando</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span></div></div>
+
+
+<span class="c1"># Definir los estados posibles del sistema</span>
+<div class="viewcode-block" id="EstadoReposo"><a class="viewcode-back" href="../squad_state_manager.html#squad_state_manager.EstadoReposo">[documentos]</a><span class="k">class</span> <span class="nc">EstadoReposo</span><span class="p">(</span><span class="n">BaseState</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">BaseState</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outcomes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;modo_exploracion&#39;</span><span class="p">,</span> <span class="s1">&#39;ir_a&#39;</span><span class="p">])</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;INICIALIZANDO ESTADO: Reposo&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">satate_name</span> <span class="o">=</span> <span class="s2">&quot;REPOSO&quot;</span>
+
+<div class="viewcode-block" id="EstadoReposo.execute"><a class="viewcode-back" href="../squad_state_manager.html#squad_state_manager.EstadoReposo.execute">[documentos]</a>    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">userdata</span><span class="p">):</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;Ejecutando estado: REPOSO&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state_pub</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">satate_name</span><span class="p">)</span>
+        <span class="k">while</span> <span class="ow">not</span> <span class="n">rospy</span><span class="o">.</span><span class="n">is_shutdown</span><span class="p">():</span>
+            <span class="n">comando</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">wait_for_message</span><span class="p">(</span><span class="s1">&#39;command&#39;</span><span class="p">,</span> <span class="n">String</span><span class="p">)</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">comando</span> <span class="o">==</span> <span class="s2">&quot;modo exploracion&quot;</span><span class="p">:</span>
+                <span class="k">return</span> <span class="s1">&#39;modo_exploracion&#39;</span>
+            <span class="k">elif</span> <span class="n">comando</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;ir a&quot;</span><span class="p">):</span>
+                <span class="k">return</span> <span class="s1">&#39;ir_a&#39;</span></div></div>
+
+<div class="viewcode-block" id="EstadoExploracion"><a class="viewcode-back" href="../squad_state_manager.html#squad_state_manager.EstadoExploracion">[documentos]</a><span class="k">class</span> <span class="nc">EstadoExploracion</span><span class="p">(</span><span class="n">BaseState</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Estado de Exploración del robot que gestiona la detección de objetos y el control autónomo.</span>
+
+<span class="sd">    Este estado coordina los comportamientos del robot durante la fase de exploración, incluyendo la</span>
+<span class="sd">    detección de objetos, la aproximación a objetos detectados y la navegación autónoma.</span>
+
+<span class="sd">    Hereda de:</span>
+<span class="sd">        BaseState: Clase base para estados en la máquina de estados finita (SMACH).</span>
+
+<span class="sd">    Atributos:</span>
+<span class="sd">        client_object_detection (SimpleActionClient): Cliente de acción para la detección de objetos.</span>
+<span class="sd">        autonomous_control_pub (Publisher): Publicador para activar/desactivar el control autónomo.</span>
+<span class="sd">        object_sub (Subscriber): Suscriptor al tópico de objetos detectados.</span>
+<span class="sd">        state_sub (Subscriber): Suscriptor al tópico del estado actual.</span>
+<span class="sd">        control_mode_sub (Subscriber): Suscriptor al tópico del modo de control.</span>
+<span class="sd">        feedback_timeout (Duration): Tiempo máximo de espera para recibir feedback de detección.</span>
+<span class="sd">        last_feedback_time (Time): Última vez que se recibió feedback.</span>
+<span class="sd">        detectar_multiples_objetos (bool): Indicador para detectar múltiples objetos.</span>
+<span class="sd">        acercarse_objetos (bool): Indicador para aproximarse a objetos detectados.</span>
+<span class="sd">        volver_casa (bool): Indicador para volver a la posición &quot;HOME&quot;.</span>
+<span class="sd">        comando (str): Comando actual recibido.</span>
+<span class="sd">        control_mode (str): Modo de control actual (&#39;manual&#39; o &#39;autonomous&#39;).</span>
+<span class="sd">        autonomous_control_active (bool): Estado de la acción de control autónomo.</span>
+<span class="sd">        objeto_detectado (bool): Indicador de detección de objeto.</span>
+<span class="sd">        last_object_detected (DetectedObject): Último objeto detectado.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Inicializa el estado de Exploración, configurando clientes de acción, suscriptores,</span>
+<span class="sd">        parámetros y variables internas.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># ************************************************</span>
+        <span class="c1">#              INICIALIZACIÓN DEL ESTADO</span>
+        <span class="c1"># ************************************************</span>
+        <span class="c1"># BaseState.__init__(self, outcomes=[&#39;reposo&#39;, &#39;ir_a&#39;, &#39;acercarse_objetivo&#39;])</span>
+        <span class="n">BaseState</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outcomes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;reposo&#39;</span><span class="p">,</span> <span class="s1">&#39;ir_a&#39;</span><span class="p">])</span>
+
+        <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;INICIALIZANDO ESTADO: Exploración&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">satate_name</span> <span class="o">=</span> <span class="s2">&quot;EXPLORACION&quot;</span>
+
+        <span class="c1"># ************************************************</span>
+        <span class="c1">#     INICIALIZACIÓN DE SUSCRIPTORES Y PUBLICADORES</span>
+        <span class="c1"># ************************************************</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client_object_detection</span> <span class="o">=</span> <span class="n">actionlib</span><span class="o">.</span><span class="n">SimpleActionClient</span><span class="p">(</span><span class="s1">&#39;object_detection&#39;</span><span class="p">,</span> <span class="n">ObjectDetectionAction</span><span class="p">)</span>
+        <span class="c1">#Publicamos un booleano para activar el control autónomo</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">autonomous_control_pub</span> <span class="o">=</span>  <span class="n">rospy</span><span class="o">.</span><span class="n">Publisher</span><span class="p">(</span><span class="s1">&#39;explore/start_frontier_exploration&#39;</span><span class="p">,</span> <span class="n">Bool</span><span class="p">,</span> <span class="n">queue_size</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">control_mode_pub</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Publisher</span><span class="p">(</span><span class="s1">&#39;control_mode&#39;</span><span class="p">,</span> <span class="n">String</span><span class="p">,</span> <span class="n">queue_size</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">object_sub</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Subscriber</span><span class="p">(</span><span class="s2">&quot;detected_objects&quot;</span><span class="p">,</span> <span class="n">DetectedObject</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">object_callback</span><span class="p">)</span>
+        <span class="c1"># self.state_sub = rospy.Subscriber(&quot;/current_state&quot;, String, self.state_callback)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">control_mode_sub</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Subscriber</span><span class="p">(</span> <span class="s2">&quot;control_mode&quot;</span><span class="p">,</span> <span class="n">String</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">control_mode_callback</span><span class="p">)</span>
+
+        <span class="c1"># ************************************************</span>
+        <span class="c1">#              CARGA DE PARÁMETROS</span>
+        <span class="c1"># ************************************************</span>
+        <span class="c1"># Cargar parámetros desde el archivo YAML</span>
+        <span class="n">feedback_timeout_param</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">get_param</span><span class="p">(</span><span class="s1">&#39;~feedback_objectDetection_timeout&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;unit&#39;</span><span class="p">:</span> <span class="s1">&#39;seconds&#39;</span><span class="p">})</span>
+        <span class="n">timeout_value</span> <span class="o">=</span> <span class="n">feedback_timeout_param</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">]</span>
+        <span class="n">timeout_unit</span> <span class="o">=</span> <span class="n">feedback_timeout_param</span><span class="p">[</span><span class="s1">&#39;unit&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">timeout_unit</span> <span class="o">==</span> <span class="s1">&#39;seconds&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">feedback_timeout</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Duration</span><span class="p">(</span><span class="n">timeout_value</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">timeout_unit</span> <span class="o">==</span> <span class="s1">&#39;milliseconds&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">feedback_timeout</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Duration</span><span class="p">(</span><span class="n">timeout_value</span> <span class="o">/</span> <span class="mf">1000.0</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">rospy</span><span class="o">.</span><span class="n">logwarn</span><span class="p">(</span>
+                <span class="s2">&quot;Unidad de tiempo desconocida, utilizando valor por defecto de 2 segundos.&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">feedback_timeout</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Duration</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">last_feedback_time</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Time</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">detectar_multiples_objetos</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">get_param</span><span class="p">(</span>
+            <span class="s1">&#39;/ESTADO_EXPLORACION/DETECTAR_MULTIPLE&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">acercarse_objetos</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">get_param</span><span class="p">(</span>
+            <span class="s1">&#39;/ESTADO_EXPLORACION/ACERCARSE_OBJETO&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">volver_casa</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">get_param</span><span class="p">(</span>
+            <span class="s1">&#39;/ESTADO_EXPLORACION/VOLVER_A_CASA&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+
+        <span class="c1"># ************************************************</span>
+        <span class="c1">#              INICIALIZACIÓN DE VARIABLES</span>
+        <span class="c1"># ************************************************</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">comando</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">control_mode</span> <span class="o">=</span> <span class="s1">&#39;manual&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">autonomous_control_active</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1"># Variable para controlar el estado de la acción</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">objeto_detectado</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">last_object_detected</span> <span class="o">=</span> <span class="kc">None</span>
+
+<div class="viewcode-block" id="EstadoExploracion.execute"><a class="viewcode-back" href="../squad_state_manager.html#squad_state_manager.EstadoExploracion.execute">[documentos]</a>    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">userdata</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Ejecuta el comportamiento principal del estado de Exploración.</span>
+
+<span class="sd">        Este método gestiona la lógica de detección de objetos, control autónomo,</span>
+<span class="sd">        y las transiciones entre diferentes estados basándose en eventos y comandos.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            userdata: Datos de usuario proporcionados por SMACH.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: El resultado del estado, que determina la transición siguiente.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;Ejecutando estado: EXPLORACIÓN&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state_pub</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">satate_name</span><span class="p">)</span>
+
+        <span class="c1"># Reiniciar la variable objeto_detectado</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">objeto_detectado</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="c1"># ************************************************</span>
+        <span class="c1">#     ESPERAR AL SERVIDOR DE ACCIÓN</span>
+        <span class="c1"># ************************************************</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span>
+            <span class="s1">&#39;Esperando al servidor de acción de detección de objetos...&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client_object_detection</span><span class="o">.</span><span class="n">wait_for_server</span><span class="p">()</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span>
+            <span class="s1">&#39;Servidor de acción de detección de objetos (ACTIVADO)&#39;</span><span class="p">)</span>
+
+
+        <span class="c1"># ************************************************</span>
+        <span class="c1">#          ENVIAR OBJETIVO DE DETECCIÓN</span>
+        <span class="c1"># ************************************************</span>
+        <span class="n">goal</span> <span class="o">=</span> <span class="n">ObjectDetectionGoal</span><span class="p">()</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s1">&#39;Enviando objetivo de detección de objetos...&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client_object_detection</span><span class="o">.</span><span class="n">send_goal</span><span class="p">(</span><span class="n">goal</span><span class="p">,</span> <span class="n">feedback_cb</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">feedback_cb</span><span class="p">)</span>
+
+        <span class="c1"># ************************************************</span>
+        <span class="c1">#     BUCLE PRINCIPAL DE MONITORIZACIÓN</span>
+        <span class="c1"># ************************************************</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">comando</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">rate</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Rate</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Frecuencia de comprobación</span>
+        <span class="k">while</span> <span class="ow">not</span> <span class="n">rospy</span><span class="o">.</span><span class="n">is_shutdown</span><span class="p">():</span>
+            <span class="c1"># Comprobar si ha pasado demasiado tiempo sin feedback</span>
+            <span class="k">if</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Time</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">last_feedback_time</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">feedback_timeout</span><span class="p">:</span>
+                <span class="n">rospy</span><span class="o">.</span><span class="n">logwarn</span><span class="p">(</span>
+                    <span class="s2">&quot;No se ha recibido feedback en el tiempo esperado, posible problema con el nodo de detección de objetos.&quot;</span><span class="p">)</span>
+
+            <span class="c1"># ------------------MODO CONTROL DEL ROBOT--------------------</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">control_mode</span> <span class="o">==</span> <span class="s1">&#39;autonomous&#39;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">autonomous_control_active</span><span class="p">:</span>
+
+                    <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s1">&#39;Enviando objetivo de control autónomo...&#39;</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">autonomous_control_pub</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">autonomous_control_active</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;Control autónomo ya está activo.&quot;</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">control_mode</span> <span class="o">==</span> <span class="s1">&#39;manual&#39;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">autonomous_control_active</span><span class="p">:</span>
+                    <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s1">&#39;Cancelando objetivo de control autónomo...&#39;</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">autonomous_control_pub</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">autonomous_control_active</span> <span class="o">=</span> <span class="kc">False</span>
+
+            <span class="c1"># ------------------TRANSICIÓN ENTRE ESTADOS--------------------</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">objeto_detectado</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">acercarse_objetos</span><span class="p">:</span>
+                    <span class="k">global</span> <span class="n">last_object_detected</span>
+                    <span class="n">last_object_detected</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">last_object_detected</span>
+
+                    <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;Objeto detectado, acercándose al objeto...&quot;</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">comando</span> <span class="o">=</span> <span class="s2">&quot;acercarse_objetivo&quot;</span>
+
+                <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">detectar_multiples_objetos</span><span class="p">:</span>
+                    <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;Objeto detectado, detectando más objetos...&quot;</span><span class="p">)</span>
+
+                <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">volver_casa</span><span class="p">:</span>
+                    <span class="k">global</span> <span class="n">destino</span>
+
+                    <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Objeto detectado, volviendo a HOME... </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">volver_casa</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">comando</span> <span class="o">=</span> <span class="s2">&quot;ir a HOME&quot;</span>
+                    <span class="c1"># self.state_pub.publish(&quot;ir a HOME&quot;)</span>
+                    <span class="n">destino</span> <span class="o">=</span> <span class="s2">&quot;HOME&quot;</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;Objeto detectado, sin acciones adicionales.&quot;</span><span class="p">)</span>
+                    
+
+            <span class="c1"># ------------------GESTIÓN DE COMANDOS DE TRANSICIÓN--------------------</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">comando</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">comando</span> <span class="o">==</span> <span class="s2">&quot;parar&quot;</span><span class="p">:</span>
+                    <span class="c1"># ************************************************</span>
+                    <span class="c1">#     CANCELAR OBJETIVOS Y REINICIAR ESTADO</span>
+                    <span class="c1"># ************************************************</span>
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">client_object_detection</span><span class="o">.</span><span class="n">get_state</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[</span><span class="n">actionlib</span><span class="o">.</span><span class="n">GoalStatus</span><span class="o">.</span><span class="n">ACTIVE</span><span class="p">,</span> <span class="n">actionlib</span><span class="o">.</span><span class="n">GoalStatus</span><span class="o">.</span><span class="n">PENDING</span><span class="p">]:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">client_object_detection</span><span class="o">.</span><span class="n">cancel_goal</span><span class="p">()</span>
+
+                    <span class="bp">self</span><span class="o">.</span><span class="n">objeto_detectado</span> <span class="o">=</span> <span class="kc">False</span>
+
+                    <span class="c1"># Cancelar el objetivo de control autónomo si está activo</span>
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">autonomous_control_active</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">autonomous_control_pub</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">autonomous_control_active</span> <span class="o">=</span> <span class="kc">False</span>
+
+                    <span class="k">return</span> <span class="s1">&#39;reposo&#39;</span>
+                <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">comando</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;ir a&quot;</span><span class="p">)</span> <span class="p">:</span>
+                    <span class="c1"># ************************************************</span>
+                    <span class="c1">#     TRANSICIÓN A UN DESTINO ESPECÍFICO</span>
+                    <span class="c1"># ************************************************</span>
+                    <span class="c1"># TODO: Asegurarse de gestionar que se puedan mandar diferentes destinos</span>
+
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">client_object_detection</span><span class="o">.</span><span class="n">get_state</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[</span><span class="n">actionlib</span><span class="o">.</span><span class="n">GoalStatus</span><span class="o">.</span><span class="n">ACTIVE</span><span class="p">,</span> <span class="n">actionlib</span><span class="o">.</span><span class="n">GoalStatus</span><span class="o">.</span><span class="n">PENDING</span><span class="p">]:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">client_object_detection</span><span class="o">.</span><span class="n">cancel_goal</span><span class="p">()</span>
+
+                    <span class="bp">self</span><span class="o">.</span><span class="n">objeto_detectado</span> <span class="o">=</span> <span class="kc">False</span>
+
+                    <span class="c1"># Cancelar el objetivo de control autónomo si está activo</span>
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">autonomous_control_active</span><span class="p">:</span>
+                        <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s1">&#39;Cancelando objetivo de control autónomo...&#39;</span><span class="p">)</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">autonomous_control_pub</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">autonomous_control_active</span> <span class="o">=</span> <span class="kc">False</span>
+
+                    <span class="k">return</span> <span class="s1">&#39;ir_a&#39;</span>
+
+
+
+            <span class="n">rate</span><span class="o">.</span><span class="n">sleep</span><span class="p">()</span></div>
+
+        <span class="c1">#return &#39;reposo&#39;</span>
+
+
+<div class="viewcode-block" id="EstadoExploracion.control_mode_callback"><a class="viewcode-back" href="../squad_state_manager.html#squad_state_manager.EstadoExploracion.control_mode_callback">[documentos]</a>    <span class="k">def</span> <span class="nf">control_mode_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Callback para el suscriptor del modo de control.</span>
+
+<span class="sd">        Cambia el modo de control del robot entre &#39;manual&#39; y &#39;autonomous&#39;.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            msg (String): Mensaje con el modo de control.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">control_mode</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">data</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Modo de control cambiado a: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">control_mode</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="EstadoExploracion.feedback_cb"><a class="viewcode-back" href="../squad_state_manager.html#squad_state_manager.EstadoExploracion.feedback_cb">[documentos]</a>    <span class="k">def</span> <span class="nf">feedback_cb</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">feedback</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Callback para recibir feedback del servidor de detección de objetos.</span>
+
+<span class="sd">        Actualiza el tiempo del último feedback recibido.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            feedback: Feedback recibido del servidor de acción de detección de objetos.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># ************************************************</span>
+        <span class="c1">#     CALLBACK DE FEEDBACK DEL OBJETIVO</span>
+        <span class="c1"># ************************************************</span>
+        <span class="c1"># Actualizar el tiempo del último feedback recibido</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">last_feedback_time</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Time</span><span class="o">.</span><span class="n">now</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="EstadoExploracion.object_callback"><a class="viewcode-back" href="../squad_state_manager.html#squad_state_manager.EstadoExploracion.object_callback">[documentos]</a>    <span class="k">def</span> <span class="nf">object_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Callback para el suscriptor de objetos detectados.</span>
+
+<span class="sd">        Actualiza el estado interno cuando se detecta un objeto.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            msg (DetectedObject): Mensaje con la información del objeto detectado.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># ************************************************</span>
+        <span class="c1">#     CALLBACK DE DETECCIÓN DE OBJETOS (ACTUALIZADO)</span>
+        <span class="c1"># ************************************************</span>
+        <span class="c1"># Mostrar la información del objeto detectado utilizando el nuevo mensaje personalizado</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">last_object_detected</span> <span class="o">=</span> <span class="n">msg</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">objeto_detectado</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">last_feedback_time</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Time</span><span class="o">.</span><span class="n">now</span><span class="p">()</span></div></div>
+        <span class="c1">#rospy.loginfo(f&quot;Objeto detectado: {msg}&quot;)</span>
+
+
+
+
+
+<div class="viewcode-block" id="EstadoNavegacion"><a class="viewcode-back" href="../squad_state_manager.html#squad_state_manager.EstadoNavegacion">[documentos]</a><span class="k">class</span> <span class="nc">EstadoNavegacion</span><span class="p">(</span><span class="n">BaseState</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Estado de Navegación del robot que maneja el desplazamiento a una posición predefinida.</span>
+
+<span class="sd">    Este estado utiliza el servidor de acción `move_base` para mover el robot a una ubicación específica</span>
+<span class="sd">    definida en un diccionario de estaciones.</span>
+
+<span class="sd">    Hereda de:</span>
+<span class="sd">        BaseState: Clase base para estados en la máquina de estados finita (SMACH).</span>
+
+<span class="sd">    Atributos:</span>
+<span class="sd">        client (SimpleActionClient): Cliente de acción para `move_base`.</span>
+<span class="sd">        satate_name (str): Nombre del estado actual.</span>
+<span class="sd">        comando (str): Comando actual recibido.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Inicializa el estado de Navegación, configurando el cliente de acción</span>
+<span class="sd">        y estableciendo el nombre del estado.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># ************************************************</span>
+        <span class="c1">#              INICIALIZACIÓN DEL ESTADO</span>
+        <span class="c1"># ************************************************</span>
+        <span class="n">BaseState</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outcomes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;reposo&#39;</span><span class="p">,</span> <span class="s1">&#39;modo_exploracion&#39;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">actionlib</span><span class="o">.</span><span class="n">SimpleActionClient</span><span class="p">(</span><span class="s1">&#39;move_base&#39;</span><span class="p">,</span> <span class="n">MoveBaseAction</span><span class="p">)</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;INICIALIZANDO ESTADO: Navegación&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state_name</span> <span class="o">=</span> <span class="s2">&quot;NAVEGACION&quot;</span>
+
+        <span class="c1"># Suscripción al tópico de comandos, &quot;/command&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">comando</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">command_sub</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Subscriber</span><span class="p">(</span><span class="s1">&#39;command&#39;</span><span class="p">,</span> <span class="n">String</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">command_callback</span><span class="p">)</span>
+        <span class="c1"># Suscriptor al tópico de estaciones</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stations_subscriber</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Subscriber</span><span class="p">(</span><span class="s1">&#39;stations_info&#39;</span><span class="p">,</span> <span class="n">StationsInfo</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stations_callback</span><span class="p">)</span>
+
+
+
+<div class="viewcode-block" id="EstadoNavegacion.stations_callback"><a class="viewcode-back" href="../squad_state_manager.html#squad_state_manager.EstadoNavegacion.stations_callback">[documentos]</a>    <span class="k">def</span> <span class="nf">stations_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Callback para el suscriptor del tópico de estaciones.</span>
+
+<span class="sd">        Actualiza la variable global &#39;almacen_estaciones&#39; con los datos recibidos.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            msg (Stations): Mensaje con los datos de estaciones.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">global</span> <span class="n">almacen_estaciones</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">estaciones</span> <span class="o">=</span> <span class="n">almacen_estaciones</span>
+            <span class="k">for</span> <span class="n">station</span> <span class="ow">in</span> <span class="n">msg</span><span class="o">.</span><span class="n">stations</span><span class="p">:</span>
+                <span class="n">station_id</span> <span class="o">=</span> <span class="n">station</span><span class="o">.</span><span class="n">station_id</span>
+                <span class="n">coordinates</span> <span class="o">=</span> <span class="p">(</span><span class="n">station</span><span class="o">.</span><span class="n">coordinates</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">station</span><span class="o">.</span><span class="n">coordinates</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+                <span class="c1"># Puedes incluir el polígono si es necesario</span>
+                <span class="c1"># polygon = [(point.x, point.y) for point in station.polygon]</span>
+                <span class="n">estaciones</span><span class="p">[</span><span class="n">station_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">coordinates</span>
+            <span class="n">almacen_estaciones</span> <span class="o">=</span> <span class="n">estaciones</span>
+            <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Actualizado almacen_estaciones: </span><span class="si">{</span><span class="n">almacen_estaciones</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">rospy</span><span class="o">.</span><span class="n">logerr</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error en el acceso a atributos del mensaje de estaciones: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">rospy</span><span class="o">.</span><span class="n">logerr</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error inesperado en stations_callback: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="EstadoNavegacion.command_callback"><a class="viewcode-back" href="../squad_state_manager.html#squad_state_manager.EstadoNavegacion.command_callback">[documentos]</a>    <span class="k">def</span> <span class="nf">command_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Callback para el tópico de comandos. Actualiza el último comando recibido.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">comando</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">data</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">comando</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;ir a&quot;</span><span class="p">):</span>
+            <span class="k">global</span> <span class="n">destino</span>
+            <span class="n">destino</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">comando</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Comando recibido: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">comando</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="EstadoNavegacion.execute"><a class="viewcode-back" href="../squad_state_manager.html#squad_state_manager.EstadoNavegacion.execute">[documentos]</a>    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">userdata</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Ejecuta el comportamiento principal del estado de Navegación.</span>
+
+<span class="sd">        Este método envía un objetivo al servidor de acción `move_base` para mover el robot</span>
+<span class="sd">        a las coordenadas especificadas en el destino y gestiona las transiciones basadas</span>
+<span class="sd">        en el resultado de la navegación.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            userdata: Datos de usuario proporcionados por SMACH.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: El resultado del estado, que determina la transición siguiente.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;Ejecutando estado: NAVEGACIÓN&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state_pub</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">state_name</span><span class="p">)</span>
+
+        <span class="c1"># ************************************************</span>
+        <span class="c1">#     ESPERAR AL SERVIDOR DE ACCIÓN</span>
+        <span class="c1"># ************************************************</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s1">&#39;Esperando al servidor de acción MOVE ACTION...&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">wait_for_server</span><span class="p">()</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s1">&#39;Servidor de acción MOVE ACTION (ACTIVADO)&#39;</span><span class="p">)</span>
+
+        <span class="c1"># ************************************************</span>
+        <span class="c1">#          OBTENER Y ENVIAR OBJETIVO DE NAVEGACIÓN</span>
+        <span class="c1"># ************************************************</span>
+        <span class="c1"># Obtener las coordenadas del destino guardado</span>
+        <span class="k">if</span> <span class="n">destino</span> <span class="ow">in</span> <span class="n">almacen_estaciones</span><span class="p">:</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">almacen_estaciones</span><span class="p">[</span><span class="n">destino</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="n">almacen_estaciones</span><span class="p">[</span><span class="n">destino</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">rospy</span><span class="o">.</span><span class="n">logerr</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;El destino &#39;</span><span class="si">{</span><span class="n">destino</span><span class="si">}</span><span class="s2">&#39; no se encuentra en el diccionario de estaciones.&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="s1">&#39;reposo&#39;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">comando</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="c1"># ************************************************</span>
+        <span class="c1">#     BUCLE PRINCIPAL DE MONITORIZACIÓN</span>
+        <span class="c1"># ************************************************</span>
+        <span class="n">rate</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Rate</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># Frecuencia de comprobación (2 Hz)</span>
+        <span class="k">while</span> <span class="ow">not</span> <span class="n">rospy</span><span class="o">.</span><span class="n">is_shutdown</span><span class="p">():</span>
+            <span class="c1"># Obtener el estado actual del cliente de acción</span>
+            <span class="n">state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get_state</span><span class="p">()</span>
+            <span class="n">state_str</span> <span class="o">=</span> <span class="n">actionlib</span><span class="o">.</span><span class="n">GoalStatus</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
+            <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Estado actual del cliente de acción MoveBaseAction: </span><span class="si">{</span><span class="n">state_str</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+            <span class="c1"># Verificar si la acción ha finalizado</span>
+            <span class="k">if</span> <span class="n">state</span> <span class="o">==</span> <span class="n">actionlib</span><span class="o">.</span><span class="n">GoalStatus</span><span class="o">.</span><span class="n">SUCCEEDED</span><span class="p">:</span>
+                <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Llegando a &#39;</span><span class="si">{</span><span class="n">destino</span><span class="si">}</span><span class="s2">&#39;, pasando a estado REPOSO.&quot;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="s1">&#39;reposo&#39;</span>
+            <span class="k">elif</span> <span class="n">state</span> <span class="ow">in</span> <span class="p">[</span><span class="n">actionlib</span><span class="o">.</span><span class="n">GoalStatus</span><span class="o">.</span><span class="n">PREEMPTED</span><span class="p">,</span> <span class="n">actionlib</span><span class="o">.</span><span class="n">GoalStatus</span><span class="o">.</span><span class="n">ABORTED</span><span class="p">]:</span>
+                <span class="n">rospy</span><span class="o">.</span><span class="n">logwarn</span><span class="p">(</span><span class="s2">&quot;El objetivo fue cancelado o falló, pasando a estado REPOSO.&quot;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="s1">&#39;reposo&#39;</span>
+
+            <span class="c1"># ************************************************</span>
+            <span class="c1">#     GESTIÓN DE COMANDOS DE TRANSICIÓN</span>
+            <span class="c1"># ************************************************</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">comando</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">comando</span> <span class="o">==</span> <span class="s2">&quot;parar&quot;</span><span class="p">:</span>
+                    <span class="c1"># ************************************************</span>
+                    <span class="c1">#     CANCELAR OBJETIVOS Y REINICIAR ESTADO</span>
+                    <span class="c1"># ************************************************</span>
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get_state</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[</span><span class="n">actionlib</span><span class="o">.</span><span class="n">GoalStatus</span><span class="o">.</span><span class="n">ACTIVE</span><span class="p">,</span> 
+                                                   <span class="n">actionlib</span><span class="o">.</span><span class="n">GoalStatus</span><span class="o">.</span><span class="n">PENDING</span><span class="p">]:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">cancel_goal</span><span class="p">()</span>
+                    <span class="k">return</span> <span class="s1">&#39;reposo&#39;</span>
+                <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">comando</span> <span class="o">==</span> <span class="s2">&quot;modo exploracion&quot;</span><span class="p">:</span>
+                    <span class="c1"># ************************************************</span>
+                    <span class="c1">#     TRANSICIÓN A MODO EXPLORACIÓN</span>
+                    <span class="c1"># ************************************************</span>
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get_state</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[</span><span class="n">actionlib</span><span class="o">.</span><span class="n">GoalStatus</span><span class="o">.</span><span class="n">ACTIVE</span><span class="p">,</span> 
+                                                   <span class="n">actionlib</span><span class="o">.</span><span class="n">GoalStatus</span><span class="o">.</span><span class="n">PENDING</span><span class="p">]:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">cancel_goal</span><span class="p">()</span>
+                    <span class="k">return</span> <span class="s1">&#39;modo_exploracion&#39;</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Comando no reconocido: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">comando</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+            <span class="n">rate</span><span class="o">.</span><span class="n">sleep</span><span class="p">()</span></div>
+
+        <span class="c1">#return &#39;reposo&#39;</span>
+
+<div class="viewcode-block" id="EstadoNavegacion.moveTo"><a class="viewcode-back" href="../squad_state_manager.html#squad_state_manager.EstadoNavegacion.moveTo">[documentos]</a>    <span class="k">def</span> <span class="nf">moveTo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Envía un objetivo al servidor de acción `move_base` para mover el robot a las coordenadas especificadas.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            x (float): Coordenada X del destino.</span>
+<span class="sd">            y (float): Coordenada Y del destino.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">goal</span> <span class="o">=</span> <span class="n">MoveBaseGoal</span><span class="p">()</span>
+        <span class="n">goal</span><span class="o">.</span><span class="n">target_pose</span><span class="o">.</span><span class="n">header</span><span class="o">.</span><span class="n">frame_id</span> <span class="o">=</span> <span class="s2">&quot;map&quot;</span>
+        <span class="n">goal</span><span class="o">.</span><span class="n">target_pose</span><span class="o">.</span><span class="n">header</span><span class="o">.</span><span class="n">stamp</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Time</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+        <span class="n">goal</span><span class="o">.</span><span class="n">target_pose</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
+        <span class="n">goal</span><span class="o">.</span><span class="n">target_pose</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span>
+        <span class="n">goal</span><span class="o">.</span><span class="n">target_pose</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">orientation</span><span class="o">.</span><span class="n">w</span> <span class="o">=</span> <span class="mf">1.0</span>  <span class="c1"># Orientación fija hacia adelante</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">send_goal</span><span class="p">(</span><span class="n">goal</span><span class="p">)</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Enviando goal a las coordenadas x: </span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">, y: </span><span class="si">{</span><span class="n">y</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="EstadoNavegacion.control_mode_callback"><a class="viewcode-back" href="../squad_state_manager.html#squad_state_manager.EstadoNavegacion.control_mode_callback">[documentos]</a>    <span class="k">def</span> <span class="nf">control_mode_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Callback para el suscriptor del modo de control.</span>
+
+<span class="sd">        Cambia el modo de control del robot entre &#39;manual&#39; y &#39;autonomous&#39;.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            msg (String): Mensaje con el modo de control.</span>
+<span class="sd">        &quot;&quot;&quot;</span></div></div>
+        <span class="c1">#self.control_mode = msg.data</span>
+        <span class="c1">#rospy.loginfo(f&quot;Modo de control cambiado a: {self.control_mode}&quot;)</span>
+
+
+
+<div class="viewcode-block" id="TurtleBotStateManager"><a class="viewcode-back" href="../squad_state_manager.html#squad_state_manager.TurtleBotStateManager">[documentos]</a><span class="k">class</span> <span class="nc">TurtleBotStateManager</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Gestor de Estados para el TurtleBot utilizando SMACH.</span>
+
+<span class="sd">    Esta clase inicializa la máquina de estados finita (SMACH) para gestionar los diferentes</span>
+<span class="sd">    comportamientos del TurtleBot, incluyendo reposo, exploración, navegación y aproximación a</span>
+<span class="sd">    objetivos. También configura la introspección para visualizar la máquina de estados y</span>
+<span class="sd">    lanza la interfaz gráfica para la interacción del usuario.</span>
+
+<span class="sd">    Atributos:</span>
+<span class="sd">        sm (StateMachine): Máquina de estados finita que define los diferentes estados y sus transiciones.</span>
+<span class="sd">        state_machine_thread (Thread): Hilo que ejecuta la máquina de estados.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Inicializa el gestor de estados del TurtleBot, configurando la máquina de estados,</span>
+<span class="sd">        la introspección y la interfaz gráfica.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># ************************************************</span>
+        <span class="c1">#              INICIALIZACIÓN DEL NODO ROS</span>
+        <span class="c1"># ************************************************</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">init_node</span><span class="p">(</span><span class="s1">&#39;turtlebot_state_manager&#39;</span><span class="p">,</span> <span class="n">anonymous</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="c1"># ************************************************</span>
+        <span class="c1">#              INICIALIZACIÓN DE LA MÁQUINA DE ESTADOS</span>
+        <span class="c1"># ************************************************</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sm</span> <span class="o">=</span> <span class="n">smach</span><span class="o">.</span><span class="n">StateMachine</span><span class="p">(</span><span class="n">outcomes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;sistema_finalizado&#39;</span><span class="p">])</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">sm</span><span class="p">:</span>
+            <span class="c1"># Agregar el estado REPOSO</span>
+            <span class="n">smach</span><span class="o">.</span><span class="n">StateMachine</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+                <span class="s1">&#39;REPOSO&#39;</span><span class="p">,</span>
+                <span class="n">EstadoReposo</span><span class="p">(),</span>
+                <span class="n">transitions</span><span class="o">=</span><span class="p">{</span>
+                    <span class="s1">&#39;modo_exploracion&#39;</span><span class="p">:</span> <span class="s1">&#39;EXPLORACION&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;ir_a&#39;</span><span class="p">:</span> <span class="s1">&#39;NAVEGACION&#39;</span><span class="p">,</span>
+                <span class="p">}</span>
+            <span class="p">)</span>
+
+            <span class="c1"># Agregar el estado EXPLORACION</span>
+            <span class="n">smach</span><span class="o">.</span><span class="n">StateMachine</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+                <span class="s1">&#39;EXPLORACION&#39;</span><span class="p">,</span>
+                <span class="n">EstadoExploracion</span><span class="p">(),</span>
+                <span class="n">transitions</span><span class="o">=</span><span class="p">{</span>
+                    <span class="s1">&#39;reposo&#39;</span><span class="p">:</span> <span class="s1">&#39;REPOSO&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;ir_a&#39;</span><span class="p">:</span> <span class="s1">&#39;NAVEGACION&#39;</span><span class="c1">#,</span>
+                    <span class="c1"># &#39;acercarse_objetivo&#39;: &#39;APPROACH&#39;</span>
+                <span class="p">}</span>
+            <span class="p">)</span>
+
+            <span class="c1"># Agregar el estado NAVEGACION</span>
+            <span class="n">smach</span><span class="o">.</span><span class="n">StateMachine</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+                <span class="s1">&#39;NAVEGACION&#39;</span><span class="p">,</span>
+                <span class="n">EstadoNavegacion</span><span class="p">(),</span>
+                <span class="n">transitions</span><span class="o">=</span><span class="p">{</span>
+                    <span class="s1">&#39;reposo&#39;</span><span class="p">:</span> <span class="s1">&#39;REPOSO&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;modo_exploracion&#39;</span><span class="p">:</span> <span class="s1">&#39;EXPLORACION&#39;</span>
+                <span class="p">}</span>
+            <span class="p">)</span>
+
+
+        <span class="c1"># ************************************************</span>
+        <span class="c1">#      CONFIGURACIÓN DEL INTROSPECTOR SMACH</span>
+        <span class="c1"># ************************************************</span>
+        <span class="n">sis</span> <span class="o">=</span> <span class="n">smach_ros</span><span class="o">.</span><span class="n">IntrospectionServer</span><span class="p">(</span>
+            <span class="s1">&#39;turtlebot_state_manager_introspection&#39;</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sm</span><span class="p">,</span>
+            <span class="s1">&#39;/SM_ROOT&#39;</span>
+        <span class="p">)</span>
+        <span class="n">sis</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+        <span class="c1"># ************************************************</span>
+        <span class="c1">#     EJECUCIÓN DE LA MÁQUINA DE ESTADOS EN UN HILO</span>
+        <span class="c1"># ************************************************</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state_machine_thread</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">run_state_machine</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state_machine_thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+        <span class="c1"># Mantener el Introspection Server activo</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">spin</span><span class="p">()</span>
+
+        <span class="c1"># ************************************************</span>
+        <span class="c1">#              DETENER INTROSPECCIÓN</span>
+        <span class="c1"># ************************************************</span>
+        <span class="n">sis</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+
+         <span class="c1"># Esperar a que el hilo de la máquina de estados termine</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">state_machine_thread</span><span class="o">.</span><span class="n">is_alive</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">state_machine_thread</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+
+            
+<div class="viewcode-block" id="TurtleBotStateManager.run_state_machine"><a class="viewcode-back" href="../squad_state_manager.html#squad_state_manager.TurtleBotStateManager.run_state_machine">[documentos]</a>    <span class="k">def</span> <span class="nf">run_state_machine</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Ejecuta la máquina de estados finita (SMACH).</span>
+
+<span class="sd">        Este método es ejecutado en un hilo separado para no bloquear el hilo principal.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># outcome = self.sm.execute()</span>
+        <span class="c1"># rospy.loginfo(f&quot;MÁQUINA DE ESTADOS FINALIZADA con resultado: {outcome}&quot;)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">outcome</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sm</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+            <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;MÁQUINA DE ESTADOS FINALIZADA con resultado: </span><span class="si">{</span><span class="n">outcome</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">rospy</span><span class="o">.</span><span class="n">ROSInterruptException</span><span class="p">:</span>
+            <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;Máquina de estados interrumpida.&quot;</span><span class="p">)</span></div></div>
+
+
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">manager</span> <span class="o">=</span> <span class="n">TurtleBotStateManager</span><span class="p">()</span>
+    <span class="k">except</span> <span class="n">rospy</span><span class="o">.</span><span class="n">ROSInterruptException</span><span class="p">:</span>
+        <span class="k">pass</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Derechos de autor 2024, Abel Belhaki Rivas.</p>
+  </div>
+
+  Compilado con <a href="https://www.sphinx-doc.org/">Sphinx</a> usando un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    proporcionado por <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

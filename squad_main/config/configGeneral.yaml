@@ -1,0 +1,48 @@
+
+#------SEÑALES DE VIDA-------
+feedback_objectDetection_timeout: 
+  value: 1  # Tiempo en segundos para que el robot envíe una señal de vida
+  unit: "seconds"  # Unidad del tiempo de espera: "seconds" o "milliseconds"
+
+# ************************************************
+#               MODO DE EJECUCION
+# ************************************************
+
+#NO SE USA DE MOMENTO
+
+MODO_EJECUCION: GAZEBO #- GAZEBO
+                       #- STAGE
+                       #- REAL
+
+# ************************************************
+#               TELEOPERACION
+# ************************************************
+
+GAZEBO:
+  control_teleop_topic: cmd_vel_mux/input/teleop
+
+STAGE:
+  control_teleop_topic: cmd_vel
+
+REAL:
+  control_teleop_topic: cmd_vel_mux/input/teleop
+
+
+# ************************************************
+#               ACCIONES DE ESTADOS
+# ************************************************
+
+# ------ESTADO EXPLORACION-------
+ESTADO_EXPLORACION:
+  DETECTAR_MULTIPLES_OBJETOS:   True   # Acción de detectar múltiples objetos
+  ACERCARSE_OBJETO:             False              # Acción de acercarse a un objeto
+  VOLVER_A_CASA:                False                 # Acción de volver a la posición de inicio
+
+
+# ************************************************
+#               INTERFAZ MANAGER
+# ************************************************
+
+
+#/interfaz_manager/normal_camera_topic
+TOPIC_MAPA: map

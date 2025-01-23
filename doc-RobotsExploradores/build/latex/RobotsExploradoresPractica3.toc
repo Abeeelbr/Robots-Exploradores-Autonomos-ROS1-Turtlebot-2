@@ -1,0 +1,20 @@
+\babel@toc {nil}{}
+\contentsline {chapter}{\numberline {1}Introducción}{3}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Introducción}{3}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Configuración del Entorno}{4}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Uso del Sistema}{4}{section.1.3}%
+\contentsline {subsection}{\numberline {1.3.1}Pasos para Lanzar el Sistema}{4}{subsection.1.3.1}%
+\contentsline {subsection}{\numberline {1.3.2}Flujo del Sistema}{4}{subsection.1.3.2}%
+\contentsline {subsection}{\numberline {1.3.3}Detalles de la Interfaz Gráfica}{5}{subsection.1.3.3}%
+\contentsline {subsection}{\numberline {1.3.4}Configuración de la Máquina de Estados}{5}{subsection.1.3.4}%
+\contentsline {subsection}{\numberline {1.3.5}Comandos y Transiciones}{5}{subsection.1.3.5}%
+\contentsline {subsection}{\numberline {1.3.6}Parámetros Configurables}{5}{subsection.1.3.6}%
+\contentsline {subsection}{\numberline {1.3.7}Tópicos Importantes}{6}{subsection.1.3.7}%
+\contentsline {section}{\numberline {1.4}Máquina de Estados (squad\_state\_manager)}{6}{section.1.4}%
+\contentsline {section}{\numberline {1.5}Paquete de Exploración}{13}{section.1.5}%
+\contentsline {subsection}{\numberline {1.5.1}Detección de Objetos (squad\_object\_detection\_action)}{13}{subsection.1.5.1}%
+\contentsline {subsection}{\numberline {1.5.2}Aproximación a Objetos (squad\_approach\_control\_action)}{16}{subsection.1.5.2}%
+\contentsline {subsection}{\numberline {1.5.3}Control Autónomo (squad\_autonomous\_control\_action)}{20}{subsection.1.5.3}%
+\contentsline {chapter}{\numberline {2}Indices y tablas}{23}{chapter.2}%
+\contentsline {chapter}{Índice de Módulos Python}{25}{section*.86}%
+\contentsline {chapter}{Índice}{27}{section*.87}%

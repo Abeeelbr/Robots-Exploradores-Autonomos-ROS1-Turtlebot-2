@@ -1,0 +1,360 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Uso del Sistema &mdash; documentación de Robots Exploradores - ROS 1 - 2.0</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=eafc0fe6" />
+
+  
+    <link rel="shortcut icon" href="_static/faviconUA.ico"/>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=1c71654e"></script>
+      <script src="_static/doctools.js?v=888ff710"></script>
+      <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="_static/translations.js?v=efdbd0b9"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
+    <link rel="next" title="Máquina de Estados (squad_state_manager)" href="squad_state_manager.html" />
+    <link rel="prev" title="Configuración del Entorno" href="configuracion.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Robots Exploradores - ROS 1
+              <img src="_static/logoUA.png" class="logo" alt="Logotipo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contenidos:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduccion.html">Introducción</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuracion.html">Configuración del Entorno</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Uso del Sistema</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#pasos-para-lanzar-el-sistema">Pasos para Lanzar el Sistema</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#componentes-principales">Componentes Principales</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pruebas-del-sistema">Pruebas del Sistema</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configuraciones-requeridas">Configuraciones Requeridas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#topicos-importantes">Tópicos Importantes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="squad_state_manager.html">Máquina de Estados (squad_state_manager)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="squad_state_manager.html#squad_state_manager.BaseState"><code class="docutils literal notranslate"><span class="pre">BaseState</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="squad_state_manager.html#squad_state_manager.BaseState.command_callback"><code class="docutils literal notranslate"><span class="pre">BaseState.command_callback()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="squad_state_manager.html#squad_state_manager.BaseState.execute"><code class="docutils literal notranslate"><span class="pre">BaseState.execute()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="squad_state_manager.html#squad_state_manager.EstadoExploracion"><code class="docutils literal notranslate"><span class="pre">EstadoExploracion</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="squad_state_manager.html#squad_state_manager.EstadoExploracion.control_mode_callback"><code class="docutils literal notranslate"><span class="pre">EstadoExploracion.control_mode_callback()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="squad_state_manager.html#squad_state_manager.EstadoExploracion.execute"><code class="docutils literal notranslate"><span class="pre">EstadoExploracion.execute()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="squad_state_manager.html#squad_state_manager.EstadoExploracion.feedback_cb"><code class="docutils literal notranslate"><span class="pre">EstadoExploracion.feedback_cb()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="squad_state_manager.html#squad_state_manager.EstadoExploracion.object_callback"><code class="docutils literal notranslate"><span class="pre">EstadoExploracion.object_callback()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="squad_state_manager.html#squad_state_manager.EstadoNavegacion"><code class="docutils literal notranslate"><span class="pre">EstadoNavegacion</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="squad_state_manager.html#squad_state_manager.EstadoNavegacion.command_callback"><code class="docutils literal notranslate"><span class="pre">EstadoNavegacion.command_callback()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="squad_state_manager.html#squad_state_manager.EstadoNavegacion.control_mode_callback"><code class="docutils literal notranslate"><span class="pre">EstadoNavegacion.control_mode_callback()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="squad_state_manager.html#squad_state_manager.EstadoNavegacion.execute"><code class="docutils literal notranslate"><span class="pre">EstadoNavegacion.execute()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="squad_state_manager.html#squad_state_manager.EstadoNavegacion.moveTo"><code class="docutils literal notranslate"><span class="pre">EstadoNavegacion.moveTo()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="squad_state_manager.html#squad_state_manager.EstadoNavegacion.stations_callback"><code class="docutils literal notranslate"><span class="pre">EstadoNavegacion.stations_callback()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="squad_state_manager.html#squad_state_manager.EstadoReposo"><code class="docutils literal notranslate"><span class="pre">EstadoReposo</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="squad_state_manager.html#squad_state_manager.EstadoReposo.execute"><code class="docutils literal notranslate"><span class="pre">EstadoReposo.execute()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="squad_state_manager.html#squad_state_manager.TurtleBotStateManager"><code class="docutils literal notranslate"><span class="pre">TurtleBotStateManager</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="squad_state_manager.html#squad_state_manager.TurtleBotStateManager.run_state_machine"><code class="docutils literal notranslate"><span class="pre">TurtleBotStateManager.run_state_machine()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pkg_exploracion.html">Paquete de Exploración (exploracion)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="squad_object_detection_action.html">Detección de Objetos (squad_object_detection_action)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.calculate_world_coordinates"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.calculate_world_coordinates()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.callback"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.callback()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.camera_info_callback"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.camera_info_callback()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.detect_objects"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.detect_objects()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.display_debug_info"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.display_debug_info()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.execute"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.execute()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.get_depth_at_pixel"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.get_depth_at_pixel()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.get_robot_pose"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.get_robot_pose()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.load_parameters"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.load_parameters()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.process_latest_data"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.process_latest_data()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.subscribe_to_topics"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.subscribe_to_topics()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="squad_approach_control_action.html">Aproximación a Objetos (squad_approach_control_action)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="squad_approach_control_action.html#squad_approach_control_action.ApproachObjectActionServer"><code class="docutils literal notranslate"><span class="pre">ApproachObjectActionServer</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="squad_approach_control_action.html#squad_approach_control_action.ApproachObjectActionServer.execute_cb"><code class="docutils literal notranslate"><span class="pre">ApproachObjectActionServer.execute_cb()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="squad_approach_control_action.html#squad_approach_control_action.ApproachObjectActionServer.get_robot_pose"><code class="docutils literal notranslate"><span class="pre">ApproachObjectActionServer.get_robot_pose()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="squad_approach_control_action.html#squad_approach_control_action.ApproachObjectActionServer.object_callback"><code class="docutils literal notranslate"><span class="pre">ApproachObjectActionServer.object_callback()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="squad_approach_control_action.html#squad_approach_control_action.ApproachObjectActionServer.preempt_cb"><code class="docutils literal notranslate"><span class="pre">ApproachObjectActionServer.preempt_cb()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="squad_approach_control_action.html#squad_approach_control_action.ApproachObjectState"><code class="docutils literal notranslate"><span class="pre">ApproachObjectState</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="squad_approach_control_action.html#squad_approach_control_action.ApproachObjectState.execute"><code class="docutils literal notranslate"><span class="pre">ApproachObjectState.execute()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="squad_approach_control_action.html#squad_approach_control_action.ApproachObjectState.object_callback"><code class="docutils literal notranslate"><span class="pre">ApproachObjectState.object_callback()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="squad_approach_control_action.html#squad_approach_control_action.CenterObjectState"><code class="docutils literal notranslate"><span class="pre">CenterObjectState</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="squad_approach_control_action.html#squad_approach_control_action.CenterObjectState.execute"><code class="docutils literal notranslate"><span class="pre">CenterObjectState.execute()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="squad_approach_control_action.html#squad_approach_control_action.CenterObjectState.object_callback"><code class="docutils literal notranslate"><span class="pre">CenterObjectState.object_callback()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="squad_approach_control_action.html#squad_approach_control_action.CheckPositionState"><code class="docutils literal notranslate"><span class="pre">CheckPositionState</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="squad_approach_control_action.html#squad_approach_control_action.CheckPositionState.calculate_distance"><code class="docutils literal notranslate"><span class="pre">CheckPositionState.calculate_distance()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="squad_approach_control_action.html#squad_approach_control_action.CheckPositionState.calculate_orientation_diff"><code class="docutils literal notranslate"><span class="pre">CheckPositionState.calculate_orientation_diff()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="squad_approach_control_action.html#squad_approach_control_action.CheckPositionState.execute"><code class="docutils literal notranslate"><span class="pre">CheckPositionState.execute()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="squad_approach_control_action.html#squad_approach_control_action.CheckPositionState.quaternion_to_yaw"><code class="docutils literal notranslate"><span class="pre">CheckPositionState.quaternion_to_yaw()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="squad_approach_control_action.html#squad_approach_control_action.MoveToPositionState"><code class="docutils literal notranslate"><span class="pre">MoveToPositionState</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="squad_approach_control_action.html#squad_approach_control_action.MoveToPositionState.execute"><code class="docutils literal notranslate"><span class="pre">MoveToPositionState.execute()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="squad_approach_control_action.html#squad_approach_control_action.StartObjectDetectionState"><code class="docutils literal notranslate"><span class="pre">StartObjectDetectionState</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="squad_approach_control_action.html#squad_approach_control_action.StartObjectDetectionState.execute"><code class="docutils literal notranslate"><span class="pre">StartObjectDetectionState.execute()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="squad_approach_control_action.html#squad_approach_control_action.StopObjectDetectionState"><code class="docutils literal notranslate"><span class="pre">StopObjectDetectionState</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="squad_approach_control_action.html#squad_approach_control_action.StopObjectDetectionState.execute"><code class="docutils literal notranslate"><span class="pre">StopObjectDetectionState.execute()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="squad_approach_control_action.html#squad_approach_control_action.WaitState"><code class="docutils literal notranslate"><span class="pre">WaitState</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="squad_approach_control_action.html#squad_approach_control_action.WaitState.execute"><code class="docutils literal notranslate"><span class="pre">WaitState.execute()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="squad_autonomous_control_action.html">Control Autónomo (squad_autonomous_control_action)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="squad_autonomous_control_action.html#squad_autonomous_control_action.AutonomousControlActionServer"><code class="docutils literal notranslate"><span class="pre">AutonomousControlActionServer</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="squad_autonomous_control_action.html#squad_autonomous_control_action.AutonomousControlActionServer.decide_motion"><code class="docutils literal notranslate"><span class="pre">AutonomousControlActionServer.decide_motion()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="squad_autonomous_control_action.html#squad_autonomous_control_action.AutonomousControlActionServer.execute_cb"><code class="docutils literal notranslate"><span class="pre">AutonomousControlActionServer.execute_cb()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="squad_autonomous_control_action.html#squad_autonomous_control_action.AutonomousControlActionServer.get_laser_regions"><code class="docutils literal notranslate"><span class="pre">AutonomousControlActionServer.get_laser_regions()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="squad_autonomous_control_action.html#squad_autonomous_control_action.AutonomousControlActionServer.laser_callback"><code class="docutils literal notranslate"><span class="pre">AutonomousControlActionServer.laser_callback()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="squad_autonomous_control_action.html#squad_autonomous_control_action.AutonomousControlActionServer.stop_robot"><code class="docutils literal notranslate"><span class="pre">AutonomousControlActionServer.stop_robot()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="squad_station_manager_node.html">Station Manager Node</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="squad_station_manager_node.html#descripcion-general">Descripción General</a></li>
+<li class="toctree-l2"><a class="reference internal" href="squad_station_manager_node.html#funciones-principales">Funciones Principales</a></li>
+<li class="toctree-l2"><a class="reference internal" href="squad_station_manager_node.html#estructura-del-codigo">Estructura del Código</a></li>
+<li class="toctree-l2"><a class="reference internal" href="squad_station_manager_node.html#topicos-utilizados">Tópicos Utilizados</a></li>
+<li class="toctree-l2"><a class="reference internal" href="squad_station_manager_node.html#uso-del-nodo">Uso del Nodo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="squad_station_manager_node.html#documentacion-adicional">Documentación Adicional</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="squad_station_manager_node.html#squad_station_manager_node.StationManagerNode"><code class="docutils literal notranslate"><span class="pre">StationManagerNode</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="squad_station_manager_node.html#squad_station_manager_node.StationManagerNode.add_completed_station"><code class="docutils literal notranslate"><span class="pre">StationManagerNode.add_completed_station()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="squad_station_manager_node.html#squad_station_manager_node.StationManagerNode.calculate_average_position"><code class="docutils literal notranslate"><span class="pre">StationManagerNode.calculate_average_position()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="squad_station_manager_node.html#squad_station_manager_node.StationManagerNode.classify_object"><code class="docutils literal notranslate"><span class="pre">StationManagerNode.classify_object()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="squad_station_manager_node.html#squad_station_manager_node.StationManagerNode.detected_object_callback"><code class="docutils literal notranslate"><span class="pre">StationManagerNode.detected_object_callback()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="squad_station_manager_node.html#squad_station_manager_node.StationManagerNode.distance_to_center"><code class="docutils literal notranslate"><span class="pre">StationManagerNode.distance_to_center()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="squad_station_manager_node.html#squad_station_manager_node.StationManagerNode.publish_all_stations"><code class="docutils literal notranslate"><span class="pre">StationManagerNode.publish_all_stations()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="squad_interfaz.html">Interfaz de Gestión de Estados del TurtleBot</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="squad_interfaz.html#introduccion">Introducción</a></li>
+<li class="toctree-l2"><a class="reference internal" href="squad_interfaz.html#estructura-del-nodo">Estructura del Nodo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="squad_interfaz.html#parametros-configurables">Parámetros Configurables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="squad_interfaz.html#topicos-utilizados">Tópicos Utilizados</a></li>
+<li class="toctree-l2"><a class="reference internal" href="squad_interfaz.html#ejemplo-de-ejecucion">Ejemplo de Ejecución</a></li>
+<li class="toctree-l2"><a class="reference internal" href="squad_interfaz.html#uso-de-la-interfaz">Uso de la Interfaz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="squad_interfaz.html#module-squad_interfaz">Código Fuente</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="squad_interfaz.html#squad_interfaz.InterfazManager"><code class="docutils literal notranslate"><span class="pre">InterfazManager</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="squad_interfaz.html#squad_interfaz.InterfazManager.camera_callback"><code class="docutils literal notranslate"><span class="pre">InterfazManager.camera_callback()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="squad_interfaz.html#squad_interfaz.InterfazManager.control_mode_callback"><code class="docutils literal notranslate"><span class="pre">InterfazManager.control_mode_callback()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="squad_interfaz.html#squad_interfaz.InterfazManager.create_exploration_controls"><code class="docutils literal notranslate"><span class="pre">InterfazManager.create_exploration_controls()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="squad_interfaz.html#squad_interfaz.InterfazManager.current_state_callback"><code class="docutils literal notranslate"><span class="pre">InterfazManager.current_state_callback()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="squad_interfaz.html#squad_interfaz.InterfazManager.get_command_for_state"><code class="docutils literal notranslate"><span class="pre">InterfazManager.get_command_for_state()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="squad_interfaz.html#squad_interfaz.InterfazManager.get_robot_pose"><code class="docutils literal notranslate"><span class="pre">InterfazManager.get_robot_pose()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="squad_interfaz.html#squad_interfaz.InterfazManager.go_to_station"><code class="docutils literal notranslate"><span class="pre">InterfazManager.go_to_station()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="squad_interfaz.html#squad_interfaz.InterfazManager.map_callback"><code class="docutils literal notranslate"><span class="pre">InterfazManager.map_callback()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="squad_interfaz.html#squad_interfaz.InterfazManager.on_arrow_down"><code class="docutils literal notranslate"><span class="pre">InterfazManager.on_arrow_down()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="squad_interfaz.html#squad_interfaz.InterfazManager.on_arrow_left"><code class="docutils literal notranslate"><span class="pre">InterfazManager.on_arrow_left()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="squad_interfaz.html#squad_interfaz.InterfazManager.on_arrow_right"><code class="docutils literal notranslate"><span class="pre">InterfazManager.on_arrow_right()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="squad_interfaz.html#squad_interfaz.InterfazManager.on_arrow_up"><code class="docutils literal notranslate"><span class="pre">InterfazManager.on_arrow_up()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="squad_interfaz.html#squad_interfaz.InterfazManager.on_closing"><code class="docutils literal notranslate"><span class="pre">InterfazManager.on_closing()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="squad_interfaz.html#squad_interfaz.InterfazManager.on_key_release"><code class="docutils literal notranslate"><span class="pre">InterfazManager.on_key_release()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="squad_interfaz.html#squad_interfaz.InterfazManager.on_state_button_click"><code class="docutils literal notranslate"><span class="pre">InterfazManager.on_state_button_click()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="squad_interfaz.html#squad_interfaz.InterfazManager.set_switch_state"><code class="docutils literal notranslate"><span class="pre">InterfazManager.set_switch_state()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="squad_interfaz.html#squad_interfaz.InterfazManager.setup_gui"><code class="docutils literal notranslate"><span class="pre">InterfazManager.setup_gui()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="squad_interfaz.html#squad_interfaz.InterfazManager.signal_handler"><code class="docutils literal notranslate"><span class="pre">InterfazManager.signal_handler()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="squad_interfaz.html#squad_interfaz.InterfazManager.stations_callback"><code class="docutils literal notranslate"><span class="pre">InterfazManager.stations_callback()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="squad_interfaz.html#squad_interfaz.InterfazManager.subscribe_to_camera"><code class="docutils literal notranslate"><span class="pre">InterfazManager.subscribe_to_camera()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="squad_interfaz.html#squad_interfaz.InterfazManager.switch_camera_topic"><code class="docutils literal notranslate"><span class="pre">InterfazManager.switch_camera_topic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="squad_interfaz.html#squad_interfaz.InterfazManager.update_state_highlight"><code class="docutils literal notranslate"><span class="pre">InterfazManager.update_state_highlight()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="squad_interfaz.html#squad_interfaz.InterfazManager.update_station_list"><code class="docutils literal notranslate"><span class="pre">InterfazManager.update_station_list()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="squad_interfaz.html#squad_interfaz.InterfazManager.update_visualization"><code class="docutils literal notranslate"><span class="pre">InterfazManager.update_visualization()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Robots Exploradores - ROS 1</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Uso del Sistema</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/uso.rst.txt" rel="nofollow"> Ver código fuente de la página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="uso-del-sistema">
+<h1>Uso del Sistema<a class="headerlink" href="#uso-del-sistema" title="Enlace permanente a este encabezado"></a></h1>
+<p>Este sistema implementa una máquina de estados finitos (SMACH) para gestionar diferentes comportamientos del robot en el contexto del proyecto de robots móviles. Además, utiliza nodos especializados para detección de objetos, navegación autónoma y aproximación a objetivos, desarrollados en la carpeta <cite>Trabajo_V3</cite>.</p>
+<section id="pasos-para-lanzar-el-sistema">
+<h2>Pasos para Lanzar el Sistema<a class="headerlink" href="#pasos-para-lanzar-el-sistema" title="Enlace permanente a este encabezado"></a></h2>
+<ol class="arabic">
+<li><p><strong>Preparar el Entorno:</strong></p>
+<p>Asegúrate de haber configurado correctamente el workspace, instalado las dependencias necesarias y haber ejecutado <cite>catkin_make</cite> en el directorio del proyecto.</p>
+</li>
+<li><p><strong>Probar los Nodos Individuales:</strong></p>
+<p>Antes de lanzar el sistema completo, puedes probar los nodos individualmente:</p>
+<ul>
+<li><p><strong>Detección de Objetos:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rosrun<span class="w"> </span>exploracion<span class="w"> </span>squad_object_detection_action.py
+</pre></div>
+</div>
+<p>Esto iniciará el nodo para detectar objetos en el entorno utilizando la cámara RGBD. Asegúrate de verificar los mensajes publicados en el tópico <cite>/detected_objects</cite>.</p>
+</li>
+<li><p><strong>Control Autónomo:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rosrun<span class="w"> </span>exploracion<span class="w"> </span>squad_autonomous_control_action.py
+</pre></div>
+</div>
+<p>Este nodo activa la navegación autónoma. Puedes supervisar su funcionamiento revisando los mensajes publicados en los tópicos de diagnóstico.</p>
+</li>
+</ul>
+</li>
+<li><p><strong>Lanzar el Sistema Completo:</strong></p>
+<p>Ejecuta el siguiente comando para iniciar todos los nodos del sistema:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>roslaunch<span class="w"> </span>rob_mov_main<span class="w"> </span>main.launch
+</pre></div>
+</div>
+<p>Esto iniciará los nodos principales y configurará los parámetros necesarios para el funcionamiento del sistema.</p>
+</li>
+</ol>
+</section>
+<section id="componentes-principales">
+<h2>Componentes Principales<a class="headerlink" href="#componentes-principales" title="Enlace permanente a este encabezado"></a></h2>
+<ul class="simple">
+<li><p><strong>Máquina de Estados (squad_state_manager):</strong>
+Gestiona las transiciones entre estados del robot, como reposo, exploración, aproximación y navegación. Publica el estado actual en el tópico <cite>/current_state</cite>.</p></li>
+<li><p><strong>Nodos Especializados:</strong>
+- <strong>`squad_object_detection_action`</strong>: Procesa datos de la cámara RGBD para detectar objetos.
+- <strong>`squad_autonomous_control_action`</strong>: Realiza navegación autónoma evitando obstáculos.</p></li>
+<li><p><strong>Interfaz Gráfica:</strong>
+Permite el control manual del robot, la visualización de datos de sensores y el monitoreo de estados.</p></li>
+</ul>
+</section>
+<section id="pruebas-del-sistema">
+<h2>Pruebas del Sistema<a class="headerlink" href="#pruebas-del-sistema" title="Enlace permanente a este encabezado"></a></h2>
+<ol class="arabic simple">
+<li><p><strong>Prueba del Estado Reposo:</strong>
+- Lanza el nodo principal y verifica que el robot se encuentre en el estado <cite>Reposo</cite> publicando en <cite>/current_state</cite>.</p></li>
+<li><p><strong>Prueba del Estado Exploración:</strong>
+- Cambia al estado de exploración enviando el comando <cite>iniciar_exploracion</cite> al tópico <cite>/command</cite>.
+- Verifica que el nodo <cite>squad_object_detection_action</cite> esté activo y publicando datos en <cite>/detected_objects</cite>.</p></li>
+<li><p><strong>Prueba del Estado Navegación Autónoma:</strong>
+- Envía el comando <cite>ir_a_HOME</cite> al tópico <cite>/command</cite>.
+- Verifica que el nodo <cite>squad_autonomous_control_action</cite> controle el movimiento hacia la posición predefinida.</p></li>
+</ol>
+</section>
+<section id="configuraciones-requeridas">
+<h2>Configuraciones Requeridas<a class="headerlink" href="#configuraciones-requeridas" title="Enlace permanente a este encabezado"></a></h2>
+<p>Los parámetros del sistema se encuentran en los archivos YAML del proyecto:</p>
+<ul class="simple">
+<li><p><strong>`configGeneral.yaml`:</strong> Incluye configuraciones globales como velocidades y frecuencias.</p></li>
+<li><p><strong>`detector_config.yaml`:</strong> Define parámetros específicos para detección de objetos, como umbrales de color y distancia.</p></li>
+</ul>
+</section>
+<section id="topicos-importantes">
+<h2>Tópicos Importantes<a class="headerlink" href="#topicos-importantes" title="Enlace permanente a este encabezado"></a></h2>
+<ul class="simple">
+<li><p><strong>`/current_state`:</strong> Publica el estado actual del robot.</p></li>
+<li><p><strong>`/command`:</strong> Recibe comandos para cambiar de estado.</p></li>
+<li><p><strong>`/detected_objects`:</strong> Publica información sobre objetos detectados.</p></li>
+<li><p><strong>`/cmd_vel`:</strong> Envía comandos de velocidad al robot.</p></li>
+</ul>
+<p>Con esta guía y las pruebas recomendadas, deberías poder garantizar que todos los componentes del sistema funcionan correctamente. Si necesitas más detalles, consulta la documentación de cada nodo en las secciones correspondientes. 😊</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="configuracion.html" class="btn btn-neutral float-left" title="Configuración del Entorno" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="squad_state_manager.html" class="btn btn-neutral float-right" title="Máquina de Estados (squad_state_manager)" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Derechos de autor 2024, Abel Belhaki Rivas.</p>
+  </div>
+
+  Compilado con <a href="https://www.sphinx-doc.org/">Sphinx</a> usando un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    proporcionado por <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,17 @@
+<launch>
+    <!-- Cargar todos los parámetros desde el archivo config -->
+    <!-- <rosparam file="$(find squad_exploracion)/config/config.yaml" command="load"/> -->
+
+    <!-- Iniciar el nodo de detección de objetos -->
+    <node pkg="squad_exploracion" type="squad_object_detection_action.py" name="squad_object_detection_action" output="screen"/>
+
+    <!-- Iniciar el nodo de control autónomo -->
+    <!-- <node pkg="squad_exploracion" type="squad_autonomous_control_action.py" name="squad_autonomous_control_action" output="screen"/> -->
+    
+    <!-- Lanzar el nodo de explore_lite de exploracion de forntereas -->
+    <include file="$(find explore_lite)/launch/explore.launch"/>
+
+    <!-- Iniciar el nodo de control acercamiento -->
+    <node pkg="squad_exploracion" type="squad_approach_control_action.py" name="squad_approach_control_action" output="screen"/>
+
+</launch>

@@ -1,0 +1,31 @@
+# Archivo config.yaml para TurtleBotObjectDetectionNode
+
+image_topic:            "camera/rgb/image_raw" #stage: "/image" 
+processed_image_topic:  "processed_image"
+depth_topic:            "camera/depth/image_raw" #stage: "/depth"
+odometry_topic:         "odom"
+camera_info_topic:      camera/depth/camera_info #stage: "/camera_info"
+process_frequency:      10.0  # Frecuencia de procesamiento en Hz
+
+
+# ************************************************
+#            PARÁMETROS DEL CONTROL AUTÓNOMO
+# ************************************************
+
+autonomous_control:
+  linear_speed:     0.2      # Velocidad lineal del robot en m/s durante el control autónomo
+  angular_speed:    0.5     # Velocidad angular del robot en rad/s durante el control autónomo
+  min_distance:     0.5      # Distancia mínima en metros para considerar un obstáculo y evitar colisiones
+  processing_rate:  10    # Tasa de procesamiento en Hz para el bucle de control autónomo
+
+
+# ************************************************
+#        PARÁMETROS DE APROXIMACION A OBJETOS
+# ************************************************
+
+aproach_object:
+  linear_speed:     0.1   # Velocidad lineal para acercarse al objeto
+  angular_speed:    0.2  # Velocidad angular para centrar el objeto
+  min_distance:     0.5   # Distancia mínima al objeto en metros
+  wait_time:        5        # Tiempo de espera tras acercarse al objeto (segundos)
+  processing_rate:  10 # Frecuencia de procesamiento en Hz

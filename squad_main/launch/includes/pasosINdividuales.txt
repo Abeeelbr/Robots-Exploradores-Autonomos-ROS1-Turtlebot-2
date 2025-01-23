@@ -1,0 +1,8 @@
+1. Pasos para ejecutar en el turtlebo2
+
+- Minimal
+- Export
+- Laser
+
+
+2. Local

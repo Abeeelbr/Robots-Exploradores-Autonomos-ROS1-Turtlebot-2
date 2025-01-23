@@ -1,0 +1,11 @@
+# Goal
+
+---
+# Result
+bool success
+
+---
+
+# Feedback
+string current_object_info
+float32 average_processing_frequency

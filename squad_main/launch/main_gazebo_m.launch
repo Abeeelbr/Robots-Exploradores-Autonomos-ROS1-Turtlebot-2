@@ -1,0 +1,71 @@
+<launch>
+    <!-- Cargar parámetros -->
+    <rosparam command="load" file="$(find squad_main)/config/configGeneral.yaml"/>
+    <rosparam file="$(find squad_exploracion)/config/config.yaml" command="load"/>
+    <rosparam file="$(find squad_navegacion)/config/gmapping_params.yaml" command="load" />
+
+
+
+    <!-- Modo ejecución GAZEBO -->
+    <param name="MODO_EJECUCION" value="GAZEBO"/>
+
+    <!-- Incluir el entorno con 3 robots -->
+    <include file="$(find squad_simulacion)/launch/multi_robot_sim.launch"/>
+
+    <!-- Para cada robot, lanzamos su propia máquina de estados, interfaz, exploración y navegación -->
+    <group ns="robot_1">
+        <!-- Cargar parámetros -->
+        <!-- <rosparam command="load" file="$(find squad_main)/config/configGeneral.yaml"/> -->
+
+        <!-- <node pkg="squad_main" type="squad_state_manager.py" name="squad_state_manager" output="screen"/> -->
+        <node pkg="squad_main" type="squad_interfaz.py" name="interfaz" output="screen"/>
+
+        <!-- Exploración -->
+        <!-- <include file="$(find squad_exploracion)/launch/exploracion.launch"> -->
+          <!-- Aquí dentro si es necesario remapeas scan->/robot_1/scan, cmd_vel->/robot_1/cmd_vel, etc. -->
+        <!-- </include> -->
+
+        <!-- Navegación (SLAM + move_base) -->
+        <include file="$(find squad_navegacion)/launch/squad_navegacion.launch">
+          <!-- Mismos remapeos, por ejemplo scan: /robot_1/scan, odom: /robot_1/odom, cmd_vel: /robot_1/cmd_vel -->
+        </include>
+
+        <!-- <node pkg="squad_planificacion" type="squad_station_manager_node.py" name="squad_planificacion" output="screen"/> -->
+
+    </group>
+
+    <group ns="robot_2">
+        <!-- Igual que robot_1, pero todos los tópicos en /robot_2/... -->
+        <node pkg="squad_main" type="squad_state_manager.py" name="squad_state_manager" output="screen"/>
+        <node pkg="squad_main" type="squad_interfaz.py" name="interfaz" output="screen"/>
+        
+        <!-- <include file="$(find squad_exploracion)/launch/exploracion.launch"> -->
+          <!-- Remapeo a /robot_2/... -->
+        <!-- </include> -->
+
+        <include file="$(find squad_navegacion)/launch/squad_navegacion.launch">
+          <!-- Remapeo a /robot_2/... -->
+        </include>
+
+        <!-- <node pkg="squad_planificacion" type="squad_station_manager_node.py" name="squad_planificacion" output="screen"/> -->
+    </group>
+
+    <group ns="robot_3">
+        <!-- Igual que arriba, para robot_3 -->
+        <!-- <node pkg="squad_main" type="squad_state_manager.py" name="squad_state_manager" output="screen"/>
+        <node pkg="squad_main" type="squad_interfaz.py" name="interfaz" output="screen"/> -->
+        
+        <!-- <include file="$(find squad_exploracion)/launch/exploracion.launch"> -->
+          <!-- Remapeo a /robot_3/... -->
+        <!-- </include> -->
+
+        <!-- <include file="$(find squad_navegacion)/launch/squad_navegacion.launch"> -->
+          <!-- Remapeo a /robot_3/... -->
+        <!-- </include> -->
+
+        <!-- <node pkg="squad_planificacion" type="squad_station_manager_node.py" name="squad_planificacion" output="screen"/> -->
+    </group>
+
+    <!-- Lanzar RViz global, si quieres, o uno por robot -->
+    <include file="$(find turtlebot_rviz_launchers)/launch/view_navigation.launch"/>
+</launch>

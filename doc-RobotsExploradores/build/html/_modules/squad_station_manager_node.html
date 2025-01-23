@@ -1,0 +1,467 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>squad_station_manager_node &mdash; documentación de Robots Exploradores - ROS 1 - 2.0</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=eafc0fe6" />
+
+  
+    <link rel="shortcut icon" href="../_static/faviconUA.ico"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=1c71654e"></script>
+      <script src="../_static/doctools.js?v=888ff710"></script>
+      <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../_static/translations.js?v=efdbd0b9"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Robots Exploradores - ROS 1
+              <img src="../_static/logoUA.png" class="logo" alt="Logotipo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contenidos:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduccion.html">Introducción</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuracion.html">Configuración del Entorno</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../uso.html">Uso del Sistema</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../uso.html#pasos-para-lanzar-el-sistema">Pasos para Lanzar el Sistema</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../uso.html#componentes-principales">Componentes Principales</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../uso.html#pruebas-del-sistema">Pruebas del Sistema</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../uso.html#configuraciones-requeridas">Configuraciones Requeridas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../uso.html#topicos-importantes">Tópicos Importantes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../squad_state_manager.html">Máquina de Estados (squad_state_manager)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.BaseState"><code class="docutils literal notranslate"><span class="pre">BaseState</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.BaseState.command_callback"><code class="docutils literal notranslate"><span class="pre">BaseState.command_callback()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.BaseState.execute"><code class="docutils literal notranslate"><span class="pre">BaseState.execute()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.EstadoExploracion"><code class="docutils literal notranslate"><span class="pre">EstadoExploracion</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.EstadoExploracion.control_mode_callback"><code class="docutils literal notranslate"><span class="pre">EstadoExploracion.control_mode_callback()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.EstadoExploracion.execute"><code class="docutils literal notranslate"><span class="pre">EstadoExploracion.execute()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.EstadoExploracion.feedback_cb"><code class="docutils literal notranslate"><span class="pre">EstadoExploracion.feedback_cb()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.EstadoExploracion.object_callback"><code class="docutils literal notranslate"><span class="pre">EstadoExploracion.object_callback()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.EstadoNavegacion"><code class="docutils literal notranslate"><span class="pre">EstadoNavegacion</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.EstadoNavegacion.command_callback"><code class="docutils literal notranslate"><span class="pre">EstadoNavegacion.command_callback()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.EstadoNavegacion.control_mode_callback"><code class="docutils literal notranslate"><span class="pre">EstadoNavegacion.control_mode_callback()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.EstadoNavegacion.execute"><code class="docutils literal notranslate"><span class="pre">EstadoNavegacion.execute()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.EstadoNavegacion.moveTo"><code class="docutils literal notranslate"><span class="pre">EstadoNavegacion.moveTo()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.EstadoNavegacion.stations_callback"><code class="docutils literal notranslate"><span class="pre">EstadoNavegacion.stations_callback()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.EstadoReposo"><code class="docutils literal notranslate"><span class="pre">EstadoReposo</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.EstadoReposo.execute"><code class="docutils literal notranslate"><span class="pre">EstadoReposo.execute()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.TurtleBotStateManager"><code class="docutils literal notranslate"><span class="pre">TurtleBotStateManager</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../squad_state_manager.html#squad_state_manager.TurtleBotStateManager.run_state_machine"><code class="docutils literal notranslate"><span class="pre">TurtleBotStateManager.run_state_machine()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../pkg_exploracion.html">Paquete de Exploración (exploracion)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../squad_object_detection_action.html">Detección de Objetos (squad_object_detection_action)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.calculate_world_coordinates"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.calculate_world_coordinates()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.callback"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.callback()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.camera_info_callback"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.camera_info_callback()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.detect_objects"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.detect_objects()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.display_debug_info"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.display_debug_info()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.execute"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.execute()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.get_depth_at_pixel"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.get_depth_at_pixel()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.get_robot_pose"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.get_robot_pose()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.load_parameters"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.load_parameters()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.process_latest_data"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.process_latest_data()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.subscribe_to_topics"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.subscribe_to_topics()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../squad_approach_control_action.html">Aproximación a Objetos (squad_approach_control_action)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.ApproachObjectActionServer"><code class="docutils literal notranslate"><span class="pre">ApproachObjectActionServer</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.ApproachObjectActionServer.execute_cb"><code class="docutils literal notranslate"><span class="pre">ApproachObjectActionServer.execute_cb()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.ApproachObjectActionServer.get_robot_pose"><code class="docutils literal notranslate"><span class="pre">ApproachObjectActionServer.get_robot_pose()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.ApproachObjectActionServer.object_callback"><code class="docutils literal notranslate"><span class="pre">ApproachObjectActionServer.object_callback()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.ApproachObjectActionServer.preempt_cb"><code class="docutils literal notranslate"><span class="pre">ApproachObjectActionServer.preempt_cb()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.ApproachObjectState"><code class="docutils literal notranslate"><span class="pre">ApproachObjectState</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.ApproachObjectState.execute"><code class="docutils literal notranslate"><span class="pre">ApproachObjectState.execute()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.ApproachObjectState.object_callback"><code class="docutils literal notranslate"><span class="pre">ApproachObjectState.object_callback()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.CenterObjectState"><code class="docutils literal notranslate"><span class="pre">CenterObjectState</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.CenterObjectState.execute"><code class="docutils literal notranslate"><span class="pre">CenterObjectState.execute()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.CenterObjectState.object_callback"><code class="docutils literal notranslate"><span class="pre">CenterObjectState.object_callback()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.CheckPositionState"><code class="docutils literal notranslate"><span class="pre">CheckPositionState</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.CheckPositionState.calculate_distance"><code class="docutils literal notranslate"><span class="pre">CheckPositionState.calculate_distance()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.CheckPositionState.calculate_orientation_diff"><code class="docutils literal notranslate"><span class="pre">CheckPositionState.calculate_orientation_diff()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.CheckPositionState.execute"><code class="docutils literal notranslate"><span class="pre">CheckPositionState.execute()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.CheckPositionState.quaternion_to_yaw"><code class="docutils literal notranslate"><span class="pre">CheckPositionState.quaternion_to_yaw()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.MoveToPositionState"><code class="docutils literal notranslate"><span class="pre">MoveToPositionState</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.MoveToPositionState.execute"><code class="docutils literal notranslate"><span class="pre">MoveToPositionState.execute()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.StartObjectDetectionState"><code class="docutils literal notranslate"><span class="pre">StartObjectDetectionState</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.StartObjectDetectionState.execute"><code class="docutils literal notranslate"><span class="pre">StartObjectDetectionState.execute()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.StopObjectDetectionState"><code class="docutils literal notranslate"><span class="pre">StopObjectDetectionState</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.StopObjectDetectionState.execute"><code class="docutils literal notranslate"><span class="pre">StopObjectDetectionState.execute()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.WaitState"><code class="docutils literal notranslate"><span class="pre">WaitState</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../squad_approach_control_action.html#squad_approach_control_action.WaitState.execute"><code class="docutils literal notranslate"><span class="pre">WaitState.execute()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../squad_autonomous_control_action.html">Control Autónomo (squad_autonomous_control_action)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../squad_autonomous_control_action.html#squad_autonomous_control_action.AutonomousControlActionServer"><code class="docutils literal notranslate"><span class="pre">AutonomousControlActionServer</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../squad_autonomous_control_action.html#squad_autonomous_control_action.AutonomousControlActionServer.decide_motion"><code class="docutils literal notranslate"><span class="pre">AutonomousControlActionServer.decide_motion()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_autonomous_control_action.html#squad_autonomous_control_action.AutonomousControlActionServer.execute_cb"><code class="docutils literal notranslate"><span class="pre">AutonomousControlActionServer.execute_cb()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_autonomous_control_action.html#squad_autonomous_control_action.AutonomousControlActionServer.get_laser_regions"><code class="docutils literal notranslate"><span class="pre">AutonomousControlActionServer.get_laser_regions()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_autonomous_control_action.html#squad_autonomous_control_action.AutonomousControlActionServer.laser_callback"><code class="docutils literal notranslate"><span class="pre">AutonomousControlActionServer.laser_callback()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../squad_autonomous_control_action.html#squad_autonomous_control_action.AutonomousControlActionServer.stop_robot"><code class="docutils literal notranslate"><span class="pre">AutonomousControlActionServer.stop_robot()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../squad_station_manager_node.html">Station Manager Node</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../squad_station_manager_node.html#descripcion-general">Descripción General</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../squad_station_manager_node.html#funciones-principales">Funciones Principales</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../squad_station_manager_node.html#estructura-del-codigo">Estructura del Código</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../squad_station_manager_node.html#topicos-utilizados">Tópicos Utilizados</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../squad_station_manager_node.html#uso-del-nodo">Uso del Nodo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../squad_station_manager_node.html#documentacion-adicional">Documentación Adicional</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../squad_station_manager_node.html#squad_station_manager_node.StationManagerNode"><code class="docutils literal notranslate"><span class="pre">StationManagerNode</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../squad_station_manager_node.html#squad_station_manager_node.StationManagerNode.add_completed_station"><code class="docutils literal notranslate"><span class="pre">StationManagerNode.add_completed_station()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_station_manager_node.html#squad_station_manager_node.StationManagerNode.calculate_average_position"><code class="docutils literal notranslate"><span class="pre">StationManagerNode.calculate_average_position()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_station_manager_node.html#squad_station_manager_node.StationManagerNode.classify_object"><code class="docutils literal notranslate"><span class="pre">StationManagerNode.classify_object()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_station_manager_node.html#squad_station_manager_node.StationManagerNode.detected_object_callback"><code class="docutils literal notranslate"><span class="pre">StationManagerNode.detected_object_callback()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_station_manager_node.html#squad_station_manager_node.StationManagerNode.distance_to_center"><code class="docutils literal notranslate"><span class="pre">StationManagerNode.distance_to_center()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_station_manager_node.html#squad_station_manager_node.StationManagerNode.publish_all_stations"><code class="docutils literal notranslate"><span class="pre">StationManagerNode.publish_all_stations()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../squad_interfaz.html">Interfaz de Gestión de Estados del TurtleBot</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../squad_interfaz.html#introduccion">Introducción</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../squad_interfaz.html#estructura-del-nodo">Estructura del Nodo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../squad_interfaz.html#parametros-configurables">Parámetros Configurables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../squad_interfaz.html#topicos-utilizados">Tópicos Utilizados</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../squad_interfaz.html#ejemplo-de-ejecucion">Ejemplo de Ejecución</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../squad_interfaz.html#uso-de-la-interfaz">Uso de la Interfaz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../squad_interfaz.html#module-squad_interfaz">Código Fuente</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../squad_interfaz.html#squad_interfaz.InterfazManager"><code class="docutils literal notranslate"><span class="pre">InterfazManager</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../squad_interfaz.html#squad_interfaz.InterfazManager.camera_callback"><code class="docutils literal notranslate"><span class="pre">InterfazManager.camera_callback()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_interfaz.html#squad_interfaz.InterfazManager.control_mode_callback"><code class="docutils literal notranslate"><span class="pre">InterfazManager.control_mode_callback()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_interfaz.html#squad_interfaz.InterfazManager.create_exploration_controls"><code class="docutils literal notranslate"><span class="pre">InterfazManager.create_exploration_controls()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_interfaz.html#squad_interfaz.InterfazManager.current_state_callback"><code class="docutils literal notranslate"><span class="pre">InterfazManager.current_state_callback()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_interfaz.html#squad_interfaz.InterfazManager.get_command_for_state"><code class="docutils literal notranslate"><span class="pre">InterfazManager.get_command_for_state()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_interfaz.html#squad_interfaz.InterfazManager.get_robot_pose"><code class="docutils literal notranslate"><span class="pre">InterfazManager.get_robot_pose()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_interfaz.html#squad_interfaz.InterfazManager.go_to_station"><code class="docutils literal notranslate"><span class="pre">InterfazManager.go_to_station()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_interfaz.html#squad_interfaz.InterfazManager.map_callback"><code class="docutils literal notranslate"><span class="pre">InterfazManager.map_callback()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_interfaz.html#squad_interfaz.InterfazManager.on_arrow_down"><code class="docutils literal notranslate"><span class="pre">InterfazManager.on_arrow_down()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_interfaz.html#squad_interfaz.InterfazManager.on_arrow_left"><code class="docutils literal notranslate"><span class="pre">InterfazManager.on_arrow_left()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_interfaz.html#squad_interfaz.InterfazManager.on_arrow_right"><code class="docutils literal notranslate"><span class="pre">InterfazManager.on_arrow_right()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_interfaz.html#squad_interfaz.InterfazManager.on_arrow_up"><code class="docutils literal notranslate"><span class="pre">InterfazManager.on_arrow_up()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_interfaz.html#squad_interfaz.InterfazManager.on_closing"><code class="docutils literal notranslate"><span class="pre">InterfazManager.on_closing()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_interfaz.html#squad_interfaz.InterfazManager.on_key_release"><code class="docutils literal notranslate"><span class="pre">InterfazManager.on_key_release()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_interfaz.html#squad_interfaz.InterfazManager.on_state_button_click"><code class="docutils literal notranslate"><span class="pre">InterfazManager.on_state_button_click()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_interfaz.html#squad_interfaz.InterfazManager.set_switch_state"><code class="docutils literal notranslate"><span class="pre">InterfazManager.set_switch_state()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_interfaz.html#squad_interfaz.InterfazManager.setup_gui"><code class="docutils literal notranslate"><span class="pre">InterfazManager.setup_gui()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_interfaz.html#squad_interfaz.InterfazManager.signal_handler"><code class="docutils literal notranslate"><span class="pre">InterfazManager.signal_handler()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_interfaz.html#squad_interfaz.InterfazManager.stations_callback"><code class="docutils literal notranslate"><span class="pre">InterfazManager.stations_callback()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_interfaz.html#squad_interfaz.InterfazManager.subscribe_to_camera"><code class="docutils literal notranslate"><span class="pre">InterfazManager.subscribe_to_camera()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_interfaz.html#squad_interfaz.InterfazManager.switch_camera_topic"><code class="docutils literal notranslate"><span class="pre">InterfazManager.switch_camera_topic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_interfaz.html#squad_interfaz.InterfazManager.update_state_highlight"><code class="docutils literal notranslate"><span class="pre">InterfazManager.update_state_highlight()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_interfaz.html#squad_interfaz.InterfazManager.update_station_list"><code class="docutils literal notranslate"><span class="pre">InterfazManager.update_station_list()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_interfaz.html#squad_interfaz.InterfazManager.update_visualization"><code class="docutils literal notranslate"><span class="pre">InterfazManager.update_visualization()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Robots Exploradores - ROS 1</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Código de módulo</a></li>
+      <li class="breadcrumb-item active">squad_station_manager_node</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Código fuente para squad_station_manager_node</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="kn">import</span> <span class="nn">rospy</span>
+<span class="kn">from</span> <span class="nn">squad_planificacion.msg</span> <span class="kn">import</span> <span class="n">StationInfo</span><span class="p">,</span> <span class="n">StationsInfo</span>
+<span class="kn">from</span> <span class="nn">squad_exploracion.msg</span> <span class="kn">import</span> <span class="n">DetectedObject</span>
+<span class="kn">from</span> <span class="nn">geometry_msgs.msg</span> <span class="kn">import</span> <span class="n">Point</span>
+<span class="kn">import</span> <span class="nn">threading</span>
+<span class="kn">import</span> <span class="nn">math</span>
+
+<div class="viewcode-block" id="StationManagerNode"><a class="viewcode-back" href="../squad_station_manager_node.html#squad_station_manager_node.StationManagerNode">[documentos]</a><span class="k">class</span> <span class="nc">StationManagerNode</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Nodo para gestionar las estaciones en el mapa.</span>
+
+<span class="sd">    - Publicará la estación cuando se detecten al menos dos objetos del mismo tipo dentro de un radio definido desde el centro.</span>
+<span class="sd">    - No hay un máximo de objetos por estación; se pueden agregar más objetos siempre que estén dentro del radio.</span>
+<span class="sd">    - Evita múltiples publicaciones para la misma estación.</span>
+<span class="sd">    - Mantiene un diccionario &#39;almacen_estaciones&#39; con el formato:</span>
+<span class="sd">      {&quot;HOME&quot;: (5, 4), &quot;ESTACION1&quot;: (1, 1), &quot;ESTACION2&quot;: (2, 2), ...}</span>
+<span class="sd">      Pudiendo haber estaciones repetidas con nombre distinto (baño, baño2, etc.).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">init_node</span><span class="p">(</span><span class="s1">&#39;station_manager_node&#39;</span><span class="p">)</span>
+
+        <span class="c1"># Diccionario de objetos requeridos por tipo de estación (puede ser útil para futuras extensiones)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">required_objects</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;habitacion&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;bed&quot;</span><span class="p">,</span> <span class="s2">&quot;clock&quot;</span><span class="p">,</span> <span class="s2">&quot;book&quot;</span><span class="p">},</span>
+            <span class="s1">&#39;baño&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;toilet&quot;</span><span class="p">,</span> <span class="s2">&quot;toothbrush&quot;</span><span class="p">},</span>
+            <span class="s1">&#39;comedor&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;dining table&quot;</span><span class="p">,</span> <span class="s2">&quot;chair&quot;</span><span class="p">},</span>
+            <span class="s1">&#39;garaje&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;car&quot;</span><span class="p">,</span> <span class="s2">&quot;bicycle&quot;</span><span class="p">},</span>
+            <span class="s1">&#39;calle&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;traffic light&quot;</span><span class="p">},</span>
+            <span class="s1">&#39;cocina&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;fork&quot;</span><span class="p">,</span> <span class="s2">&quot;spoon&quot;</span><span class="p">,</span> <span class="s2">&quot;bowl&quot;</span><span class="p">},</span>
+            <span class="s1">&#39;especial&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;person&quot;</span><span class="p">},</span>
+        <span class="p">}</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">lock</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Lock</span><span class="p">()</span>
+
+        <span class="c1"># Lista con las estaciones completadas</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">completed_stations</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="c1"># Contador para numerar estaciones repetidas</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">station_counts</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="c1"># Diccionario con las estaciones y sus coordenadas promedio</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">almacen_estaciones</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="c1"># Umbral de distancia máximo permitido desde el centro</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">radius_threshold</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">get_param</span><span class="p">(</span><span class="s1">&#39;~radius_threshold&#39;</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">)</span>
+
+        <span class="c1"># Diccionario para almacenar clusters por tipo de estación</span>
+        <span class="c1"># Estructura: { &#39;station_type&#39;: [ { &#39;positions&#39;: [pos1, pos2, ...], &#39;published&#39;: bool }, ... ], ... }</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">clusters</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="n">rospy</span><span class="o">.</span><span class="n">Subscriber</span><span class="p">(</span><span class="s1">&#39;/detected_objects&#39;</span><span class="p">,</span> <span class="n">DetectedObject</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">detected_object_callback</span><span class="p">)</span>
+
+        <span class="c1"># Publicador del array de estaciones completadas</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stations_info_pub</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Publisher</span><span class="p">(</span><span class="s1">&#39;/stations_info&#39;</span><span class="p">,</span> <span class="n">StationsInfo</span><span class="p">,</span> <span class="n">queue_size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<div class="viewcode-block" id="StationManagerNode.detected_object_callback"><a class="viewcode-back" href="../squad_station_manager_node.html#squad_station_manager_node.StationManagerNode.detected_object_callback">[documentos]</a>    <span class="k">def</span> <span class="nf">detected_object_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">lock</span><span class="p">:</span>
+            <span class="n">station_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">classify_object</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">type</span><span class="p">)</span>
+            
+            <span class="n">position</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">world_coordinates</span>
+
+            <span class="n">position</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">robot_pose</span><span class="o">.</span><span class="n">position</span>
+
+
+            <span class="c1"># Inicializar la lista de clusters para este tipo de estación si no existe</span>
+            <span class="k">if</span> <span class="n">station_type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">clusters</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">clusters</span><span class="p">[</span><span class="n">station_type</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+            <span class="c1"># Crear una nueva posición dict</span>
+            <span class="n">new_pos</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="n">position</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="n">position</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">:</span> <span class="n">position</span><span class="o">.</span><span class="n">z</span><span class="p">}</span>
+
+            <span class="c1"># Buscar un cluster existente al que se pueda agregar este objeto</span>
+            <span class="n">cluster_found</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">for</span> <span class="n">cluster</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">clusters</span><span class="p">[</span><span class="n">station_type</span><span class="p">]:</span>
+                <span class="n">center</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculate_average_position</span><span class="p">(</span><span class="n">cluster</span><span class="p">[</span><span class="s1">&#39;positions&#39;</span><span class="p">])</span>
+                <span class="n">dist</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">distance_to_center</span><span class="p">(</span><span class="n">new_pos</span><span class="p">,</span> <span class="n">center</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">dist</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">radius_threshold</span><span class="p">:</span>
+                    <span class="c1"># Agregar al cluster</span>
+                    <span class="n">cluster</span><span class="p">[</span><span class="s1">&#39;positions&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_pos</span><span class="p">)</span>
+                    <span class="n">cluster_found</span> <span class="o">=</span> <span class="kc">True</span>
+
+                    <span class="c1"># Si el cluster tiene al menos dos objetos y no ha sido publicado</span>
+                    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">cluster</span><span class="p">[</span><span class="s1">&#39;positions&#39;</span><span class="p">])</span> <span class="o">&gt;=</span> <span class="mi">2</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">cluster</span><span class="p">[</span><span class="s1">&#39;published&#39;</span><span class="p">]:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">add_completed_station</span><span class="p">(</span><span class="n">station_type</span><span class="p">,</span> <span class="n">cluster</span><span class="p">)</span>
+                        <span class="n">cluster</span><span class="p">[</span><span class="s1">&#39;published&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+                    <span class="k">break</span>  <span class="c1"># Asumimos que un objeto pertenece a un solo cluster</span>
+
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">cluster_found</span><span class="p">:</span>
+                <span class="c1"># Crear un nuevo cluster con este objeto</span>
+                <span class="n">new_cluster</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="s1">&#39;positions&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">new_pos</span><span class="p">],</span>
+                    <span class="s1">&#39;published&#39;</span><span class="p">:</span> <span class="kc">False</span>
+                <span class="p">}</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">clusters</span><span class="p">[</span><span class="n">station_type</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_cluster</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="StationManagerNode.add_completed_station"><a class="viewcode-back" href="../squad_station_manager_node.html#squad_station_manager_node.StationManagerNode.add_completed_station">[documentos]</a>    <span class="k">def</span> <span class="nf">add_completed_station</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">station_type</span><span class="p">,</span> <span class="n">cluster</span><span class="p">):</span>
+        <span class="n">positions</span> <span class="o">=</span> <span class="n">cluster</span><span class="p">[</span><span class="s1">&#39;positions&#39;</span><span class="p">]</span>
+        <span class="n">avg_position</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculate_average_position</span><span class="p">(</span><span class="n">positions</span><span class="p">)</span>
+
+        <span class="c1"># Contar cuántas veces ha aparecido esta estación</span>
+        <span class="n">count</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">station_counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">station_type</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">station_counts</span><span class="p">[</span><span class="n">station_type</span><span class="p">]</span> <span class="o">=</span> <span class="n">count</span>
+
+        <span class="c1"># Generar nombre único</span>
+        <span class="k">if</span> <span class="n">count</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">station_id</span> <span class="o">=</span> <span class="n">station_type</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">station_id</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">station_type</span><span class="si">}{</span><span class="n">count</span><span class="si">}</span><span class="s2">&quot;</span>
+
+        <span class="c1"># Definir un polígono simple alrededor del centro (puedes ajustar según tus necesidades)</span>
+        <span class="n">polygon_points</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">Point</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">avg_position</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">avg_position</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+            <span class="n">Point</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">avg_position</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">avg_position</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+            <span class="n">Point</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">avg_position</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">avg_position</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+            <span class="n">Point</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">avg_position</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">avg_position</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="p">]</span>
+
+        <span class="n">station_info</span> <span class="o">=</span> <span class="n">StationInfo</span><span class="p">()</span>
+        <span class="n">station_info</span><span class="o">.</span><span class="n">station_id</span> <span class="o">=</span> <span class="n">station_id</span>
+        <span class="n">station_info</span><span class="o">.</span><span class="n">coordinates</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span>
+            <span class="n">x</span><span class="o">=</span><span class="n">avg_position</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span>
+            <span class="n">y</span><span class="o">=</span><span class="n">avg_position</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">],</span>
+            <span class="n">z</span><span class="o">=</span><span class="n">avg_position</span><span class="p">[</span><span class="s1">&#39;z&#39;</span><span class="p">]</span>
+        <span class="p">)</span>
+        <span class="n">station_info</span><span class="o">.</span><span class="n">polygon</span> <span class="o">=</span> <span class="n">polygon_points</span>
+
+        <span class="c1"># Añadir a la lista global de completadas</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">completed_stations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">station_info</span><span class="p">)</span>
+
+        <span class="c1"># Actualizar el diccionario almacen_estaciones con (x,y)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">almacen_estaciones</span><span class="p">[</span><span class="n">station_id</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">avg_position</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span> <span class="n">avg_position</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">])</span>
+
+        <span class="c1"># Publicar el array completo de estaciones</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">publish_all_stations</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="StationManagerNode.publish_all_stations"><a class="viewcode-back" href="../squad_station_manager_node.html#squad_station_manager_node.StationManagerNode.publish_all_stations">[documentos]</a>    <span class="k">def</span> <span class="nf">publish_all_stations</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">stations_msg</span> <span class="o">=</span> <span class="n">StationsInfo</span><span class="p">()</span>
+        <span class="n">stations_msg</span><span class="o">.</span><span class="n">stations</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">completed_stations</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stations_info_pub</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">stations_msg</span><span class="p">)</span>
+
+        <span class="c1"># Imprimir el diccionario almacen_estaciones en consola</span>
+        <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">almacen_estaciones</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="StationManagerNode.calculate_average_position"><a class="viewcode-back" href="../squad_station_manager_node.html#squad_station_manager_node.StationManagerNode.calculate_average_position">[documentos]</a>    <span class="k">def</span> <span class="nf">calculate_average_position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">positions</span><span class="p">):</span>
+        <span class="n">avg_x</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">pos</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">pos</span> <span class="ow">in</span> <span class="n">positions</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">positions</span><span class="p">)</span>
+        <span class="n">avg_y</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">pos</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">pos</span> <span class="ow">in</span> <span class="n">positions</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">positions</span><span class="p">)</span>
+        <span class="n">avg_z</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">pos</span><span class="p">[</span><span class="s1">&#39;z&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">pos</span> <span class="ow">in</span> <span class="n">positions</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">positions</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="n">avg_x</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="n">avg_y</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">:</span> <span class="n">avg_z</span><span class="p">}</span></div>
+
+<div class="viewcode-block" id="StationManagerNode.distance_to_center"><a class="viewcode-back" href="../squad_station_manager_node.html#squad_station_manager_node.StationManagerNode.distance_to_center">[documentos]</a>    <span class="k">def</span> <span class="nf">distance_to_center</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">center</span><span class="p">):</span>
+        <span class="n">dx</span> <span class="o">=</span> <span class="n">pos</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">center</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span>
+        <span class="n">dy</span> <span class="o">=</span> <span class="n">pos</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">center</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span>
+        <span class="n">dz</span> <span class="o">=</span> <span class="n">pos</span><span class="p">[</span><span class="s1">&#39;z&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">center</span><span class="p">[</span><span class="s1">&#39;z&#39;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">dx</span><span class="o">*</span><span class="n">dx</span> <span class="o">+</span> <span class="n">dy</span><span class="o">*</span><span class="n">dy</span> <span class="o">+</span> <span class="n">dz</span><span class="o">*</span><span class="n">dz</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="StationManagerNode.classify_object"><a class="viewcode-back" href="../squad_station_manager_node.html#squad_station_manager_node.StationManagerNode.classify_object">[documentos]</a>    <span class="k">def</span> <span class="nf">classify_object</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">object_type</span><span class="p">):</span>
+        <span class="n">habitaciones</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;airplane&quot;</span><span class="p">,</span> <span class="s2">&quot;bus&quot;</span><span class="p">,</span> <span class="s2">&quot;train&quot;</span><span class="p">,</span> <span class="s2">&quot;boat&quot;</span><span class="p">,</span> <span class="s2">&quot;horse&quot;</span><span class="p">,</span> <span class="s2">&quot;sheep&quot;</span><span class="p">,</span> <span class="s2">&quot;cow&quot;</span><span class="p">,</span> <span class="s2">&quot;elephant&quot;</span><span class="p">,</span> <span class="s2">&quot;bear&quot;</span><span class="p">,</span> <span class="s2">&quot;zebra&quot;</span><span class="p">,</span> <span class="s2">&quot;giraffe&quot;</span><span class="p">,</span> <span class="s2">&quot;backpack&quot;</span><span class="p">,</span> <span class="s2">&quot;tie&quot;</span><span class="p">,</span> <span class="s2">&quot;suitcase&quot;</span><span class="p">,</span> <span class="s2">&quot;frisbee&quot;</span><span class="p">,</span> <span class="s2">&quot;skis&quot;</span><span class="p">,</span> <span class="s2">&quot;snowboard&quot;</span><span class="p">,</span> <span class="s2">&quot;sports ball&quot;</span><span class="p">,</span> <span class="s2">&quot;kite&quot;</span><span class="p">,</span> <span class="s2">&quot;baseball bat&quot;</span><span class="p">,</span> <span class="s2">&quot;skateboard&quot;</span><span class="p">,</span> <span class="s2">&quot;bed&quot;</span><span class="p">,</span> <span class="s2">&quot;cell phone&quot;</span><span class="p">,</span> <span class="s2">&quot;book&quot;</span><span class="p">,</span> <span class="s2">&quot;clock&quot;</span><span class="p">,</span> <span class="s2">&quot;teddy bear&quot;</span><span class="p">]</span>
+        <span class="n">bano</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;toilet&quot;</span><span class="p">,</span> <span class="s2">&quot;hair drier&quot;</span><span class="p">,</span> <span class="s2">&quot;toothbrush&quot;</span><span class="p">]</span>
+        <span class="n">comedor</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;bench&quot;</span><span class="p">,</span><span class="s2">&quot;bird&quot;</span><span class="p">,</span> <span class="s2">&quot;cat&quot;</span><span class="p">,</span> <span class="s2">&quot;dog&quot;</span><span class="p">,</span> <span class="s2">&quot;umbrella&quot;</span><span class="p">,</span> <span class="s2">&quot;handbag&quot;</span><span class="p">,</span> <span class="s2">&quot;potted plant&quot;</span><span class="p">,</span> <span class="s2">&quot;dining table&quot;</span><span class="p">,</span> <span class="s2">&quot;tv&quot;</span><span class="p">,</span> <span class="s2">&quot;laptop&quot;</span><span class="p">,</span> <span class="s2">&quot;mouse&quot;</span><span class="p">,</span> <span class="s2">&quot;remote&quot;</span><span class="p">,</span> <span class="s2">&quot;keyboard&quot;</span><span class="p">,</span> <span class="s2">&quot;couch&quot;</span><span class="p">,</span> <span class="s2">&quot;chair&quot;</span><span class="p">,</span> <span class="s2">&quot;vase&quot;</span><span class="p">]</span>
+        <span class="n">garaje</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;bicycle&quot;</span><span class="p">,</span> <span class="s2">&quot;car&quot;</span><span class="p">,</span> <span class="s2">&quot;motorcycle&quot;</span><span class="p">,</span> <span class="s2">&quot;truck&quot;</span><span class="p">,</span> <span class="s2">&quot;surfboard&quot;</span><span class="p">,</span> <span class="s2">&quot;tennis racket&quot;</span><span class="p">]</span>
+        <span class="n">calle</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;traffic light&quot;</span><span class="p">,</span> <span class="s2">&quot;fire hydrant&quot;</span><span class="p">,</span> <span class="s2">&quot;stop sign&quot;</span><span class="p">,</span> <span class="s2">&quot;parking meter&quot;</span><span class="p">]</span>
+        <span class="n">cocina</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;bottle&quot;</span><span class="p">,</span> <span class="s2">&quot;wine glass&quot;</span><span class="p">,</span> <span class="s2">&quot;cup&quot;</span><span class="p">,</span> <span class="s2">&quot;fork&quot;</span><span class="p">,</span> <span class="s2">&quot;knife&quot;</span><span class="p">,</span> <span class="s2">&quot;spoon&quot;</span><span class="p">,</span> <span class="s2">&quot;bowl&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">,</span> <span class="s2">&quot;apple&quot;</span><span class="p">,</span> <span class="s2">&quot;sandwich&quot;</span><span class="p">,</span> <span class="s2">&quot;orange&quot;</span><span class="p">,</span> <span class="s2">&quot;broccoli&quot;</span><span class="p">,</span> <span class="s2">&quot;carrot&quot;</span><span class="p">,</span> <span class="s2">&quot;hot dog&quot;</span><span class="p">,</span> <span class="s2">&quot;pizza&quot;</span><span class="p">,</span> <span class="s2">&quot;donut&quot;</span><span class="p">,</span> <span class="s2">&quot;cake&quot;</span><span class="p">,</span> <span class="s2">&quot;microwave&quot;</span><span class="p">,</span> <span class="s2">&quot;oven&quot;</span><span class="p">,</span> <span class="s2">&quot;toaster&quot;</span><span class="p">,</span> <span class="s2">&quot;sink&quot;</span><span class="p">,</span> <span class="s2">&quot;refrigerator&quot;</span><span class="p">,</span> <span class="s2">&quot;scissors&quot;</span><span class="p">]</span>
+        <span class="n">persona</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;person&quot;</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">object_type</span> <span class="ow">in</span> <span class="n">habitaciones</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s1">&#39;habitacion&#39;</span>
+        <span class="k">elif</span> <span class="n">object_type</span> <span class="ow">in</span> <span class="n">bano</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s1">&#39;baño&#39;</span>
+        <span class="k">elif</span> <span class="n">object_type</span> <span class="ow">in</span> <span class="n">comedor</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s1">&#39;comedor&#39;</span>
+        <span class="k">elif</span> <span class="n">object_type</span> <span class="ow">in</span> <span class="n">garaje</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s1">&#39;garaje&#39;</span>
+        <span class="k">elif</span> <span class="n">object_type</span> <span class="ow">in</span> <span class="n">calle</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s1">&#39;calle&#39;</span>
+        <span class="k">elif</span> <span class="n">object_type</span> <span class="ow">in</span> <span class="n">cocina</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s1">&#39;cocina&#39;</span>
+        <span class="k">elif</span> <span class="n">object_type</span> <span class="ow">in</span> <span class="n">persona</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s1">&#39;Persona encontrada&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s1">&#39;general_station&#39;</span></div></div>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="n">StationManagerNode</span><span class="p">()</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">spin</span><span class="p">()</span>
+    <span class="k">except</span> <span class="n">rospy</span><span class="o">.</span><span class="n">ROSInterruptException</span><span class="p">:</span>
+        <span class="k">pass</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Derechos de autor 2024, Abel Belhaki Rivas.</p>
+  </div>
+
+  Compilado con <a href="https://www.sphinx-doc.org/">Sphinx</a> usando un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    proporcionado por <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
