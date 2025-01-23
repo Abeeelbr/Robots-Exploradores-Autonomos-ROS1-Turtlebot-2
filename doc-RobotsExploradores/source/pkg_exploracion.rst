@@ -14,9 +14,7 @@ algunas **modificaciones** para adaptarse a los requerimientos del proyecto:
 
 - **Inicio y paro controlados**: Se añade un servicio o tópico para activar/desactivar 
   la exploración desde la **máquina de estados** o la **interfaz gráfica**.
-- **Gestión de fallos y reinicios**: Se ha modificado la lógica de `explore_lite` 
-  para reintentar si el robot no puede alcanzar una frontera y descartar aquellas 
-  que resulten inalcanzables.
+
 - **Integración con la detección de objetos**: A medida que el robot recorre el mapa, 
   se publica la información de posibles detecciones en un tópico para su posterior 
   análisis y creación dinámica de “estaciones”.
@@ -25,15 +23,17 @@ Componentes Principales
 -----------------------
 
 1. **Nodo de Exploración (modificado de `explore_lite`)**
+
    - Identifica **fronteras** (zonas no exploradas) en el mapa.
    - Envía objetivos a la pila de **navegación** (`move_base`).
    - Permite pausar o continuar la exploración bajo demanda.
    - Crea una “lista negra” para fronteras inalcanzables o bloqueadas.
 
 2. **Nodo de Detección de Objetos (`squad_object_detection_action`)**
-   - Procesa imágenes RGB-D para **identificar objetos** (p. ej. con YOLOv8).
-   - Publica la información de los objetos detectados en el tópico `**/detected_objects**`.
-   - Permite calcular la posición 3D del objeto y transformarla al marco `map`.
+
+   - Procesa imágenes RGB-D para **identificar objetos** ( con YOLOv8).
+   - Publica la información de los objetos detectados en el tópico ``/detected_objects``.
+   - Permite calcular la posición 3D del objeto y transformarla al marco ``map``.
 
    Para más detalles, consulta: :doc:`squad_object_detection_action`.
 
@@ -59,12 +59,6 @@ Para lanzar la exploración, se recomienda utilizar los archivos **launch** espe
 
 Si necesitas correr el nodo de exploración modificado de forma independiente, 
 puedes invocarlo así (asegurándote de haberlo compilado en tu workspace de ROS):
-
-.. code-block:: bash
-
-   rosrun squad_exploracion explore_lite_modified
-
-o bien:
 
 .. code-block:: bash
 

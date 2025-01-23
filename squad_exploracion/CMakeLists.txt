@@ -71,8 +71,6 @@ add_message_files(
 add_action_files(
   FILES
   ObjectDetection.action
-  AutonomousControl.action
-  ApproachControl.action
 )
 
 ## Generate added messages and services with any dependencies listed here
@@ -175,7 +173,7 @@ include_directories(
 # )
 
 catkin_install_python(
-  PROGRAMS src/squad_object_detection_action.py src/squad_autonomous_control_action.py src/squad_approach_control_action.py
+  PROGRAMS src/squad_object_detection_action.py 
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
