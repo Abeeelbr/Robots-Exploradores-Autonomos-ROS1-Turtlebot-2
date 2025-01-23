@@ -69,7 +69,8 @@
 <li class="toctree-l2"><a class="reference internal" href="squad_state_manager.html#prueba-del-nodo">Prueba del Nodo</a></li>
 <li class="toctree-l2"><a class="reference internal" href="squad_state_manager.html#topicos-relevantes">Tópicos Relevantes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="squad_state_manager.html#integracion-con-otros-nodos">Integración con Otros Nodos</a></li>
-<li class="toctree-l2"><a class="reference internal" href="squad_state_manager.html#conclusiones">Conclusiones</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="squad_state_manager.html#conclusiones">Conclusiones</a></li>
+<li class="toctree-l2"><a class="reference internal" href="squad_state_manager.html#module-squad_state_manager">Cóidgo Fuente</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="squad_state_manager.html#squad_state_manager.BaseState"><code class="docutils literal notranslate"><span class="pre">BaseState</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="squad_state_manager.html#squad_state_manager.BaseState.execute"><code class="docutils literal notranslate"><span class="pre">BaseState.execute()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="squad_state_manager.html#squad_state_manager.BaseState.command_callback"><code class="docutils literal notranslate"><span class="pre">BaseState.command_callback()</span></code></a></li>
@@ -238,9 +239,6 @@ algunas <strong>modificaciones</strong> para adaptarse a los requerimientos del 
 <ul class="simple">
 <li><p><strong>Inicio y paro controlados</strong>: Se añade un servicio o tópico para activar/desactivar
 la exploración desde la <strong>máquina de estados</strong> o la <strong>interfaz gráfica</strong>.</p></li>
-<li><p><strong>Gestión de fallos y reinicios</strong>: Se ha modificado la lógica de <cite>explore_lite</cite>
-para reintentar si el robot no puede alcanzar una frontera y descartar aquellas
-que resulten inalcanzables.</p></li>
 <li><p><strong>Integración con la detección de objetos</strong>: A medida que el robot recorre el mapa,
 se publica la información de posibles detecciones en un tópico para su posterior
 análisis y creación dinámica de “estaciones”.</p></li>
@@ -249,15 +247,20 @@ análisis y creación dinámica de “estaciones”.</p></li>
 <section id="componentes-principales">
 <h2>Componentes Principales<a class="headerlink" href="#componentes-principales" title="Enlace permanente a este encabezado"></a></h2>
 <ol class="arabic">
-<li><p><strong>Nodo de Exploración (modificado de `explore_lite`)</strong>
-- Identifica <strong>fronteras</strong> (zonas no exploradas) en el mapa.
-- Envía objetivos a la pila de <strong>navegación</strong> (<cite>move_base</cite>).
-- Permite pausar o continuar la exploración bajo demanda.
-- Crea una “lista negra” para fronteras inalcanzables o bloqueadas.</p></li>
-<li><p><strong>Nodo de Detección de Objetos (`squad_object_detection_action`)</strong>
-- Procesa imágenes RGB-D para <strong>identificar objetos</strong> (p. ej. con YOLOv8).
-- Publica la información de los objetos detectados en el tópico <cite>**/detected_objects**</cite>.
-- Permite calcular la posición 3D del objeto y transformarla al marco <cite>map</cite>.</p>
+<li><p><strong>Nodo de Exploración (modificado de `explore_lite`)</strong></p>
+<ul class="simple">
+<li><p>Identifica <strong>fronteras</strong> (zonas no exploradas) en el mapa.</p></li>
+<li><p>Envía objetivos a la pila de <strong>navegación</strong> (<cite>move_base</cite>).</p></li>
+<li><p>Permite pausar o continuar la exploración bajo demanda.</p></li>
+<li><p>Crea una “lista negra” para fronteras inalcanzables o bloqueadas.</p></li>
+</ul>
+</li>
+<li><p><strong>Nodo de Detección de Objetos (`squad_object_detection_action`)</strong></p>
+<ul class="simple">
+<li><p>Procesa imágenes RGB-D para <strong>identificar objetos</strong> ( con YOLOv8).</p></li>
+<li><p>Publica la información de los objetos detectados en el tópico <code class="docutils literal notranslate"><span class="pre">/detected_objects</span></code>.</p></li>
+<li><p>Permite calcular la posición 3D del objeto y transformarla al marco <code class="docutils literal notranslate"><span class="pre">map</span></code>.</p></li>
+</ul>
 <p>Para más detalles, consulta: <a class="reference internal" href="squad_object_detection_action.html"><span class="doc">Detección de Objetos (squad_object_detection_action)</span></a>.</p>
 </li>
 </ol>
@@ -282,10 +285,6 @@ la exploración en función del modo de operación (reposo, exploración, navega
 </div>
 <p>Si necesitas correr el nodo de exploración modificado de forma independiente,
 puedes invocarlo así (asegurándote de haberlo compilado en tu workspace de ROS):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rosrun<span class="w"> </span>squad_exploracion<span class="w"> </span>explore_lite_modified
-</pre></div>
-</div>
-<p>o bien:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>roslaunch<span class="w"> </span>squad_exploracion<span class="w"> </span>explore.launch
 </pre></div>
 </div>

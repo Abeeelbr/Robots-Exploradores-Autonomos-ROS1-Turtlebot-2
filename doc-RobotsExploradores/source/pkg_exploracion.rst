@@ -6,7 +6,7 @@ un entorno desconocido y **detecte** objetos en el proceso, integrándose con el
 (navegación, asignación de estaciones, interfaz gráfica, etc.).
 
 Descripción General
-------------------
+--------------------
 
 La exploración se basa en el algoritmo de **fronteras** provisto por 
 [**explore_lite**](http://wiki.ros.org/explore_lite), al cual se le han realizado 
@@ -59,6 +59,7 @@ Para lanzar la exploración, se recomienda utilizar los archivos **launch** espe
 
 Si necesitas correr el nodo de exploración modificado de forma independiente, 
 puedes invocarlo así (asegurándote de haberlo compilado en tu workspace de ROS):
+
 
 .. code-block:: bash
 

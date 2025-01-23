@@ -6,7 +6,7 @@ basándose en la **detección de objetos**. Constituye un pilar fundamental del 
 de **planificación** para el desplazamiento y la organización del entorno.
 
 Descripción General
-------------------
+--------------------
 
 - **Objetivo**:  
   Identificar grupos (clusters) de objetos detectados y **generar estaciones** cuando 
@@ -40,6 +40,7 @@ Características Clave
    sucesivamente.
 
 4. **Integración con Otros Módulos**  
+
    - Interactúa con el nodo de **detección de objetos** (publica en ``/detected_objects``).  
    - Provee estaciones a la **máquina de estados** y a la **interfaz**, facilitando 
      la navegación hacia dichas estaciones.
@@ -48,6 +49,7 @@ Funciones Principales
 ---------------------
 
 1. **Inicialización del Nodo**  
+
    - Inicia el nodo ROS con el nombre ``station_manager_node``.  
    - Lee parámetros como ``radius_threshold`` (umbral de distancia para el agrupamiento).  
    - Crea suscriptores y publicadores:
@@ -55,6 +57,7 @@ Funciones Principales
      - Publicador: ``/stations_info`` (para difundir nuevas estaciones).
 
 2. **``detected_object_callback``**  
+
    - Cada objeto detectado se clasifica con la función ``classify_object`` (por ejemplo, 
      “habitación”, “baño”, “comedor”), según tablas o listas predefinidas.  
    - Se busca si el objeto puede agregarse a un cluster existente (distancia al centro 
@@ -63,12 +66,14 @@ Funciones Principales
      como estación, se crea la estación.
 
 3. **Gestión de Clusters y Estaciones**  
+
    - Calcula la posición media de los objetos en el cluster mediante 
      ``calculate_average_position``.  
    - Publica la estación en el tópico ``/stations_info``.  
    - Actualiza el diccionario ``almacen_estaciones`` y lo muestra por consola.
 
 4. **Bloqueo de Hilos**  
+
    - Para evitar condiciones de carrera, utiliza un **lock** al modificar estructuras 
      compartidas como ``almacen_estaciones``.
 

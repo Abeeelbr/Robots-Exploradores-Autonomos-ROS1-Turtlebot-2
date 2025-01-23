@@ -68,7 +68,8 @@
 <li class="toctree-l2"><a class="reference internal" href="squad_state_manager.html#prueba-del-nodo">Prueba del Nodo</a></li>
 <li class="toctree-l2"><a class="reference internal" href="squad_state_manager.html#topicos-relevantes">Tópicos Relevantes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="squad_state_manager.html#integracion-con-otros-nodos">Integración con Otros Nodos</a></li>
-<li class="toctree-l2"><a class="reference internal" href="squad_state_manager.html#conclusiones">Conclusiones</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="squad_state_manager.html#conclusiones">Conclusiones</a></li>
+<li class="toctree-l2"><a class="reference internal" href="squad_state_manager.html#module-squad_state_manager">Cóidgo Fuente</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="squad_state_manager.html#squad_state_manager.BaseState"><code class="docutils literal notranslate"><span class="pre">BaseState</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="squad_state_manager.html#squad_state_manager.BaseState.execute"><code class="docutils literal notranslate"><span class="pre">BaseState.execute()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="squad_state_manager.html#squad_state_manager.BaseState.command_callback"><code class="docutils literal notranslate"><span class="pre">BaseState.command_callback()</span></code></a></li>
@@ -245,18 +246,30 @@ en la <strong>máquina de estados</strong> (reposo, exploración, navegación, e
 <section id="dependencias">
 <h2>Dependencias<a class="headerlink" href="#dependencias" title="Enlace permanente a este encabezado"></a></h2>
 <ul class="simple">
-<li><p><strong>ROS:</strong>
-- <code class="docutils literal notranslate"><span class="pre">rospy</span></code>, <code class="docutils literal notranslate"><span class="pre">smach</span></code>, <code class="docutils literal notranslate"><span class="pre">smach_ros</span></code>, <code class="docutils literal notranslate"><span class="pre">actionlib</span></code>
-- Mensajes: <code class="docutils literal notranslate"><span class="pre">std_msgs.msg</span></code>, <code class="docutils literal notranslate"><span class="pre">geometry_msgs.msg</span></code>, <code class="docutils literal notranslate"><span class="pre">sensor_msgs.msg</span></code>
-- Transformaciones: <code class="docutils literal notranslate"><span class="pre">tf</span></code></p></li>
-<li><p><strong>Visión:</strong>
-- <code class="docutils literal notranslate"><span class="pre">cv_bridge</span></code>
-- <code class="docutils literal notranslate"><span class="pre">cv2</span> <span class="pre">(OpenCV)</span></code>
-- <code class="docutils literal notranslate"><span class="pre">PIL</span> <span class="pre">(Pillow)</span></code> (para procesar y mostrar imágenes)</p></li>
-<li><p><strong>Navegación:</strong>
-- <code class="docutils literal notranslate"><span class="pre">move_base_msgs.msg</span></code> (para enviar objetivos de navegación)</p></li>
-<li><p><strong>Interfaz Gráfica:</strong>
-- <code class="docutils literal notranslate"><span class="pre">tkinter</span></code> (ventana principal y widgets)</p></li>
+<li><p><strong>ROS:</strong></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">rospy</span></code>, <code class="docutils literal notranslate"><span class="pre">smach</span></code>, <code class="docutils literal notranslate"><span class="pre">smach_ros</span></code>, <code class="docutils literal notranslate"><span class="pre">actionlib</span></code></p></li>
+<li><p>Mensajes: <code class="docutils literal notranslate"><span class="pre">std_msgs.msg</span></code>, <code class="docutils literal notranslate"><span class="pre">geometry_msgs.msg</span></code>, <code class="docutils literal notranslate"><span class="pre">sensor_msgs.msg</span></code></p></li>
+<li><p>Transformaciones: <code class="docutils literal notranslate"><span class="pre">tf</span></code></p></li>
+</ul>
+</li>
+<li><p><strong>Visión:</strong></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">cv_bridge</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cv2</span> <span class="pre">(OpenCV)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PIL</span> <span class="pre">(Pillow)</span></code> (para procesar y mostrar imágenes)</p></li>
+</ul>
+</li>
+<li><p><strong>Navegación:</strong></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">move_base_msgs.msg</span></code> (para enviar objetivos de navegación)</p></li>
+</ul>
+</li>
+<li><p><strong>Interfaz Gráfica:</strong></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">tkinter</span></code> (ventana principal y widgets)</p></li>
+</ul>
+</li>
 </ul>
 </section>
 <section id="estructura-del-nodo">
@@ -265,10 +278,12 @@ en la <strong>máquina de estados</strong> (reposo, exploración, navegación, e
 - <strong>``InterfazManager``</strong></p>
 <blockquote>
 <div><p>Configura y lanza la <strong>GUI</strong> con Tkinter, suscribe a los tópicos ROS necesarios y publica comandos
-para cambiar el estado del robot. Proporciona métodos para actualizar en tiempo real:
-- El <strong>mapa</strong> (celdas de ocupación o imagen renderizada).
-- Las <strong>estaciones</strong> detectadas (lista de objetos y coordenadas).
-- La <strong>imagen de la cámara</strong> (cuadro a cuadro).</p>
+para cambiar el estado del robot. Proporciona métodos para actualizar en tiempo real:</p>
+<ul class="simple">
+<li><p>El <strong>mapa</strong> (celdas de ocupación o imagen renderizada).</p></li>
+<li><p>Las <strong>estaciones</strong> detectadas (lista de objetos y coordenadas).</p></li>
+<li><p>La <strong>imagen de la cámara</strong> (cuadro a cuadro).</p></li>
+</ul>
 </div></blockquote>
 <p><strong>Métodos Clave:</strong>
 - <strong>``setup_gui``</strong>:</p>
@@ -276,64 +291,89 @@ para cambiar el estado del robot. Proporciona métodos para actualizar en tiempo
 <div><p>Construye la ventana de Tkinter, configura botones de estados (Reposo, Exploración, Navegación),
 contenedores para mapa y cámara, y menús de selección de estaciones.</p>
 </div></blockquote>
-<ul class="simple">
-<li><p><strong>``update_map_display``</strong> y <strong>``update_camera_display``</strong>:
-Actualizan en tiempo real la imagen del mapa y de la cámara, respectivamente,
-utilizando datos suscritos a los tópicos de ROS.</p></li>
-<li><p><strong>``stations_callback``</strong>:
-Escucha el tópico de <strong>estaciones detectadas</strong> (por ejemplo, <code class="docutils literal notranslate"><span class="pre">/stations_info</span></code>) y actualiza el menú desplegable
-para que el usuario pueda seleccionar y dirigir al robot hacia esa estación.</p></li>
-<li><p><strong>``on_state_button_click``</strong>:
-Envía comandos a la máquina de estados del robot para cambiar el estado (reposo, exploración, navegación).</p></li>
-<li><p><strong>``subscribe_to_camera``</strong>:
-Configura la suscripción a la imagen RGB o RGB-D para actualizar la vista de la cámara.</p></li>
-<li><p><strong>``on_closing``</strong>:
-Método invocado al cerrar la GUI; permite una finalización segura de hilos y cierre de conexiones ROS.</p></li>
+<ul>
+<li><p><strong>``update_map_display``</strong> y <strong>``update_camera_display``</strong>:</p>
+<p>Actualizan en tiempo real la imagen del mapa y de la cámara, respectivamente,
+utilizando datos suscritos a los tópicos de ROS.</p>
+</li>
+<li><p><strong>``stations_callback``</strong>:</p>
+<p>Escucha el tópico de <strong>estaciones detectadas</strong> (por ejemplo, <code class="docutils literal notranslate"><span class="pre">/stations_info</span></code>) y actualiza el menú desplegable
+para que el usuario pueda seleccionar y dirigir al robot hacia esa estación.</p>
+</li>
+<li><p><strong>``on_state_button_click``</strong>:</p>
+<p>Envía comandos a la máquina de estados del robot para cambiar el estado (reposo, exploración, navegación).</p>
+</li>
+<li><p><strong>``subscribe_to_camera``</strong>:</p>
+<p>Configura la suscripción a la imagen RGB o RGB-D para actualizar la vista de la cámara.</p>
+</li>
+<li><p><strong>``on_closing``</strong>:</p>
+<p>Método invocado al cerrar la GUI; permite una finalización segura de hilos y cierre de conexiones ROS.</p>
+</li>
 </ul>
 </section>
 <section id="parametros-configurables">
 <h2>Parámetros Configurables<a class="headerlink" href="#parametros-configurables" title="Enlace permanente a este encabezado"></a></h2>
 <ul class="simple">
-<li><p><strong>Tópicos de Entrada:</strong>
-- <code class="docutils literal notranslate"><span class="pre">/current_state</span></code>: Estado actual del robot (reposo, exploración, etc.).
-- <code class="docutils literal notranslate"><span class="pre">/stations_info</span></code>: Lista de estaciones (objetos) detectadas en el entorno.
-- <code class="docutils literal notranslate"><span class="pre">/map</span></code> o <code class="docutils literal notranslate"><span class="pre">/map_image</span></code>: Mapa de ocupación o imagen del entorno.
-- <code class="docutils literal notranslate"><span class="pre">/camera/rgb/image_raw</span></code>: Imagen RGB para visualización (opcional).</p></li>
-<li><p><strong>Tópicos de Salida:</strong>
-- <code class="docutils literal notranslate"><span class="pre">/command</span></code>: Comandos para cambiar el estado en la máquina de estados.
-- <code class="docutils literal notranslate"><span class="pre">/control_mode</span></code>: Alterna entre control manual y automático.
-- <code class="docutils literal notranslate"><span class="pre">/cmd_vel</span></code>: Mensajes de velocidad para teleoperación manual.</p></li>
-<li><p><strong>Variables de Entorno</strong> (opcional):
-- <code class="docutils literal notranslate"><span class="pre">MODO_EJECUCION</span></code>: Indica si el robot está en <strong>REAL</strong> o <strong>GAZEBO</strong>.</p></li>
+<li><p><strong>Tópicos de Entrada:</strong></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">/current_state</span></code>: Estado actual del robot (reposo, exploración, etc.).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/stations_info</span></code>: Lista de estaciones (objetos) detectadas en el entorno.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/map</span></code> o <code class="docutils literal notranslate"><span class="pre">/map_image</span></code>: Mapa de ocupación o imagen del entorno.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/camera/rgb/image_raw</span></code>: Imagen RGB para visualización (opcional).</p></li>
+</ul>
+</li>
+<li><p><strong>Tópicos de Salida:</strong></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">/command</span></code>: Comandos para cambiar el estado en la máquina de estados.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/control_mode</span></code>: Alterna entre control manual y automático.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/cmd_vel</span></code>: Mensajes de velocidad para teleoperación manual.</p></li>
+</ul>
+</li>
+<li><p><strong>Variables de Entorno</strong> (opcional):</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">MODO_EJECUCION</span></code>: Indica si el robot está en <strong>REAL</strong> o <strong>GAZEBO</strong>.</p></li>
+</ul>
+</li>
 </ul>
 </section>
 <section id="uso-de-la-interfaz">
 <h2>Uso de la Interfaz<a class="headerlink" href="#uso-de-la-interfaz" title="Enlace permanente a este encabezado"></a></h2>
-<ol class="arabic">
-<li><p><strong>Cambio de Estado</strong>
-- Botones para REPOSO, EXPLORACIÓN y NAVEGACIÓN.
-- Cada botón envía un comando al nodo de <strong>estado</strong> para que el robot cambie su comportamiento.</p></li>
-<li><p><strong>Visualización del Mapa</strong>
-- Muestra el mapa 2D y la ubicación del robot.
-- Se actualiza constantemente al suscribirse al tópico de mapa.</p></li>
-<li><p><strong>Selección de Estaciones</strong>
-- Menú desplegable con estaciones detectadas (por ejemplo, “Silla #1”, “Persona #2”).
-- Botón “Ir” para enviar al robot a la estación seleccionada.
-- El sistema se apoya en la pila de navegación para planificar la ruta hasta ese punto.</p></li>
-<li><p><strong>Control Manual (Teleoperación)</strong>
-- El usuario puede presionar flechas del teclado para mover el robot:</p>
-<blockquote>
-<div><ul class="simple">
+<ol class="arabic simple">
+<li><p><strong>Cambio de Estado</strong></p>
+<ul class="simple">
+<li><p>Botones para REPOSO, EXPLORACIÓN y NAVEGACIÓN.</p></li>
+<li><p>Cada botón envía un comando al nodo de <strong>estado</strong> para que el robot cambie su comportamiento.</p></li>
+</ul>
+</li>
+<li><p><strong>Visualización del Mapa</strong></p>
+<ul class="simple">
+<li><p>Muestra el mapa 2D y la ubicación del robot.</p></li>
+<li><p>Se actualiza constantemente al suscribirse al tópico de mapa.</p></li>
+</ul>
+</li>
+<li><p><strong>Selección de Estaciones</strong></p>
+<ul class="simple">
+<li><p>Menú desplegable con estaciones detectadas (por ejemplo, “Silla #1”, “Persona #2”).</p></li>
+<li><p>Botón “Ir” para enviar al robot a la estación seleccionada.</p></li>
+<li><p>El sistema se apoya en la pila de navegación para planificar la ruta hasta ese punto.</p></li>
+</ul>
+</li>
+<li><p><strong>Control Manual (Teleoperación)</strong></p>
+<ul class="simple">
+<li><p>El usuario puede presionar flechas del teclado para mover el robot:</p>
+<ul>
 <li><p><strong>Arriba/Abajo</strong>: Avanzar o retroceder.</p></li>
 <li><p><strong>Izquierda/Derecha</strong>: Rotar sobre sí mismo.</p></li>
 </ul>
-</div></blockquote>
-<ul class="simple">
+</li>
 <li><p>Se publica en <code class="docutils literal notranslate"><span class="pre">/cmd_vel</span></code>.</p></li>
 </ul>
 </li>
-<li><p><strong>Cierre de la Interfaz</strong>
-- Al cerrar la ventana, se llama a <code class="docutils literal notranslate"><span class="pre">on_closing</span></code>, deteniendo subprocesos y hilos de actualización para evitar bloqueos.</p></li>
+<li><p><strong>Cierre de la Interfaz</strong></p>
+<ul class="simple">
+<li><p>Al cerrar la ventana, se llama a <code class="docutils literal notranslate"><span class="pre">on_closing</span></code>, deteniendo subprocesos y hilos de actualización para evitar bloqueos.</p></li>
+</ul>
+</li>
 </ol>
 </section>
 <section id="ejemplo-de-ejecucion">
@@ -342,7 +382,6 @@ Método invocado al cerrar la GUI; permite una finalización segura de hilos y c
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rosrun<span class="w"> </span>squad_main<span class="w"> </span>interfaz.py
 </pre></div>
 </div>
-<p>(El nombre real del script o nodo puede variar.)</p>
 <p>Si prefieres lanzar todo el sistema (navegación, detección y esta interfaz) de golpe,
 usa el archivo <code class="docutils literal notranslate"><span class="pre">.launch</span></code> correspondiente, por ejemplo:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>roslaunch<span class="w"> </span>squad_main<span class="w"> </span>main_gazebo.launch

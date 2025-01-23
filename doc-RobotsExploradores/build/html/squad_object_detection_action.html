@@ -69,7 +69,8 @@
 <li class="toctree-l2"><a class="reference internal" href="squad_state_manager.html#prueba-del-nodo">Prueba del Nodo</a></li>
 <li class="toctree-l2"><a class="reference internal" href="squad_state_manager.html#topicos-relevantes">Tópicos Relevantes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="squad_state_manager.html#integracion-con-otros-nodos">Integración con Otros Nodos</a></li>
-<li class="toctree-l2"><a class="reference internal" href="squad_state_manager.html#conclusiones">Conclusiones</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="squad_state_manager.html#conclusiones">Conclusiones</a></li>
+<li class="toctree-l2"><a class="reference internal" href="squad_state_manager.html#module-squad_state_manager">Cóidgo Fuente</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="squad_state_manager.html#squad_state_manager.BaseState"><code class="docutils literal notranslate"><span class="pre">BaseState</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="squad_state_manager.html#squad_state_manager.BaseState.execute"><code class="docutils literal notranslate"><span class="pre">BaseState.execute()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="squad_state_manager.html#squad_state_manager.BaseState.command_callback"><code class="docutils literal notranslate"><span class="pre">BaseState.command_callback()</span></code></a></li>
@@ -232,16 +233,14 @@ combina imágenes RGB-D (color y profundidad) para identificar elementos de inte
 y publica sus coordenadas en el marco global del robot.</p>
 <section id="descripcion-general">
 <h2>Descripción General<a class="headerlink" href="#descripcion-general" title="Enlace permanente a este encabezado"></a></h2>
-<ul>
+<ul class="simple">
 <li><p><strong>Nodo</strong>: <code class="docutils literal notranslate"><span class="pre">squad_object_detection_action.py</span></code></p></li>
 <li><p><strong>Objetivo</strong>: Detectar objetos relevantes (por ejemplo, sillas, personas, camas, etc.)
 y proveer sus posiciones tanto en el marco de la cámara como en el marco global del mapa.</p></li>
-<li><p><strong>Enfoque principal</strong>:
-- Uso de un <strong>modelo YOLOv8</strong> (versión <cite>nano</cite> o <cite>small</cite>) preentrenado, con un conjunto</p>
-<blockquote>
-<div><p>de clases de interés reducido para optimizar el rendimiento.</p>
-</div></blockquote>
-<ul class="simple">
+<li><p><strong>Enfoque principal</strong>:</p>
+<ul>
+<li><p>Uso de un <strong>modelo YOLOv8</strong> (versión <cite>nano</cite> o <cite>small</cite>) preentrenado, con un conjunto
+de clases de interés reducido para optimizar el rendimiento.</p></li>
 <li><p>Cálculo de la <strong>distancia</strong> a cada objeto a través de la imagen de <strong>profundidad</strong>,
 transformando las coordenadas al espacio 3D e incorporando la <strong>odometría</strong> o TF
 para obtener posiciones absolutas (en el marco <cite>map</cite>).</p></li>
@@ -255,21 +254,22 @@ para obtener posiciones absolutas (en el marco <cite>map</cite>).</p></li>
 <li><p><strong>Conversión de Imágenes</strong>
 Mediante <cite>cv_bridge</cite>, las imágenes de los tópicos ROS (RGB y profundidad) se convierten
 a formato OpenCV para su procesamiento.</p></li>
-<li><p><strong>Detección YOLO</strong>
-- El nodo ejecuta un modelo YOLOv8 cargado previamente (por ejemplo, <cite>yolov8n.pt</cite>),</p>
-<blockquote>
-<div><p>filtrando predicciones por:
-- <strong>Umbral de confianza</strong> (típ. &gt;70%).
-- <strong>Clases de interés</strong> (ej. personas, sillas, mesas, etc.).</p>
-</div></blockquote>
-</li>
-<li><p><strong>Cálculo de Coordenadas en 3D</strong>
-- A partir del centro del bounding box y la imagen de profundidad, se estima la <strong>distancia</strong> real.
-- Se aplican los parámetros intrínsecos de la cámara (Fx, Fy, cx, cy) para pasar de</p>
-<blockquote>
-<div><p>coordenadas de píxel a coordenadas 3D en el marco de la cámara (<cite>camera_link</cite>).</p>
-</div></blockquote>
+<li><p><strong>Detección YOLO</strong></p>
 <ul class="simple">
+<li><p>El nodo ejecuta un modelo YOLOv8 cargado previamente (por ejemplo, <cite>yolov8n.pt</cite>),
+filtrando predicciones por:</p>
+<ul>
+<li><p><strong>Umbral de confianza</strong> (típ. &gt;70%).</p></li>
+<li><p><strong>Clases de interés</strong> (ej. personas, sillas, mesas, etc.).</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Cálculo de Coordenadas en 3D</strong></p>
+<ul class="simple">
+<li><p>A partir del centro del bounding box y la imagen de profundidad, se estima la <strong>distancia</strong> real.</p></li>
+<li><p>Se aplican los parámetros intrínsecos de la cámara (Fx, Fy, cx, cy) para pasar de
+coordenadas de píxel a coordenadas 3D en el marco de la cámara (<cite>camera_link</cite>).</p></li>
 <li><p>Luego se utiliza TF (Transform Frames) para convertir dichas coordenadas al marco <cite>map</cite>,
 dando como resultado la posición global del objeto.</p></li>
 </ul>
@@ -285,9 +285,12 @@ dando como resultado la posición global del objeto.</p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p><strong>Opcional: Visualización</strong>
-- El nodo puede mostrar en pantalla las imágenes con el <strong>bounding box</strong> y la distancia de cada objeto.
-- Se pueden activar/desactivar estas vistas en función de parámetros de depuración.</p></li>
+<li><p><strong>Opcional: Visualización</strong></p>
+<ul class="simple">
+<li><p>El nodo puede mostrar en pantalla las imágenes con el <strong>bounding box</strong> y la distancia de cada objeto.</p></li>
+<li><p>Se pueden activar/desactivar estas vistas en función de parámetros de depuración.</p></li>
+</ul>
+</li>
 </ol>
 </section>
 <section id="parametros-importantes">
@@ -323,21 +326,18 @@ Si deseas lanzar el nodo de manera independiente, por ejemplo:</p>
 </div>
 <p>Observa la salida en la consola y los mensajes publicados en <code class="docutils literal notranslate"><span class="pre">/detected_objects</span></code>.</p>
 </li>
-<li><p><strong>Visualizar Detecciones en RViz (Opcional)</strong>
-- Puedes mostrar un marcador (MarkerArray) con la posición de los objetos detectados</p>
-<blockquote>
-<div><p>o superponer la imagen en RViz usando plugins de cámara.</p>
-</div></blockquote>
-</li>
 </ol>
 </section>
 <section id="topicos-relevantes">
 <h2>Tópicos Relevantes<a class="headerlink" href="#topicos-relevantes" title="Enlace permanente a este encabezado"></a></h2>
 <ul>
-<li><p><strong>Suscriptores</strong>:
-- <code class="docutils literal notranslate"><span class="pre">/camera/rgb/image_raw</span></code>: Imágenes RGB utilizadas para la detección.
-- <code class="docutils literal notranslate"><span class="pre">/camera/depth/image_raw</span></code>: Imágenes de profundidad para calcular distancias.
-- <code class="docutils literal notranslate"><span class="pre">/odom</span></code> o TF: Se utilizan para la conversión de coordenadas al marco global.</p></li>
+<li><p><strong>Suscriptores</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">/camera/rgb/image_raw</span></code>: Imágenes RGB utilizadas para la detección.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/camera/depth/image_raw</span></code>: Imágenes de profundidad para calcular distancias.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/odom</span></code> o TF: Se utilizan para la conversión de coordenadas al marco global.</p></li>
+</ul>
+</li>
 <li><p><strong>Publicadores</strong>:
 - <code class="docutils literal notranslate"><span class="pre">/detected_objects</span></code>: Información de los objetos detectados, incluyendo:</p>
 <blockquote>

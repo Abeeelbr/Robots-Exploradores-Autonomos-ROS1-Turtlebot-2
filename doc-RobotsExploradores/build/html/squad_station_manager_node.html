@@ -69,7 +69,8 @@
 <li class="toctree-l2"><a class="reference internal" href="squad_state_manager.html#prueba-del-nodo">Prueba del Nodo</a></li>
 <li class="toctree-l2"><a class="reference internal" href="squad_state_manager.html#topicos-relevantes">Tópicos Relevantes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="squad_state_manager.html#integracion-con-otros-nodos">Integración con Otros Nodos</a></li>
-<li class="toctree-l2"><a class="reference internal" href="squad_state_manager.html#conclusiones">Conclusiones</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="squad_state_manager.html#conclusiones">Conclusiones</a></li>
+<li class="toctree-l2"><a class="reference internal" href="squad_state_manager.html#module-squad_state_manager">Cóidgo Fuente</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="squad_state_manager.html#squad_state_manager.BaseState"><code class="docutils literal notranslate"><span class="pre">BaseState</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="squad_state_manager.html#squad_state_manager.BaseState.execute"><code class="docutils literal notranslate"><span class="pre">BaseState.execute()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="squad_state_manager.html#squad_state_manager.BaseState.command_callback"><code class="docutils literal notranslate"><span class="pre">BaseState.command_callback()</span></code></a></li>
@@ -249,7 +250,7 @@ dinámicamente (por ejemplo, “baño1”, “baño2”) y evita duplicados en e
 </section>
 <section id="caracteristicas-clave">
 <h2>Características Clave<a class="headerlink" href="#caracteristicas-clave" title="Enlace permanente a este encabezado"></a></h2>
-<ol class="arabic">
+<ol class="arabic simple">
 <li><p><strong>Agrupamiento por Radio (``radius_threshold``)</strong>
 Si un objeto detectado se encuentra dentro de un <strong>radio máximo</strong> respecto al centro
 de un cluster existente, se añade a dicho cluster. De lo contrario, se crea uno nuevo.</p></li>
@@ -260,56 +261,50 @@ nueva estación (nombre, tipo, coordenadas, etc.).</p></li>
 <li><p><strong>Nombres Únicos</strong>
 Si ya existe “baño”, la siguiente estación del mismo tipo se llama “baño2”, y así
 sucesivamente.</p></li>
-<li><p><strong>Integración con Otros Módulos</strong>
-- Interactúa con el nodo de <strong>detección de objetos</strong> (publica en <code class="docutils literal notranslate"><span class="pre">/detected_objects</span></code>).
-- Provee estaciones a la <strong>máquina de estados</strong> y a la <strong>interfaz</strong>, facilitando</p>
-<blockquote>
-<div><p>la navegación hacia dichas estaciones.</p>
-</div></blockquote>
+<li><p><strong>Integración con Otros Módulos</strong></p>
+<ul class="simple">
+<li><p>Interactúa con el nodo de <strong>detección de objetos</strong> (publica en <code class="docutils literal notranslate"><span class="pre">/detected_objects</span></code>).</p></li>
+<li><p>Provee estaciones a la <strong>máquina de estados</strong> y a la <strong>interfaz</strong>, facilitando
+la navegación hacia dichas estaciones.</p></li>
+</ul>
 </li>
 </ol>
 </section>
 <section id="funciones-principales">
 <h2>Funciones Principales<a class="headerlink" href="#funciones-principales" title="Enlace permanente a este encabezado"></a></h2>
-<ol class="arabic">
-<li><p><strong>Inicialización del Nodo</strong>
-- Inicia el nodo ROS con el nombre <code class="docutils literal notranslate"><span class="pre">station_manager_node</span></code>.
-- Lee parámetros como <code class="docutils literal notranslate"><span class="pre">radius_threshold</span></code> (umbral de distancia para el agrupamiento).
-- Crea suscriptores y publicadores:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>Suscriptor: <code class="docutils literal notranslate"><span class="pre">/detected_objects</span></code> (para recibir datos de objetos).</p></li>
-<li><p>Publicador: <code class="docutils literal notranslate"><span class="pre">/stations_info</span></code> (para difundir nuevas estaciones).</p></li>
-</ul>
-</div></blockquote>
-</li>
-<li><p><strong>``detected_object_callback``</strong>
-- Cada objeto detectado se clasifica con la función <code class="docutils literal notranslate"><span class="pre">classify_object</span></code> (por ejemplo,</p>
-<blockquote>
-<div><p>“habitación”, “baño”, “comedor”), según tablas o listas predefinidas.</p>
-</div></blockquote>
+<ol class="arabic simple">
+<li><p><strong>Inicialización del Nodo</strong></p>
 <ul class="simple">
+<li><p>Inicia el nodo ROS con el nombre <code class="docutils literal notranslate"><span class="pre">station_manager_node</span></code>.</p></li>
+<li><p>Lee parámetros como <code class="docutils literal notranslate"><span class="pre">radius_threshold</span></code> (umbral de distancia para el agrupamiento).</p></li>
+<li><p>Crea suscriptores y publicadores:
+- Suscriptor: <code class="docutils literal notranslate"><span class="pre">/detected_objects</span></code> (para recibir datos de objetos).
+- Publicador: <code class="docutils literal notranslate"><span class="pre">/stations_info</span></code> (para difundir nuevas estaciones).</p></li>
+</ul>
+</li>
+<li><p><strong>``detected_object_callback``</strong></p>
+<ul class="simple">
+<li><p>Cada objeto detectado se clasifica con la función <code class="docutils literal notranslate"><span class="pre">classify_object</span></code> (por ejemplo,
+“habitación”, “baño”, “comedor”), según tablas o listas predefinidas.</p></li>
 <li><p>Se busca si el objeto puede agregarse a un cluster existente (distancia al centro
 menor que <code class="docutils literal notranslate"><span class="pre">radius_threshold</span></code>).</p></li>
 <li><p>Si el cluster resultante contiene al menos <strong>2 objetos</strong> y aún no se había publicado
 como estación, se crea la estación.</p></li>
 </ul>
 </li>
-<li><p><strong>Gestión de Clusters y Estaciones</strong>
-- Calcula la posición media de los objetos en el cluster mediante</p>
-<blockquote>
-<div><p><code class="docutils literal notranslate"><span class="pre">calculate_average_position</span></code>.</p>
-</div></blockquote>
+<li><p><strong>Gestión de Clusters y Estaciones</strong></p>
 <ul class="simple">
+<li><p>Calcula la posición media de los objetos en el cluster mediante
+<code class="docutils literal notranslate"><span class="pre">calculate_average_position</span></code>.</p></li>
 <li><p>Publica la estación en el tópico <code class="docutils literal notranslate"><span class="pre">/stations_info</span></code>.</p></li>
 <li><p>Actualiza el diccionario <code class="docutils literal notranslate"><span class="pre">almacen_estaciones</span></code> y lo muestra por consola.</p></li>
 </ul>
 </li>
-<li><p><strong>Bloqueo de Hilos</strong>
-- Para evitar condiciones de carrera, utiliza un <strong>lock</strong> al modificar estructuras</p>
-<blockquote>
-<div><p>compartidas como <code class="docutils literal notranslate"><span class="pre">almacen_estaciones</span></code>.</p>
-</div></blockquote>
+<li><p><strong>Bloqueo de Hilos</strong></p>
+<ul class="simple">
+<li><p>Para evitar condiciones de carrera, utiliza un <strong>lock</strong> al modificar estructuras
+compartidas como <code class="docutils literal notranslate"><span class="pre">almacen_estaciones</span></code>.</p></li>
+</ul>
 </li>
 </ol>
 </section>
