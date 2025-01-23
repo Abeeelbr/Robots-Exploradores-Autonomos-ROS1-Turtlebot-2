@@ -1,0 +1,24 @@
+# .readthedocs.yaml
+
+version: 2
+
+# Define el lenguaje y la versión de Python
+language: es
+python:
+  version: 3.8
+  install:
+    - requirements: doc-RobotsExploradores/source/requirements.txt
+
+# Configuración específica de Sphinx
+sphinx:
+  configuration: doc-RobotsExploradores/source/conf.py
+
+# Opciones de build
+build:
+  os: ubuntu-20.04
+  tools:
+    sphinx: "4.5.0"  
+
+# Configuraciones adicionales de Sphinx
+formats: 
+  - html
