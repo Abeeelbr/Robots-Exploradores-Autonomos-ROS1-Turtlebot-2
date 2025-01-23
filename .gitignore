@@ -1,0 +1,4 @@
+#Ignorar los ficheros buil de la documnetacion
+doc-RobotsExploradores/build/
+
+

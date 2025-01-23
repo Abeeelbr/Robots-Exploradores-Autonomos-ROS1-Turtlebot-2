@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Station Manager Node &mdash; documentación de Robots Exploradores - ROS 1 - 2.0</title>
+  <title>Station Manager Node (squad_station_manager_node) &mdash; documentación de Robots Exploradores - ROS 1 - 3.0</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=eafc0fe6" />
@@ -15,7 +15,7 @@
     <link rel="shortcut icon" href="_static/faviconUA.ico"/>
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=1c71654e"></script>
+      <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=6da42f17"></script>
       <script src="_static/doctools.js?v=888ff710"></script>
       <script src="_static/sphinx_highlight.js?v=4825356b"></script>
       <script src="_static/translations.js?v=efdbd0b9"></script>
@@ -23,7 +23,7 @@
     <link rel="index" title="Índice" href="genindex.html" />
     <link rel="search" title="Búsqueda" href="search.html" />
     <link rel="next" title="Interfaz de Gestión de Estados del TurtleBot" href="squad_interfaz.html" />
-    <link rel="prev" title="Control Autónomo (squad_autonomous_control_action)" href="squad_autonomous_control_action.html" /> 
+    <link rel="prev" title="Detección de Objetos (squad_object_detection_action)" href="squad_object_detection_action.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -48,7 +48,11 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contenidos:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="introduccion.html">Introducción</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduccion.html">Introducción</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="introduccion.html#objetivos-principales">Objetivos principales</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduccion.html#caracteristicas-clave">Características clave</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="configuracion.html">Configuración del Entorno</a></li>
 <li class="toctree-l1"><a class="reference internal" href="uso.html">Uso del Sistema</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="uso.html#pasos-para-lanzar-el-sistema">Pasos para Lanzar el Sistema</a></li>
@@ -58,123 +62,99 @@
 <li class="toctree-l2"><a class="reference internal" href="uso.html#topicos-importantes">Tópicos Importantes</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="squad_state_manager.html">Máquina de Estados (squad_state_manager)</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="squad_state_manager.html#squad_state_manager.BaseState"><code class="docutils literal notranslate"><span class="pre">BaseState</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="squad_state_manager.html#squad_state_manager.BaseState.command_callback"><code class="docutils literal notranslate"><span class="pre">BaseState.command_callback()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="squad_state_manager.html#squad_state_manager.BaseState.execute"><code class="docutils literal notranslate"><span class="pre">BaseState.execute()</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="squad_state_manager.html">Máquina de Estados (<cite>squad_state_manager</cite>)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="squad_state_manager.html#descripcion-general">Descripción General</a></li>
+<li class="toctree-l2"><a class="reference internal" href="squad_state_manager.html#transiciones-entre-estados">Transiciones entre Estados</a></li>
+<li class="toctree-l2"><a class="reference internal" href="squad_state_manager.html#parametros-configurables">Parámetros Configurables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="squad_state_manager.html#prueba-del-nodo">Prueba del Nodo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="squad_state_manager.html#topicos-relevantes">Tópicos Relevantes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="squad_state_manager.html#integracion-con-otros-nodos">Integración con Otros Nodos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="squad_state_manager.html#conclusiones">Conclusiones</a></li>
+<li class="toctree-l2"><a class="reference internal" href="squad_state_manager.html#module-squad_state_manager">Cóidgo Fuente</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="squad_state_manager.html#squad_state_manager.BaseState"><code class="docutils literal notranslate"><span class="pre">BaseState</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="squad_state_manager.html#squad_state_manager.BaseState.execute"><code class="docutils literal notranslate"><span class="pre">BaseState.execute()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="squad_state_manager.html#squad_state_manager.BaseState.command_callback"><code class="docutils literal notranslate"><span class="pre">BaseState.command_callback()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="squad_state_manager.html#squad_state_manager.EstadoExploracion"><code class="docutils literal notranslate"><span class="pre">EstadoExploracion</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="squad_state_manager.html#squad_state_manager.EstadoExploracion.control_mode_callback"><code class="docutils literal notranslate"><span class="pre">EstadoExploracion.control_mode_callback()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="squad_state_manager.html#squad_state_manager.EstadoExploracion.execute"><code class="docutils literal notranslate"><span class="pre">EstadoExploracion.execute()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="squad_state_manager.html#squad_state_manager.EstadoExploracion.feedback_cb"><code class="docutils literal notranslate"><span class="pre">EstadoExploracion.feedback_cb()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="squad_state_manager.html#squad_state_manager.EstadoExploracion.object_callback"><code class="docutils literal notranslate"><span class="pre">EstadoExploracion.object_callback()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="squad_state_manager.html#squad_state_manager.EstadoReposo"><code class="docutils literal notranslate"><span class="pre">EstadoReposo</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="squad_state_manager.html#squad_state_manager.EstadoReposo.execute"><code class="docutils literal notranslate"><span class="pre">EstadoReposo.execute()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="squad_state_manager.html#squad_state_manager.EstadoNavegacion"><code class="docutils literal notranslate"><span class="pre">EstadoNavegacion</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="squad_state_manager.html#squad_state_manager.EstadoNavegacion.command_callback"><code class="docutils literal notranslate"><span class="pre">EstadoNavegacion.command_callback()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="squad_state_manager.html#squad_state_manager.EstadoNavegacion.control_mode_callback"><code class="docutils literal notranslate"><span class="pre">EstadoNavegacion.control_mode_callback()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="squad_state_manager.html#squad_state_manager.EstadoNavegacion.execute"><code class="docutils literal notranslate"><span class="pre">EstadoNavegacion.execute()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="squad_state_manager.html#squad_state_manager.EstadoNavegacion.moveTo"><code class="docutils literal notranslate"><span class="pre">EstadoNavegacion.moveTo()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="squad_state_manager.html#squad_state_manager.EstadoNavegacion.stations_callback"><code class="docutils literal notranslate"><span class="pre">EstadoNavegacion.stations_callback()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="squad_state_manager.html#squad_state_manager.EstadoExploracion"><code class="docutils literal notranslate"><span class="pre">EstadoExploracion</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="squad_state_manager.html#squad_state_manager.EstadoExploracion.execute"><code class="docutils literal notranslate"><span class="pre">EstadoExploracion.execute()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="squad_state_manager.html#squad_state_manager.EstadoExploracion.control_mode_callback"><code class="docutils literal notranslate"><span class="pre">EstadoExploracion.control_mode_callback()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="squad_state_manager.html#squad_state_manager.EstadoExploracion.feedback_cb"><code class="docutils literal notranslate"><span class="pre">EstadoExploracion.feedback_cb()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="squad_state_manager.html#squad_state_manager.EstadoExploracion.object_callback"><code class="docutils literal notranslate"><span class="pre">EstadoExploracion.object_callback()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="squad_state_manager.html#squad_state_manager.EstadoReposo"><code class="docutils literal notranslate"><span class="pre">EstadoReposo</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="squad_state_manager.html#squad_state_manager.EstadoReposo.execute"><code class="docutils literal notranslate"><span class="pre">EstadoReposo.execute()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="squad_state_manager.html#squad_state_manager.EstadoNavegacion"><code class="docutils literal notranslate"><span class="pre">EstadoNavegacion</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="squad_state_manager.html#squad_state_manager.EstadoNavegacion.stations_callback"><code class="docutils literal notranslate"><span class="pre">EstadoNavegacion.stations_callback()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="squad_state_manager.html#squad_state_manager.EstadoNavegacion.command_callback"><code class="docutils literal notranslate"><span class="pre">EstadoNavegacion.command_callback()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="squad_state_manager.html#squad_state_manager.EstadoNavegacion.execute"><code class="docutils literal notranslate"><span class="pre">EstadoNavegacion.execute()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="squad_state_manager.html#squad_state_manager.EstadoNavegacion.moveTo"><code class="docutils literal notranslate"><span class="pre">EstadoNavegacion.moveTo()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="squad_state_manager.html#squad_state_manager.EstadoNavegacion.control_mode_callback"><code class="docutils literal notranslate"><span class="pre">EstadoNavegacion.control_mode_callback()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="squad_state_manager.html#squad_state_manager.TurtleBotStateManager"><code class="docutils literal notranslate"><span class="pre">TurtleBotStateManager</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="squad_state_manager.html#squad_state_manager.TurtleBotStateManager.run_state_machine"><code class="docutils literal notranslate"><span class="pre">TurtleBotStateManager.run_state_machine()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="pkg_exploracion.html">Paquete de Exploración (exploracion)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="squad_object_detection_action.html">Detección de Objetos (squad_object_detection_action)</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.calculate_world_coordinates"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.calculate_world_coordinates()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.callback"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.callback()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.camera_info_callback"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.camera_info_callback()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.detect_objects"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.detect_objects()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.display_debug_info"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.display_debug_info()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.execute"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.execute()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.get_depth_at_pixel"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.get_depth_at_pixel()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.get_robot_pose"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.get_robot_pose()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.load_parameters"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.load_parameters()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.process_latest_data"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.process_latest_data()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.subscribe_to_topics"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.subscribe_to_topics()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="squad_state_manager.html#squad_state_manager.TurtleBotStateManager"><code class="docutils literal notranslate"><span class="pre">TurtleBotStateManager</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="squad_state_manager.html#squad_state_manager.TurtleBotStateManager.run_state_machine"><code class="docutils literal notranslate"><span class="pre">TurtleBotStateManager.run_state_machine()</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="squad_approach_control_action.html">Aproximación a Objetos (squad_approach_control_action)</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="squad_approach_control_action.html#squad_approach_control_action.ApproachObjectActionServer"><code class="docutils literal notranslate"><span class="pre">ApproachObjectActionServer</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="squad_approach_control_action.html#squad_approach_control_action.ApproachObjectActionServer.execute_cb"><code class="docutils literal notranslate"><span class="pre">ApproachObjectActionServer.execute_cb()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="squad_approach_control_action.html#squad_approach_control_action.ApproachObjectActionServer.get_robot_pose"><code class="docutils literal notranslate"><span class="pre">ApproachObjectActionServer.get_robot_pose()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="squad_approach_control_action.html#squad_approach_control_action.ApproachObjectActionServer.object_callback"><code class="docutils literal notranslate"><span class="pre">ApproachObjectActionServer.object_callback()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="squad_approach_control_action.html#squad_approach_control_action.ApproachObjectActionServer.preempt_cb"><code class="docutils literal notranslate"><span class="pre">ApproachObjectActionServer.preempt_cb()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="squad_approach_control_action.html#squad_approach_control_action.ApproachObjectState"><code class="docutils literal notranslate"><span class="pre">ApproachObjectState</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="squad_approach_control_action.html#squad_approach_control_action.ApproachObjectState.execute"><code class="docutils literal notranslate"><span class="pre">ApproachObjectState.execute()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="squad_approach_control_action.html#squad_approach_control_action.ApproachObjectState.object_callback"><code class="docutils literal notranslate"><span class="pre">ApproachObjectState.object_callback()</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="pkg_exploracion.html">Paquete de Exploración (<cite>squad_exploracion</cite>)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pkg_exploracion.html#descripcion-general">Descripción General</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pkg_exploracion.html#componentes-principales">Componentes Principales</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pkg_exploracion.html#interaccion-con-otros-paquetes">Interacción con Otros Paquetes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pkg_exploracion.html#ejecucion-del-paquete">Ejecución del Paquete</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pkg_exploracion.html#topicos-relevantes">Tópicos Relevantes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pkg_exploracion.html#archivos-de-configuracion">Archivos de Configuración</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pkg_exploracion.html#pruebas-y-consideraciones">Pruebas y Consideraciones</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="squad_approach_control_action.html#squad_approach_control_action.CenterObjectState"><code class="docutils literal notranslate"><span class="pre">CenterObjectState</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="squad_approach_control_action.html#squad_approach_control_action.CenterObjectState.execute"><code class="docutils literal notranslate"><span class="pre">CenterObjectState.execute()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="squad_approach_control_action.html#squad_approach_control_action.CenterObjectState.object_callback"><code class="docutils literal notranslate"><span class="pre">CenterObjectState.object_callback()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="squad_approach_control_action.html#squad_approach_control_action.CheckPositionState"><code class="docutils literal notranslate"><span class="pre">CheckPositionState</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="squad_approach_control_action.html#squad_approach_control_action.CheckPositionState.calculate_distance"><code class="docutils literal notranslate"><span class="pre">CheckPositionState.calculate_distance()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="squad_approach_control_action.html#squad_approach_control_action.CheckPositionState.calculate_orientation_diff"><code class="docutils literal notranslate"><span class="pre">CheckPositionState.calculate_orientation_diff()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="squad_approach_control_action.html#squad_approach_control_action.CheckPositionState.execute"><code class="docutils literal notranslate"><span class="pre">CheckPositionState.execute()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="squad_approach_control_action.html#squad_approach_control_action.CheckPositionState.quaternion_to_yaw"><code class="docutils literal notranslate"><span class="pre">CheckPositionState.quaternion_to_yaw()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="squad_approach_control_action.html#squad_approach_control_action.MoveToPositionState"><code class="docutils literal notranslate"><span class="pre">MoveToPositionState</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="squad_approach_control_action.html#squad_approach_control_action.MoveToPositionState.execute"><code class="docutils literal notranslate"><span class="pre">MoveToPositionState.execute()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="squad_approach_control_action.html#squad_approach_control_action.StartObjectDetectionState"><code class="docutils literal notranslate"><span class="pre">StartObjectDetectionState</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="squad_approach_control_action.html#squad_approach_control_action.StartObjectDetectionState.execute"><code class="docutils literal notranslate"><span class="pre">StartObjectDetectionState.execute()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="squad_approach_control_action.html#squad_approach_control_action.StopObjectDetectionState"><code class="docutils literal notranslate"><span class="pre">StopObjectDetectionState</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="squad_approach_control_action.html#squad_approach_control_action.StopObjectDetectionState.execute"><code class="docutils literal notranslate"><span class="pre">StopObjectDetectionState.execute()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="squad_approach_control_action.html#squad_approach_control_action.WaitState"><code class="docutils literal notranslate"><span class="pre">WaitState</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="squad_approach_control_action.html#squad_approach_control_action.WaitState.execute"><code class="docutils literal notranslate"><span class="pre">WaitState.execute()</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="squad_object_detection_action.html">Detección de Objetos (<cite>squad_object_detection_action</cite>)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="squad_object_detection_action.html#descripcion-general">Descripción General</a></li>
+<li class="toctree-l2"><a class="reference internal" href="squad_object_detection_action.html#flujo-de-operacion">Flujo de Operación</a></li>
+<li class="toctree-l2"><a class="reference internal" href="squad_object_detection_action.html#parametros-importantes">Parámetros Importantes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="squad_object_detection_action.html#prueba-del-nodo">Prueba del Nodo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="squad_object_detection_action.html#topicos-relevantes">Tópicos Relevantes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="squad_object_detection_action.html#module-squad_object_detection_action">Código Fuente</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.load_parameters"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.load_parameters()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.subscribe_to_topics"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.subscribe_to_topics()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.callback"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.callback()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.camera_info_callback"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.camera_info_callback()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.execute"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.execute()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.process_latest_data"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.process_latest_data()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.detect_objects"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.detect_objects()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.calculate_world_coordinates"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.calculate_world_coordinates()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.get_depth_at_pixel"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.get_depth_at_pixel()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.get_robot_pose"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.get_robot_pose()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.display_debug_info"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.display_debug_info()</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="squad_autonomous_control_action.html">Control Autónomo (squad_autonomous_control_action)</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="squad_autonomous_control_action.html#squad_autonomous_control_action.AutonomousControlActionServer"><code class="docutils literal notranslate"><span class="pre">AutonomousControlActionServer</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="squad_autonomous_control_action.html#squad_autonomous_control_action.AutonomousControlActionServer.decide_motion"><code class="docutils literal notranslate"><span class="pre">AutonomousControlActionServer.decide_motion()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="squad_autonomous_control_action.html#squad_autonomous_control_action.AutonomousControlActionServer.execute_cb"><code class="docutils literal notranslate"><span class="pre">AutonomousControlActionServer.execute_cb()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="squad_autonomous_control_action.html#squad_autonomous_control_action.AutonomousControlActionServer.get_laser_regions"><code class="docutils literal notranslate"><span class="pre">AutonomousControlActionServer.get_laser_regions()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="squad_autonomous_control_action.html#squad_autonomous_control_action.AutonomousControlActionServer.laser_callback"><code class="docutils literal notranslate"><span class="pre">AutonomousControlActionServer.laser_callback()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="squad_autonomous_control_action.html#squad_autonomous_control_action.AutonomousControlActionServer.stop_robot"><code class="docutils literal notranslate"><span class="pre">AutonomousControlActionServer.stop_robot()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="squad_object_detection_action.html#conclusiones">Conclusiones</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Station Manager Node</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Station Manager Node (<cite>squad_station_manager_node</cite>)</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#descripcion-general">Descripción General</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#caracteristicas-clave">Características Clave</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#funciones-principales">Funciones Principales</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#estructura-del-codigo">Estructura del Código</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#parametros-configurables">Parámetros Configurables</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#topicos-utilizados">Tópicos Utilizados</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#uso-del-nodo">Uso del Nodo</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#documentacion-adicional">Documentación Adicional</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#squad_station_manager_node.StationManagerNode"><code class="docutils literal notranslate"><span class="pre">StationManagerNode</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#squad_station_manager_node.StationManagerNode.add_completed_station"><code class="docutils literal notranslate"><span class="pre">StationManagerNode.add_completed_station()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#squad_station_manager_node.StationManagerNode.calculate_average_position"><code class="docutils literal notranslate"><span class="pre">StationManagerNode.calculate_average_position()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#squad_station_manager_node.StationManagerNode.classify_object"><code class="docutils literal notranslate"><span class="pre">StationManagerNode.classify_object()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#squad_station_manager_node.StationManagerNode.detected_object_callback"><code class="docutils literal notranslate"><span class="pre">StationManagerNode.detected_object_callback()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#squad_station_manager_node.StationManagerNode.distance_to_center"><code class="docutils literal notranslate"><span class="pre">StationManagerNode.distance_to_center()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#squad_station_manager_node.StationManagerNode.add_completed_station"><code class="docutils literal notranslate"><span class="pre">StationManagerNode.add_completed_station()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#squad_station_manager_node.StationManagerNode.publish_all_stations"><code class="docutils literal notranslate"><span class="pre">StationManagerNode.publish_all_stations()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#squad_station_manager_node.StationManagerNode.calculate_average_position"><code class="docutils literal notranslate"><span class="pre">StationManagerNode.calculate_average_position()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#squad_station_manager_node.StationManagerNode.distance_to_center"><code class="docutils literal notranslate"><span class="pre">StationManagerNode.distance_to_center()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#squad_station_manager_node.StationManagerNode.classify_object"><code class="docutils literal notranslate"><span class="pre">StationManagerNode.classify_object()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -183,37 +163,37 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="squad_interfaz.html">Interfaz de Gestión de Estados del TurtleBot</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="squad_interfaz.html#introduccion">Introducción</a></li>
+<li class="toctree-l2"><a class="reference internal" href="squad_interfaz.html#dependencias">Dependencias</a></li>
 <li class="toctree-l2"><a class="reference internal" href="squad_interfaz.html#estructura-del-nodo">Estructura del Nodo</a></li>
 <li class="toctree-l2"><a class="reference internal" href="squad_interfaz.html#parametros-configurables">Parámetros Configurables</a></li>
-<li class="toctree-l2"><a class="reference internal" href="squad_interfaz.html#topicos-utilizados">Tópicos Utilizados</a></li>
-<li class="toctree-l2"><a class="reference internal" href="squad_interfaz.html#ejemplo-de-ejecucion">Ejemplo de Ejecución</a></li>
 <li class="toctree-l2"><a class="reference internal" href="squad_interfaz.html#uso-de-la-interfaz">Uso de la Interfaz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="squad_interfaz.html#ejemplo-de-ejecucion">Ejemplo de Ejecución</a></li>
 <li class="toctree-l2"><a class="reference internal" href="squad_interfaz.html#module-squad_interfaz">Código Fuente</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="squad_interfaz.html#squad_interfaz.InterfazManager"><code class="docutils literal notranslate"><span class="pre">InterfazManager</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="squad_interfaz.html#squad_interfaz.InterfazManager.camera_callback"><code class="docutils literal notranslate"><span class="pre">InterfazManager.camera_callback()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="squad_interfaz.html#squad_interfaz.InterfazManager.control_mode_callback"><code class="docutils literal notranslate"><span class="pre">InterfazManager.control_mode_callback()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="squad_interfaz.html#squad_interfaz.InterfazManager.create_exploration_controls"><code class="docutils literal notranslate"><span class="pre">InterfazManager.create_exploration_controls()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="squad_interfaz.html#squad_interfaz.InterfazManager.current_state_callback"><code class="docutils literal notranslate"><span class="pre">InterfazManager.current_state_callback()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="squad_interfaz.html#squad_interfaz.InterfazManager.get_command_for_state"><code class="docutils literal notranslate"><span class="pre">InterfazManager.get_command_for_state()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="squad_interfaz.html#squad_interfaz.InterfazManager.stations_callback"><code class="docutils literal notranslate"><span class="pre">InterfazManager.stations_callback()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="squad_interfaz.html#squad_interfaz.InterfazManager.get_robot_pose"><code class="docutils literal notranslate"><span class="pre">InterfazManager.get_robot_pose()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="squad_interfaz.html#squad_interfaz.InterfazManager.current_state_callback"><code class="docutils literal notranslate"><span class="pre">InterfazManager.current_state_callback()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="squad_interfaz.html#squad_interfaz.InterfazManager.setup_gui"><code class="docutils literal notranslate"><span class="pre">InterfazManager.setup_gui()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="squad_interfaz.html#squad_interfaz.InterfazManager.create_exploration_controls"><code class="docutils literal notranslate"><span class="pre">InterfazManager.create_exploration_controls()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="squad_interfaz.html#squad_interfaz.InterfazManager.get_command_for_state"><code class="docutils literal notranslate"><span class="pre">InterfazManager.get_command_for_state()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="squad_interfaz.html#squad_interfaz.InterfazManager.on_state_button_click"><code class="docutils literal notranslate"><span class="pre">InterfazManager.on_state_button_click()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="squad_interfaz.html#squad_interfaz.InterfazManager.update_state_highlight"><code class="docutils literal notranslate"><span class="pre">InterfazManager.update_state_highlight()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="squad_interfaz.html#squad_interfaz.InterfazManager.go_to_station"><code class="docutils literal notranslate"><span class="pre">InterfazManager.go_to_station()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="squad_interfaz.html#squad_interfaz.InterfazManager.map_callback"><code class="docutils literal notranslate"><span class="pre">InterfazManager.map_callback()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="squad_interfaz.html#squad_interfaz.InterfazManager.update_station_list"><code class="docutils literal notranslate"><span class="pre">InterfazManager.update_station_list()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="squad_interfaz.html#squad_interfaz.InterfazManager.on_arrow_up"><code class="docutils literal notranslate"><span class="pre">InterfazManager.on_arrow_up()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="squad_interfaz.html#squad_interfaz.InterfazManager.on_arrow_down"><code class="docutils literal notranslate"><span class="pre">InterfazManager.on_arrow_down()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="squad_interfaz.html#squad_interfaz.InterfazManager.on_arrow_left"><code class="docutils literal notranslate"><span class="pre">InterfazManager.on_arrow_left()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="squad_interfaz.html#squad_interfaz.InterfazManager.on_arrow_right"><code class="docutils literal notranslate"><span class="pre">InterfazManager.on_arrow_right()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="squad_interfaz.html#squad_interfaz.InterfazManager.on_arrow_up"><code class="docutils literal notranslate"><span class="pre">InterfazManager.on_arrow_up()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="squad_interfaz.html#squad_interfaz.InterfazManager.on_closing"><code class="docutils literal notranslate"><span class="pre">InterfazManager.on_closing()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="squad_interfaz.html#squad_interfaz.InterfazManager.on_key_release"><code class="docutils literal notranslate"><span class="pre">InterfazManager.on_key_release()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="squad_interfaz.html#squad_interfaz.InterfazManager.on_state_button_click"><code class="docutils literal notranslate"><span class="pre">InterfazManager.on_state_button_click()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="squad_interfaz.html#squad_interfaz.InterfazManager.control_mode_callback"><code class="docutils literal notranslate"><span class="pre">InterfazManager.control_mode_callback()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="squad_interfaz.html#squad_interfaz.InterfazManager.set_switch_state"><code class="docutils literal notranslate"><span class="pre">InterfazManager.set_switch_state()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="squad_interfaz.html#squad_interfaz.InterfazManager.setup_gui"><code class="docutils literal notranslate"><span class="pre">InterfazManager.setup_gui()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="squad_interfaz.html#squad_interfaz.InterfazManager.signal_handler"><code class="docutils literal notranslate"><span class="pre">InterfazManager.signal_handler()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="squad_interfaz.html#squad_interfaz.InterfazManager.stations_callback"><code class="docutils literal notranslate"><span class="pre">InterfazManager.stations_callback()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="squad_interfaz.html#squad_interfaz.InterfazManager.subscribe_to_camera"><code class="docutils literal notranslate"><span class="pre">InterfazManager.subscribe_to_camera()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="squad_interfaz.html#squad_interfaz.InterfazManager.switch_camera_topic"><code class="docutils literal notranslate"><span class="pre">InterfazManager.switch_camera_topic()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="squad_interfaz.html#squad_interfaz.InterfazManager.update_state_highlight"><code class="docutils literal notranslate"><span class="pre">InterfazManager.update_state_highlight()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="squad_interfaz.html#squad_interfaz.InterfazManager.update_station_list"><code class="docutils literal notranslate"><span class="pre">InterfazManager.update_station_list()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="squad_interfaz.html#squad_interfaz.InterfazManager.camera_callback"><code class="docutils literal notranslate"><span class="pre">InterfazManager.camera_callback()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="squad_interfaz.html#squad_interfaz.InterfazManager.map_callback"><code class="docutils literal notranslate"><span class="pre">InterfazManager.map_callback()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="squad_interfaz.html#squad_interfaz.InterfazManager.update_visualization"><code class="docutils literal notranslate"><span class="pre">InterfazManager.update_visualization()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="squad_interfaz.html#squad_interfaz.InterfazManager.on_closing"><code class="docutils literal notranslate"><span class="pre">InterfazManager.on_closing()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="squad_interfaz.html#squad_interfaz.InterfazManager.signal_handler"><code class="docutils literal notranslate"><span class="pre">InterfazManager.signal_handler()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -236,7 +216,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Station Manager Node</li>
+      <li class="breadcrumb-item active">Station Manager Node (<cite>squad_station_manager_node</cite>)</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/squad_station_manager_node.rst.txt" rel="nofollow"> Ver código fuente de la página</a>
       </li>
@@ -246,96 +226,141 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="station-manager-node">
-<h1>Station Manager Node<a class="headerlink" href="#station-manager-node" title="Enlace permanente a este encabezado"></a></h1>
-<p>Este nodo gestiona estaciones en el mapa basándose en la detección de objetos. Es parte fundamental del sistema de planificación del robot.</p>
+  <section id="station-manager-node-squad-station-manager-node">
+<h1>Station Manager Node (<cite>squad_station_manager_node</cite>)<a class="headerlink" href="#station-manager-node-squad-station-manager-node" title="Enlace permanente a este encabezado"></a></h1>
+<p>Este nodo coordina la <strong>creación y gestión</strong> de “estaciones” en el mapa del robot,
+basándose en la <strong>detección de objetos</strong>. Constituye un pilar fundamental del sistema
+de <strong>planificación</strong> para el desplazamiento y la organización del entorno.</p>
 <section id="descripcion-general">
 <h2>Descripción General<a class="headerlink" href="#descripcion-general" title="Enlace permanente a este encabezado"></a></h2>
-<p>El nodo se encarga de:</p>
 <ul class="simple">
-<li><p>Publicar estaciones cuando se detecten al menos dos objetos del mismo tipo dentro de un radio definido.</p></li>
-<li><p>Evitar múltiples publicaciones para la misma estación.</p></li>
-<li><p>Mantener un diccionario <code class="docutils literal notranslate"><span class="pre">almacen_estaciones</span></code> con las coordenadas promedio de cada estación, por ejemplo:
-<code class="docutils literal notranslate"><span class="pre">{&quot;HOME&quot;:</span> <span class="pre">(5,</span> <span class="pre">4),</span> <span class="pre">&quot;ESTACION1&quot;:</span> <span class="pre">(1,</span> <span class="pre">1),</span> <span class="pre">&quot;ESTACION2&quot;:</span> <span class="pre">(2,</span> <span class="pre">2)}</span></code>.</p></li>
-<li><p>Manejar nombres únicos para estaciones repetidas (por ejemplo, «baño», «baño2», etc.).</p></li>
+<li><p><strong>Objetivo</strong>:
+Identificar grupos (clusters) de objetos detectados y <strong>generar estaciones</strong> cuando
+se cumplen criterios de cercanía y tipología (por ejemplo, dos sillas juntas,
+indicando una “zona de asientos”).</p></li>
+<li><p><strong>Funcionamiento</strong>:
+El nodo se suscribe al tópico <code class="docutils literal notranslate"><span class="pre">/detected_objects</span></code> y, por cada objeto detectado,
+decide si se asocia a un cluster ya existente o crea uno nuevo. Cuando un cluster
+reúne al menos <strong>dos objetos del mismo tipo</strong> y se confirma su posición promedio,
+el nodo publica la estación resultante en <code class="docutils literal notranslate"><span class="pre">/stations_info</span></code>.</p></li>
+<li><p><strong>Diccionario de estaciones</strong>:
+Almacena las coordenadas promedio de cada estación, con nombres generados
+dinámicamente (por ejemplo, “baño1”, “baño2”) y evita duplicados en estaciones ya publicadas.</p></li>
 </ul>
-<p><strong>Características Clave:</strong></p>
+</section>
+<section id="caracteristicas-clave">
+<h2>Características Clave<a class="headerlink" href="#caracteristicas-clave" title="Enlace permanente a este encabezado"></a></h2>
+<ol class="arabic simple">
+<li><p><strong>Agrupamiento por Radio (``radius_threshold``)</strong>
+Si un objeto detectado se encuentra dentro de un <strong>radio máximo</strong> respecto al centro
+de un cluster existente, se añade a dicho cluster. De lo contrario, se crea uno nuevo.</p></li>
+<li><p><strong>Publicación de Estaciones Completadas</strong>
+Cuando el cluster cumple el criterio de ser una estación (p. ej., dos o más objetos),
+se calcula la posición promedio y se emite un mensaje en <code class="docutils literal notranslate"><span class="pre">/stations_info</span></code> con la
+nueva estación (nombre, tipo, coordenadas, etc.).</p></li>
+<li><p><strong>Nombres Únicos</strong>
+Si ya existe “baño”, la siguiente estación del mismo tipo se llama “baño2”, y así
+sucesivamente.</p></li>
+<li><p><strong>Integración con Otros Módulos</strong></p>
 <ul class="simple">
-<li><p>Utiliza suscriptores y publicadores de ROS para interactuar con otros nodos.</p></li>
-<li><p>Implementa bloqueo de hilos para la manipulación segura de datos compartidos.</p></li>
-<li><p>Proporciona una salida visual del diccionario de estaciones en la consola.</p></li>
+<li><p>Interactúa con el nodo de <strong>detección de objetos</strong> (publica en <code class="docutils literal notranslate"><span class="pre">/detected_objects</span></code>).</p></li>
+<li><p>Provee estaciones a la <strong>máquina de estados</strong> y a la <strong>interfaz</strong>, facilitando
+la navegación hacia dichas estaciones.</p></li>
 </ul>
+</li>
+</ol>
 </section>
 <section id="funciones-principales">
 <h2>Funciones Principales<a class="headerlink" href="#funciones-principales" title="Enlace permanente a este encabezado"></a></h2>
-<p><strong>Inicialización del Nodo</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Inicialización del Nodo</strong></p>
 <ul class="simple">
 <li><p>Inicia el nodo ROS con el nombre <code class="docutils literal notranslate"><span class="pre">station_manager_node</span></code>.</p></li>
-<li><p>Configura parámetros como el <code class="docutils literal notranslate"><span class="pre">radius_threshold</span></code> para definir el radio máximo para agrupar objetos.</p></li>
+<li><p>Lee parámetros como <code class="docutils literal notranslate"><span class="pre">radius_threshold</span></code> (umbral de distancia para el agrupamiento).</p></li>
 <li><p>Crea suscriptores y publicadores:
-- Suscriptor al tópico <code class="docutils literal notranslate"><span class="pre">/detected_objects</span></code> para recibir detecciones.
-- Publicador al tópico <code class="docutils literal notranslate"><span class="pre">/stations_info</span></code> para transmitir la información de las estaciones.</p></li>
+- Suscriptor: <code class="docutils literal notranslate"><span class="pre">/detected_objects</span></code> (para recibir datos de objetos).
+- Publicador: <code class="docutils literal notranslate"><span class="pre">/stations_info</span></code> (para difundir nuevas estaciones).</p></li>
 </ul>
-<p><strong>Callback de Detección de Objetos</strong></p>
+</li>
+<li><p><strong>``detected_object_callback``</strong></p>
 <ul class="simple">
-<li><p>Clasifica el objeto detectado mediante la función <code class="docutils literal notranslate"><span class="pre">classify_object</span></code>.</p></li>
-<li><p>Agrupa objetos en clusters basándose en su distancia al centro del cluster.</p></li>
-<li><p>Publica estaciones completas cuando un cluster tiene al menos dos objetos.</p></li>
+<li><p>Cada objeto detectado se clasifica con la función <code class="docutils literal notranslate"><span class="pre">classify_object</span></code> (por ejemplo,
+“habitación”, “baño”, “comedor”), según tablas o listas predefinidas.</p></li>
+<li><p>Se busca si el objeto puede agregarse a un cluster existente (distancia al centro
+menor que <code class="docutils literal notranslate"><span class="pre">radius_threshold</span></code>).</p></li>
+<li><p>Si el cluster resultante contiene al menos <strong>2 objetos</strong> y aún no se había publicado
+como estación, se crea la estación.</p></li>
 </ul>
-<p><strong>Gestión de Estaciones</strong></p>
+</li>
+<li><p><strong>Gestión de Clusters y Estaciones</strong></p>
 <ul class="simple">
-<li><p>Calcula la posición promedio de los objetos en un cluster usando <code class="docutils literal notranslate"><span class="pre">calculate_average_position</span></code>.</p></li>
-<li><p>Publica las estaciones completadas en el tópico <code class="docutils literal notranslate"><span class="pre">/stations_info</span></code>.</p></li>
-<li><p>Actualiza el diccionario <code class="docutils literal notranslate"><span class="pre">almacen_estaciones</span></code> y lo imprime en la consola.</p></li>
+<li><p>Calcula la posición media de los objetos en el cluster mediante
+<code class="docutils literal notranslate"><span class="pre">calculate_average_position</span></code>.</p></li>
+<li><p>Publica la estación en el tópico <code class="docutils literal notranslate"><span class="pre">/stations_info</span></code>.</p></li>
+<li><p>Actualiza el diccionario <code class="docutils literal notranslate"><span class="pre">almacen_estaciones</span></code> y lo muestra por consola.</p></li>
 </ul>
+</li>
+<li><p><strong>Bloqueo de Hilos</strong></p>
+<ul class="simple">
+<li><p>Para evitar condiciones de carrera, utiliza un <strong>lock</strong> al modificar estructuras
+compartidas como <code class="docutils literal notranslate"><span class="pre">almacen_estaciones</span></code>.</p></li>
+</ul>
+</li>
+</ol>
 </section>
 <section id="estructura-del-codigo">
 <h2>Estructura del Código<a class="headerlink" href="#estructura-del-codigo" title="Enlace permanente a este encabezado"></a></h2>
-<p><strong>Clases y Métodos Principales</strong></p>
-<ol class="arabic simple">
-<li><p><strong>`StationManagerNode`</strong>: Clase principal que contiene toda la lógica del nodo.
-- <code class="docutils literal notranslate"><span class="pre">__init__</span></code>: Inicializa los parámetros, suscriptores y publicadores.
-- <code class="docutils literal notranslate"><span class="pre">detected_object_callback</span></code>: Maneja los mensajes de objetos detectados.
-- <code class="docutils literal notranslate"><span class="pre">add_completed_station</span></code>: Agrega estaciones completadas a las estructuras de datos y las publica.
-- <code class="docutils literal notranslate"><span class="pre">calculate_average_position</span></code>: Calcula las coordenadas promedio de un cluster.
-- <code class="docutils literal notranslate"><span class="pre">distance_to_center</span></code>: Calcula la distancia entre un objeto y el centro del cluster.
-- <code class="docutils literal notranslate"><span class="pre">classify_object</span></code>: Clasifica objetos en categorías como <code class="docutils literal notranslate"><span class="pre">habitacion</span></code>, <code class="docutils literal notranslate"><span class="pre">baño</span></code>, etc.</p></li>
-</ol>
-<p><strong>Parámetros Configurables</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>station_manager_node.py
+├── StationManagerNode (clase principal)
+│    ├── __init__()
+│    ├── detected_object_callback()
+│    ├── add_completed_station()
+│    ├── calculate_average_position()
+│    ├── distance_to_center()
+│    └── classify_object()
+</pre></div>
+</div>
+</section>
+<section id="parametros-configurables">
+<h2>Parámetros Configurables<a class="headerlink" href="#parametros-configurables" title="Enlace permanente a este encabezado"></a></h2>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">radius_threshold</span></code>: Radio máximo permitido para considerar un objeto en un cluster.</p></li>
-<li><p>Diccionario <code class="docutils literal notranslate"><span class="pre">almacen_estaciones</span></code>: Contiene las coordenadas promedio de las estaciones.</p></li>
+<li><p><strong>``radius_threshold``</strong>
+Radio máximo para considerar que un objeto pertenece a un cluster existente.</p></li>
+<li><p><strong>Diccionario ``almacen_estaciones``</strong>
+Estructura Python que mapea cada nombre de estación a sus coordenadas promedio.</p></li>
 </ul>
 </section>
 <section id="topicos-utilizados">
 <h2>Tópicos Utilizados<a class="headerlink" href="#topicos-utilizados" title="Enlace permanente a este encabezado"></a></h2>
 <ul class="simple">
-<li><p><strong>Suscriptor:</strong>
-- <code class="docutils literal notranslate"><span class="pre">/detected_objects</span></code>: Recibe detecciones de objetos con tipo y posición.</p></li>
-<li><p><strong>Publicador:</strong>
-- <code class="docutils literal notranslate"><span class="pre">/stations_info</span></code>: Publica un mensaje de tipo <code class="docutils literal notranslate"><span class="pre">StationsInfo</span></code> con todas las estaciones completadas.</p></li>
+<li><p><strong>Suscriptor</strong>:
+- <code class="docutils literal notranslate"><span class="pre">/detected_objects</span></code>: Mensajes con la información de cada objeto (tipo, posición, confianza).</p></li>
+<li><p><strong>Publicador</strong>:
+- <code class="docutils literal notranslate"><span class="pre">/stations_info</span></code>: Publica un mensaje (p. ej. <code class="docutils literal notranslate"><span class="pre">StationsInfo</span></code>) con las estaciones completadas (nombre, coordenadas, tipo).</p></li>
 </ul>
 </section>
 <section id="uso-del-nodo">
 <h2>Uso del Nodo<a class="headerlink" href="#uso-del-nodo" title="Enlace permanente a este encabezado"></a></h2>
 <ol class="arabic">
-<li><p><strong>Lanzar el Nodo:</strong></p>
-<p>Para ejecutar el nodo, usa el siguiente comando:</p>
+<li><p><strong>Lanzar el Nodo</strong>
+Para iniciar el node manager de estaciones:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rosrun<span class="w"> </span>squad_planificacion<span class="w"> </span>station_manager_node.py
 </pre></div>
 </div>
 </li>
-<li><p><strong>Configurar Parámetros:</strong></p>
-<p>Asegúrate de definir los parámetros necesarios en un archivo YAML y cargarlos al iniciar el nodo.</p>
-</li>
-<li><p><strong>Visualizar Salida:</strong></p>
-<p>Los datos de estaciones se publican en <code class="docutils literal notranslate"><span class="pre">/stations_info</span></code> y se imprimen en la consola.</p>
-</li>
+<li><p><strong>Configurar Parámetros</strong>
+A través de un archivo YAML o parámetros en la línea de comando, define:
+- <code class="docutils literal notranslate"><span class="pre">radius_threshold</span></code>
+- Listas de tipos de objetos (en caso de clasificar objetos como “baño”, “comedor”, etc.).</p></li>
+<li><p><strong>Visualizar la Salida</strong>
+- Observa en consola la evolución de <code class="docutils literal notranslate"><span class="pre">almacen_estaciones</span></code>.
+- Suscríbete al tópico <code class="docutils literal notranslate"><span class="pre">/stations_info</span></code> para ver la información de las nuevas estaciones.</p></li>
 </ol>
 </section>
 <section id="documentacion-adicional">
 <h2>Documentación Adicional<a class="headerlink" href="#documentacion-adicional" title="Enlace permanente a este encabezado"></a></h2>
-<p>Para más información, consulta los mensajes definidos en los archivos <code class="docutils literal notranslate"><span class="pre">StationsInfo.msg</span></code> y <code class="docutils literal notranslate"><span class="pre">StationInfo.msg</span></code>.</p>
+<p>Para más detalles sobre la definición de los mensajes, consulta los ficheros
+<code class="docutils literal notranslate"><span class="pre">StationsInfo.msg</span></code> y <code class="docutils literal notranslate"><span class="pre">StationInfo.msg</span></code> en el paquete de mensajes.</p>
 <span class="target" id="module-squad_station_manager_node"></span><dl class="py class">
 <dt class="sig sig-object py" id="squad_station_manager_node.StationManagerNode">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squad_station_manager_node.</span></span><span class="sig-name descname"><span class="pre">StationManagerNode</span></span><a class="reference internal" href="_modules/squad_station_manager_node.html#StationManagerNode"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#squad_station_manager_node.StationManagerNode" title="Enlazar permanentemente con esta definición"></a></dt>
@@ -350,8 +375,18 @@
 Pudiendo haber estaciones repetidas con nombre distinto (baño, baño2, etc.).</p></li>
 </ul>
 <dl class="py method">
+<dt class="sig sig-object py" id="squad_station_manager_node.StationManagerNode.detected_object_callback">
+<span class="sig-name descname"><span class="pre">detected_object_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/squad_station_manager_node.html#StationManagerNode.detected_object_callback"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#squad_station_manager_node.StationManagerNode.detected_object_callback" title="Enlazar permanentemente con esta definición"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="squad_station_manager_node.StationManagerNode.add_completed_station">
 <span class="sig-name descname"><span class="pre">add_completed_station</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">station_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/squad_station_manager_node.html#StationManagerNode.add_completed_station"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#squad_station_manager_node.StationManagerNode.add_completed_station" title="Enlazar permanentemente con esta definición"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="squad_station_manager_node.StationManagerNode.publish_all_stations">
+<span class="sig-name descname"><span class="pre">publish_all_stations</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/squad_station_manager_node.html#StationManagerNode.publish_all_stations"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#squad_station_manager_node.StationManagerNode.publish_all_stations" title="Enlazar permanentemente con esta definición"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -360,23 +395,13 @@ Pudiendo haber estaciones repetidas con nombre distinto (baño, baño2, etc.).</
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="squad_station_manager_node.StationManagerNode.classify_object">
-<span class="sig-name descname"><span class="pre">classify_object</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">object_type</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/squad_station_manager_node.html#StationManagerNode.classify_object"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#squad_station_manager_node.StationManagerNode.classify_object" title="Enlazar permanentemente con esta definición"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="squad_station_manager_node.StationManagerNode.detected_object_callback">
-<span class="sig-name descname"><span class="pre">detected_object_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/squad_station_manager_node.html#StationManagerNode.detected_object_callback"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#squad_station_manager_node.StationManagerNode.detected_object_callback" title="Enlazar permanentemente con esta definición"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="squad_station_manager_node.StationManagerNode.distance_to_center">
 <span class="sig-name descname"><span class="pre">distance_to_center</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pos</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">center</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/squad_station_manager_node.html#StationManagerNode.distance_to_center"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#squad_station_manager_node.StationManagerNode.distance_to_center" title="Enlazar permanentemente con esta definición"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="squad_station_manager_node.StationManagerNode.publish_all_stations">
-<span class="sig-name descname"><span class="pre">publish_all_stations</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/squad_station_manager_node.html#StationManagerNode.publish_all_stations"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#squad_station_manager_node.StationManagerNode.publish_all_stations" title="Enlazar permanentemente con esta definición"></a></dt>
+<dt class="sig sig-object py" id="squad_station_manager_node.StationManagerNode.classify_object">
+<span class="sig-name descname"><span class="pre">classify_object</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">object_type</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/squad_station_manager_node.html#StationManagerNode.classify_object"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#squad_station_manager_node.StationManagerNode.classify_object" title="Enlazar permanentemente con esta definición"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -388,7 +413,7 @@ Pudiendo haber estaciones repetidas con nombre distinto (baño, baño2, etc.).</
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
-        <a href="squad_autonomous_control_action.html" class="btn btn-neutral float-left" title="Control Autónomo (squad_autonomous_control_action)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="squad_object_detection_action.html" class="btn btn-neutral float-left" title="Detección de Objetos (squad_object_detection_action)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
         <a href="squad_interfaz.html" class="btn btn-neutral float-right" title="Interfaz de Gestión de Estados del TurtleBot" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

@@ -1,61 +1,115 @@
-Paquete de Exploración (exploracion)
-====================================
+Paquete de Exploración (`squad_exploracion`)
+============================================
 
-El paquete de exploración contiene los nodos necesarios para realizar tareas clave como detección de objetos, aproximación y navegación autónoma.
+El paquete **squad_exploracion** proporciona las herramientas necesarias para que el robot **explore** 
+un entorno desconocido y **detecte** objetos en el proceso, integrándose con el resto de módulos del sistema 
+(navegación, asignación de estaciones, interfaz gráfica, etc.).
 
-**Descripción General:**
+Descripción General
+--------------------
 
-Este paquete está diseñado para dotar al robot de capacidades básicas de exploración y navegación, utilizando múltiples nodos especializados que interactúan entre sí y con otros componentes del sistema.
+La exploración se basa en el algoritmo de **fronteras** provisto por 
+[**explore_lite**](http://wiki.ros.org/explore_lite), al cual se le han realizado 
+algunas **modificaciones** para adaptarse a los requerimientos del proyecto:
 
-**Componentes del Paquete:**
+- **Inicio y paro controlados**: Se añade un servicio o tópico para activar/desactivar 
+  la exploración desde la **máquina de estados** o la **interfaz gráfica**.
 
-1. **Nodo de Detección de Objetos (`squad_object_detection_action`):**
-   - Procesa datos de la cámara RGB y de profundidad para identificar objetos en el entorno.
-   - Publica la información de los objetos detectados en el tópico `/detected_objects`.
+- **Integración con la detección de objetos**: A medida que el robot recorre el mapa, 
+  se publica la información de posibles detecciones en un tópico para su posterior 
+  análisis y creación dinámica de “estaciones”.
 
-   Para más detalles, consulta: `squad_object_detection_action.rst`.
+Componentes Principales
+-----------------------
 
-2. **Nodo de Aproximación a Objetos (`squad_approach_control_action`):**
-   - Mueve el robot hacia los objetos detectados de manera precisa y segura.
-   - Utiliza coordenadas publicadas por el nodo de detección.
+1. **Nodo de Exploración (modificado de `explore_lite`)**
 
-   Para más detalles, consulta: `squad_approach_control_action.rst`.
+   - Identifica **fronteras** (zonas no exploradas) en el mapa.
+   - Envía objetivos a la pila de **navegación** (`move_base`).
+   - Permite pausar o continuar la exploración bajo demanda.
+   - Crea una “lista negra” para fronteras inalcanzables o bloqueadas.
 
-3. **Nodo de Control Autónomo (`squad_autonomous_control_action`):**
-   - Permite que el robot navegue de manera autónoma evitando obstáculos.
-   - Utiliza datos del sensor LIDAR para la planificación de rutas.
+2. **Nodo de Detección de Objetos (`squad_object_detection_action`)**
 
-   Para más detalles, consulta: `squad_autonomous_control_action.rst`.
+   - Procesa imágenes RGB-D para **identificar objetos** ( con YOLOv8).
+   - Publica la información de los objetos detectados en el tópico ``/detected_objects``.
+   - Permite calcular la posición 3D del objeto y transformarla al marco ``map``.
 
-**Pruebas de los Nodos:**
+   Para más detalles, consulta: :doc:`squad_object_detection_action`.
 
-Puedes probar cada nodo individualmente utilizando los comandos adecuados, como se describe en sus respectivos archivos `.rst`. Asegúrate de lanzar el entorno ROS y configurar los parámetros necesarios antes de iniciar las pruebas.
+Interacción con Otros Paquetes
+------------------------------
 
-**Ejecución del Paquete:**
+- **Navegación (`squad_navegacion`)**: El nodo de exploración depende de los parámetros 
+  de SLAM y de los mapas de coste para planificar rutas hacia nuevas fronteras.
+- **Planificación (`squad_planificacion`)**: El módulo de creación de “estaciones” 
+  se alimenta de las detecciones de objetos que recibe desde `squad_exploracion`.
+- **Máquina de Estados (`squad_state_manager`)**: Puede habilitar o deshabilitar 
+  la exploración en función del modo de operación (reposo, exploración, navegación, etc.).
 
-Para iniciar cualquier nodo de este paquete, utiliza el siguiente formato de comando:
+Ejecución del Paquete
+---------------------
+
+Para lanzar la exploración, se recomienda utilizar los archivos **launch** específicos 
+(incluidos generalmente en `squad_simulacion` o `squad_main`). Ejemplo:
 
 .. code-block:: bash
 
-   rosrun exploracion <nombre_del_nodo>.py
+   roslaunch squad_main main_gazebo.launch
 
-Ejemplo:
+Si necesitas correr el nodo de exploración modificado de forma independiente, 
+puedes invocarlo así (asegurándote de haberlo compilado en tu workspace de ROS):
+
 
 .. code-block:: bash
 
-   rosrun exploracion squad_object_detection_action.py
+   roslaunch squad_exploracion explore.launch
 
-**Tópicos Relevantes:**
+Según la configuración que hayas definido en tus archivos `.launch` y `.yaml`.
 
-- **`/detected_objects`**: Información sobre objetos detectados.
-- **`/approach_target`**: Coordenadas de los objetivos para aproximación.
-- **`/cmd_vel`**: Comandos de movimiento generados por los nodos.
+Tópicos Relevantes
+------------------
 
-**Configuraciones Adicionales:**
+- **`/explore/frontiers`**  
+  Publica las fronteras detectadas en tiempo real (MarkerArray, útil para visualizar en RViz).
 
-Asegúrate de ajustar los parámetros en los archivos YAML correspondientes según las necesidades del entorno:
+- **`/explore/goal`**  
+  Objetivo de exploración activo, enviado a `move_base`.
 
-- **`detector_config.yaml`**: Configuración para el nodo de detección de objetos.
-- **`exploration_config.yaml`**: Parámetros generales de navegación y exploración.
+- **`/detected_objects`**  
+  Información sobre los objetos identificados por la cámara, incluyendo tipo y coordenadas.
 
-Este paquete forma la base funcional del sistema, permitiendo al robot realizar tareas críticas de exploración y navegación de manera autónoma.
+Archivos de Configuración
+-------------------------
+
+- **`explore.launch`**  
+  Ajusta parámetros como la **frecuencia** de exploración (`planner_frequency`), 
+  el tamaño mínimo de una frontera (`min_frontier_size`), etc.
+
+- **`explore_costmap_params.yaml`**  
+  Configuración de los costmaps (global y local) empleados por la pila de navegación 
+  durante la exploración.
+
+- **`camera_params.yaml`** (si aplica)  
+  Parámetros para el nodo de detección de objetos (umbral de confianza, clases a filtrar, etc.).
+
+Pruebas y Consideraciones
+-------------------------
+
+1. **Pruebas en Simulación**  
+   Se recomienda inicializar Gazebo con el mapa de un entorno (por ejemplo, el laboratorio 3D). 
+   Luego, activar la exploración y verificar que el robot recorra las zonas no exploradas.
+
+2. **Pruebas con un Robot Real**  
+   - Ajustar variables de calibración (TF, odometría, etc.).  
+   - Verificar que los **sensores** (LIDAR y cámara) estén publicando correctamente.  
+   - Despejar o marcar las zonas que el robot no pueda atravesar.
+
+3. **Integración con la Detección**  
+   Durante la exploración, habilitar la detección de objetos para comprobar que 
+   los eventos de detección se reciban en el topic `/detected_objects` y que 
+   `squad_planificacion` los utilice para crear estaciones.
+
+Este paquete constituye la **columna vertebral** de la capacidad de exploración del robot, 
+permitiendo cubrir entornos desconocidos y complementarse con la detección de objetos para 
+una **búsqueda autónoma** más avanzada. 
