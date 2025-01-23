@@ -2,24 +2,33 @@
 
 version: 2
 
-# Idioma y versión de Python
+# Idioma de la documentación
 language: es
+
+# Configuración de Python
 python:
-  version: "3.8.10"  # Asegúrate de usar una versión compatible
+  version: "3.8"  
   install:
     - requirements: doc-RobotsExploradores/source/requirements.txt
 
-# Configuración específica de Sphinx
+# Configuración de Sphinx
 sphinx:
   configuration: doc-RobotsExploradores/source/conf.py
 
 # Opciones de build
 build:
-  os: ubuntu-20.04  
+  os: ubuntu-20.04
   tools:
-    sphinx: "5.3.0"  
-
+    python: "3.8"
+  system_packages: true
+  apt_packages:
+    - graphviz
+    - texlive-latex-base
+    - texlive-latex-extra
+    - texlive-latex-recommended
+    - latexmk
+    
 # Formatos de salida
 formats:
   - htmlzip
-  - pdf  
+  - pdf
