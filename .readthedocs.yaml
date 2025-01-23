@@ -4,7 +4,6 @@ version: 2
 
 # Configuración de Python
 python:
-  version: "3.8"  
   install:
     - requirements: doc-RobotsExploradores/source/requirements.txt
 
