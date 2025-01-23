@@ -2,10 +2,10 @@
 
 version: 2
 
-# Define el lenguaje y la versión de Python
+# Idioma y versión de Python
 language: es
 python:
-  version: 3.8
+  version: "3.8.10"  # Asegúrate de usar una versión compatible
   install:
     - requirements: doc-RobotsExploradores/source/requirements.txt
 
@@ -15,10 +15,11 @@ sphinx:
 
 # Opciones de build
 build:
-  os: ubuntu-20.04
+  os: ubuntu-20.04  
   tools:
-    sphinx: "4.5.0"  
+    sphinx: "5.3.0"  
 
-# Configuraciones adicionales de Sphinx
-formats: 
+# Formatos de salida
+formats:
   - html
+  - pdf  
