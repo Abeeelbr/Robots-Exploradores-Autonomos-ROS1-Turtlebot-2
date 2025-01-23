@@ -2,9 +2,6 @@
 
 version: 2
 
-# Idioma de la documentación
-language: es
-
 # Configuración de Python
 python:
   version: "3.8"  
