@@ -35,8 +35,8 @@ Aquí te dejamos algunos vistazos del proyecto en acción.
 
 2. **Detección de Objetos**  
 | ![Detección 1](/doc-RobotsExploradores/source/img/Deteccion.png) | ![Detección 2](/doc-RobotsExploradores/source/img/deteccińPersoaReal.png) |
-|---|---|
-| _Figura 1: Boxes de detección YOLO_ | _Figura 2: Boxes de detección YOLO_ |
+
+
 
 3. **Asignación Dinámica de Estaciones**  
    ![Estaciones](/doc-RobotsExploradores/source/img/creacionSalas.png)  
