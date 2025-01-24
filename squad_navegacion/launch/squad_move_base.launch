@@ -1,9 +1,11 @@
 <launch>
   <!-- Move base -->
 
+  <include file="$(find turtlebot_navigation)/launch/includes/move_base.launch.xml"/>
+
+
   <!-- Hay que asegurarse de aargar el paramtero de move_base_params.yaml para modificar como se lanza el move_BAse -->
   <!-- Se modifica el paramteros track_unknown_space cargado de las configuraciones de move_base_params.yaml -->
+  <rosparam command="load" file="$(find squad_navegacion)/config/move_base_params.yaml"/>
 
-
- <include file="$(find turtlebot_navigation)/launch/includes/move_base.launch.xml"/>
 </launch>

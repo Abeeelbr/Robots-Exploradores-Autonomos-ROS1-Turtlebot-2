@@ -12,5 +12,10 @@
   </include>
 
   <!-- Cargar parámetros adicionales desde el archivo YAML -->
+
+  <!-- Los parametros ahora se cargan en el main para permitir compatibilidad con los namespaces -->
   <!-- <rosparam file="$(find squad_navegacion)/config/gmapping_params.yaml" command="load" /> -->
+
+
+
 </launch>

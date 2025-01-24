@@ -1,4 +1,6 @@
 <launch>
+    <!-- FICHERO DESACTUALIZADO -->
+
     <!-- Cargar los parametros de la configuración de la aplicación -->
     <rosparam command="load" file="$(find squad_main)/config/configGeneral.yaml"/>
 
