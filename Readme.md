@@ -28,15 +28,15 @@ _Haz clic para ver el video._
 
 ## Vista Rápida
 
-Aquí te dejamos algunos "vistazos" del proyecto en acción. **Reemplaza los enlaces y rutas de las imágenes/videos con los reales cuando los tengas.**
-
+Aquí te dejamos algunos vistazos del proyecto en acción.
 1. **Mapa y Exploración**  
    ![Mapa de Exploración](/doc-RobotsExploradores/source/img/Exploracion.png)  
    _Figura: Ejemplo de mapeo y fronteras detectadas._
 
 2. **Detección de Objetos**  
-   ![Detección de Objetos](/doc-RobotsExploradores/source/img/Deteccion.png)  
-   _Figura: Ventana de la cámara con boxes de detección YOLO._
+| ![Detección 1](/doc-RobotsExploradores/source/img/Deteccion.png) | ![Detección 2](/doc-RobotsExploradores/source/img/deteccińPersoaReal.png) |
+|---|---|
+| _Figura 1: Boxes de detección YOLO_ | _Figura 2: Boxes de detección YOLO_ |
 
 3. **Asignación Dinámica de Estaciones**  
    ![Estaciones](/doc-RobotsExploradores/source/img/creacionSalas.png)  
