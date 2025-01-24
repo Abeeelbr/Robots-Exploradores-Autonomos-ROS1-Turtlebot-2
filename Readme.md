@@ -1,8 +1,8 @@
-# Robots Móviles – Proyecto Final
+# Robots Exploradores – Proyecto Final
 
 ¡Bienvenido/a al repositorio del **Proyecto de Robots Móviles**! Este proyecto presenta un sistema completo para la **exploración, mapeo y detección de objetos** en entornos interiores, utilizando **ROS** y un **TurtleBot 2** (u otro robot móvil similar).
 
-> **Nota:** Para detalles más extensos, por favor revisa la documentación en Read the Docs _(reemplaza con el enlace real)_.
+> **Nota:** Para detalles más extensos, por favor revisa la documentación en [Read the Docs](https://robots-exploradores-autonomos-ros1-turtlebot-2.readthedocs.io/es/latest/).
 
 ## Características Principales
 
@@ -47,8 +47,8 @@ Aquí te dejamos algunos "vistazos" del proyecto en acción. **Reemplaza los enl
 
 ### 1. Clona este Repositorio
 ```bash
-git clone https://github.com/tu-usuario/tu-repo.git
-cd tu-repo
+git clone https://github.com/Abeeelbr/Robots-Exploradores-Autonomos-ROS1-Turtlebot-2.git
+cd Robots-Exploradores-Autonomos-ROS1-Turtlebot-2
 ```
 
 ### 2. Instala las Dependencias ROS y Librerías de Visión
@@ -104,6 +104,12 @@ Inicia la Exploración:
    - Monitorea el mapeo y la detección en tiempo real.
 
 ### En el TurtleBot 2 Real
+
+
+Configura el Robot:
+
+- Asegúrate de que el TurtleBot 2 esté conectado a la misma red que tu PC.
+
 Configura las Variables de Entorno:
 ```bash
 echo "export ROS_MASTER_URI=http://ip_del_turtlebot:11311" >> ~/.bashrc
@@ -111,18 +117,21 @@ echo "export ROS_HOSTNAME=tu_ip" >> ~/.bashrc
 source ~/.bashrc
 ```
 
-Configura el Robot:
-- Asegúrate de que el TurtleBot 2 esté conectado a la misma red que tu PC.
 - Verifica la conexión de los sensores (LIDAR, cámaras, etc.).
 
 Lanza el Sistema en el Robot:
 ```bash
 roslaunch turtlebot_bringup minimal.launch
 ```
+```bash
+export TURTLEBOT_3D_SENSOR = astra
+roslaunch turtlebot_bringup hokuyo_ust10lx.launch
+roslaunch turtlebot_bringup astra.launch
+```
 
 Lanza el Programa en tu PC:
 ```bash
-roslaunch squad_main main_robot.launch
+roslaunch squad_main main_real.launch
 ```
 
 Controla el Robot:
@@ -141,7 +150,7 @@ Controla el Robot:
 ```
 
 ## Documentación Detallada
-Toda la documentación ampliada del proyecto está disponible en Read the Docs.
+Toda la documentación ampliada del proyecto está disponible en [Read the Docs](https://robots-exploradores-autonomos-ros1-turtlebot-2.readthedocs.io/es/latest/).
 
 ## Posibles Mejoras
 - Integración de Más Robots
@@ -162,9 +171,5 @@ Toda la documentación ampliada del proyecto está disponible en Read the Docs.
 ## Licencia
 Este proyecto se distribuye bajo la MIT License.
 
-## Notas Adicionales
-- Reemplaza los enlaces y rutas de las imágenes/videos con los reales.
-- Actualiza los enlaces de Read the Docs.
-- Coloca las imágenes en la carpeta `docs/img/`.
 
 ¡Gracias por tu interés en Robots Móviles! Para dudas o sugerencias, puedes abrir un issue.
