@@ -24,7 +24,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(current_dir, '../../squad_simula
 project = 'Robots Exploradores - ROS 1'
 copyright = '2024, Abel Belhaki Rivas'
 author = 'Abel Belhaki Rivas'
-release = '3.0'  # versión del proyecto
+release = '3.1'  # versión del proyecto
 
 ##############################################################################
 # -- General configuration ---------------------------------------------------
@@ -130,8 +130,8 @@ autodoc_mock_imports = [
 html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
 
-html_logo = "_static/logoUA.png"      # Asegúrate de que exista el logo en esta ruta
-html_favicon = "_static/faviconUA.ico"  # Asegúrate de que exista el favicon en esta ruta
+html_logo = "_static/logo.jpeg"      
+html_favicon = "_static/favicon.ico"  
 
 html_theme_options = {
     'collapse_navigation': False,
@@ -170,7 +170,7 @@ latex_documents = [
 # Intersphinx: para enlazar a la doc de Python u otros
 intersphinx_mapping = {
     'python': ('https://docs.python.org/3', None),
-    # 'ros': ('http://wiki.ros.org', None),  # si hubiese configuración para ROS
+    #'ros': ('http://wiki.ros.org', None),  
 }
 
 # Habilita la directiva .. todo:: en la salida

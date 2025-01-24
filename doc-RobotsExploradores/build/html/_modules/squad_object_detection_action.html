@@ -5,16 +5,16 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>squad_object_detection_action &mdash; documentación de Robots Exploradores - ROS 1 - 3.0</title>
+  <title>squad_object_detection_action &mdash; documentación de Robots Exploradores - ROS 1 - 3.1</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=eafc0fe6" />
 
   
-    <link rel="shortcut icon" href="../_static/faviconUA.ico"/>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=6da42f17"></script>
+      <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=c9dcab0e"></script>
       <script src="../_static/doctools.js?v=888ff710"></script>
       <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
       <script src="../_static/translations.js?v=efdbd0b9"></script>
@@ -33,7 +33,7 @@
           
           <a href="../index.html" class="icon icon-home">
             Robots Exploradores - ROS 1
-              <img src="../_static/logoUA.png" class="logo" alt="Logotipo"/>
+              <img src="../_static/logo.jpeg" class="logo" alt="Logotipo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -127,6 +127,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.detect_objects"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.detect_objects()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.calculate_world_coordinates"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.calculate_world_coordinates()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.get_depth_at_pixel"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.get_depth_at_pixel()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.transform_camera_to_global"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.transform_camera_to_global()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.get_robot_pose"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.get_robot_pose()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.display_debug_info"><code class="docutils literal notranslate"><span class="pre">TurtleBotObjectDetectionAction.display_debug_info()</span></code></a></li>
 </ul>
@@ -410,13 +411,9 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">camera_info_topic</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">get_param</span><span class="p">(</span><span class="s1">&#39;camera_info_topic&#39;</span><span class="p">,</span> <span class="s1">&#39;/camera/rgb/camera_info&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">odometry_topic</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">get_param</span><span class="p">(</span><span class="s1">&#39;odometry_topic&#39;</span><span class="p">,</span> <span class="s1">&#39;/odom&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">process_frequency</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">get_param</span><span class="p">(</span><span class="s1">&#39;process_frequency&#39;</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>  <span class="c1"># Frecuencia de procesamiento (Hz)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">offset_distancia</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">get_param</span><span class="p">(</span><span class="s1">&#39;offset_distancia_deteccion&#39;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
 
-        <span class="c1"># self.image_topic = rospy.get_param(&#39;~image_topic&#39;, &#39;camera/rgb/image_raw&#39;)</span>
-        <span class="c1"># self.process_image_topic = rospy.get_param(&#39;~processed_image_topic&#39;, &#39;processed_image&#39;)</span>
-        <span class="c1"># self.depth_topic = rospy.get_param(&#39;~depth_topic&#39;, &#39;camera/depth/image_raw&#39;)</span>
-        <span class="c1"># self.camera_info_topic = rospy.get_param(&#39;~camera_info_topic&#39;, &#39;camera/depth/camera_info&#39;)</span>
-        <span class="c1"># self.odometry_topic = rospy.get_param(&#39;~odometry_topic&#39;, &#39;odom&#39;)</span>
-        <span class="c1"># self.process_frequency = rospy.get_param(&#39;~process_frequency&#39;, 30)  # Frecuencia de procesamiento (Hz)</span>
+
 
         <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s1">&#39;Frecuencia de procesamiento: </span><span class="si">%.2f</span><span class="s1"> Hz&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_frequency</span><span class="p">)</span>
         <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s1">&#39;Tópico de odometría: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">odometry_topic</span><span class="p">)</span>
@@ -720,13 +717,13 @@
             <span class="c1"># Calcular coordenadas en el marco de la cámara</span>
             <span class="n">X_cam</span> <span class="o">=</span> <span class="p">(</span><span class="n">pixel_x</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">cx</span><span class="p">)</span> <span class="o">*</span> <span class="n">depth</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">fx</span>
             <span class="n">Y_cam</span> <span class="o">=</span> <span class="p">(</span><span class="n">pixel_y</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">cy</span><span class="p">)</span> <span class="o">*</span> <span class="n">depth</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">fy</span>
-            <span class="n">Z_cam</span> <span class="o">=</span> <span class="n">depth</span>
+            <span class="n">Z_cam</span> <span class="o">=</span> <span class="n">depth</span> 
+
+            <span class="c1">#OJO: Se le resta el offet para evitar que las estaciones se creen en la misma posición que el objeto</span>
+            <span class="n">Z_cam_offset</span> <span class="o">=</span> <span class="n">depth</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">offset_distancia</span> 
 
             <span class="c1"># Convertir a coordenadas globales</span>
-
-            <span class="c1"># OJO!!! No se está utilizando la transformación de cámara a global por ahora</span>
-            <span class="n">X_global</span><span class="p">,</span> <span class="n">Y_global</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span><span class="mi">0</span> <span class="c1">#self.transform_camera_to_global(X_cam, Y_cam, Z_cam)</span>
-
+            <span class="n">X_global</span><span class="p">,</span> <span class="n">Y_global</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform_camera_to_global</span><span class="p">(</span><span class="n">X_cam</span><span class="p">,</span> <span class="n">Y_cam</span><span class="p">,</span> <span class="n">Z_cam_offset</span><span class="p">)</span>
 
 
             <span class="n">rospy</span><span class="o">.</span><span class="n">logdebug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Coordenadas en el marco de la cámara: (</span><span class="si">{</span><span class="n">X_cam</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">Y_cam</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">Z_cam</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
@@ -842,6 +839,57 @@
     <span class="c1">#     except Exception as e:</span>
     <span class="c1">#         rospy.logerr(f&quot;Error al transformar coordenadas de cámara a globales: {e}&quot;)</span>
     <span class="c1">#         return None, None</span>
+
+<div class="viewcode-block" id="TurtleBotObjectDetectionAction.transform_camera_to_global"><a class="viewcode-back" href="../squad_object_detection_action.html#squad_object_detection_action.TurtleBotObjectDetectionAction.transform_camera_to_global">[documentos]</a>    <span class="k">def</span> <span class="nf">transform_camera_to_global</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X_cam</span><span class="p">,</span> <span class="n">Y_cam</span><span class="p">,</span> <span class="n">Z_cam</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Corrige la diferencia de ejes del frame óptico de la cámara:</span>
+<span class="sd">        - Z_cam -&gt; eje X_robot</span>
+<span class="sd">        - X_cam -&gt; eje -Y_robot</span>
+<span class="sd">        - Y_cam -&gt; eje -Z_robot (en 2D ignoramos la altura)</span>
+<span class="sd">        </span>
+<span class="sd">        Luego rota y traslada al frame global (map) usando la pose del robot.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Transforma las coordenadas desde el marco de la cámara al marco global.</span>
+
+<span class="sd">        Utiliza la orientación y posición actual del robot para realizar la transformación.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            X_cam (float): Coordenada X en el marco de la cámara.</span>
+<span class="sd">            Y_cam (float): Coordenada Y en el marco de la cámara.</span>
+<span class="sd">            Z_cam (float): Coordenada Z en el marco de la cámara.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            tuple: Coordenadas X y Y en el marco global o (None, None) si falla la transformación.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">latest_position</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">rospy</span><span class="o">.</span><span class="n">logerr</span><span class="p">(</span><span class="s2">&quot;Pose del robot no disponible.&quot;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span>
+
+            <span class="c1"># (1) camera_optical_frame -&gt; base_link</span>
+            <span class="n">X_robot</span> <span class="o">=</span> <span class="n">Z_cam</span>               <span class="c1"># Z_cam va hacia adelante</span>
+            <span class="n">Y_robot</span> <span class="o">=</span> <span class="o">-</span><span class="n">X_cam</span>             <span class="c1"># X_cam va a la derecha =&gt; -X_cam es a la izquierda del robot</span>
+            <span class="c1"># (si quisiéramos la componente vertical en 3D, sería Z_robot = -Y_cam, pero lo obviamos en 2D)</span>
+
+            <span class="c1"># (2) Extraer yaw de la pose</span>
+            <span class="n">orientation_q</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">latest_position</span><span class="o">.</span><span class="n">orientation</span>
+            <span class="n">orientation_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">orientation_q</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">orientation_q</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">orientation_q</span><span class="o">.</span><span class="n">z</span><span class="p">,</span> <span class="n">orientation_q</span><span class="o">.</span><span class="n">w</span><span class="p">]</span>
+            <span class="p">(</span><span class="n">roll</span><span class="p">,</span> <span class="n">pitch</span><span class="p">,</span> <span class="n">yaw</span><span class="p">)</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">transformations</span><span class="o">.</span><span class="n">euler_from_quaternion</span><span class="p">(</span><span class="n">orientation_list</span><span class="p">)</span>
+
+            <span class="c1"># (3) base_link -&gt; global (map)</span>
+            <span class="n">robot_x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">latest_position</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span>
+            <span class="n">robot_y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">latest_position</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span>
+
+            <span class="n">X_global</span> <span class="o">=</span> <span class="n">robot_x</span> <span class="o">+</span> <span class="p">(</span><span class="n">X_robot</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">yaw</span><span class="p">)</span> <span class="o">-</span> <span class="n">Y_robot</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">yaw</span><span class="p">))</span>
+            <span class="n">Y_global</span> <span class="o">=</span> <span class="n">robot_y</span> <span class="o">+</span> <span class="p">(</span><span class="n">X_robot</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">yaw</span><span class="p">)</span> <span class="o">+</span> <span class="n">Y_robot</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">yaw</span><span class="p">))</span>
+
+            <span class="k">return</span> <span class="n">X_global</span><span class="p">,</span> <span class="n">Y_global</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">rospy</span><span class="o">.</span><span class="n">logerr</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error al transformar coords cámara-&gt;global: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span></div>
 
     <span class="c1"># ************************************************</span>
     <span class="c1">#           OBTENER POSE DEL ROBOT</span>

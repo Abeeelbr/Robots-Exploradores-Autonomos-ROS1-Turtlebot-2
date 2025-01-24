@@ -1,5 +1,5 @@
-Robots Móviles - Documentación
-==============================
+Robots Exploradores - Documentación
+====================================
 
 ¡Bienvenido a la documentación del proyecto de Robots Móviles!  
 En este proyecto se abordan tecnologías de robótica móvil mediante **ROS (Robot Operating System)**, 
