@@ -63,7 +63,7 @@ class StationManagerNode:
             
             position = msg.world_coordinates
 
-            position = msg.robot_pose.position
+            #position = msg.robot_pose.position
 
 
             # Inicializar la lista de clusters para este tipo de estación si no existe

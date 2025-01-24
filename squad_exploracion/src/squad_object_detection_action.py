@@ -184,13 +184,9 @@ class TurtleBotObjectDetectionAction:
         self.camera_info_topic = rospy.get_param('camera_info_topic', '/camera/rgb/camera_info')
         self.odometry_topic = rospy.get_param('odometry_topic', '/odom')
         self.process_frequency = rospy.get_param('process_frequency', 30)  # Frecuencia de procesamiento (Hz)
+        self.offset_distancia = rospy.get_param('offset_distancia_deteccion', 0.0)
 
-        # self.image_topic = rospy.get_param('~image_topic', 'camera/rgb/image_raw')
-        # self.process_image_topic = rospy.get_param('~processed_image_topic', 'processed_image')
-        # self.depth_topic = rospy.get_param('~depth_topic', 'camera/depth/image_raw')
-        # self.camera_info_topic = rospy.get_param('~camera_info_topic', 'camera/depth/camera_info')
-        # self.odometry_topic = rospy.get_param('~odometry_topic', 'odom')
-        # self.process_frequency = rospy.get_param('~process_frequency', 30)  # Frecuencia de procesamiento (Hz)
+
 
         rospy.loginfo('Frecuencia de procesamiento: %.2f Hz', self.process_frequency)
         rospy.loginfo('Tópico de odometría: %s', self.odometry_topic)
@@ -494,13 +490,13 @@ class TurtleBotObjectDetectionAction:
             # Calcular coordenadas en el marco de la cámara
             X_cam = (pixel_x - self.cx) * depth / self.fx
             Y_cam = (pixel_y - self.cy) * depth / self.fy
-            Z_cam = depth
+            Z_cam = depth 
+
+            #OJO: Se le resta el offet para evitar que las estaciones se creen en la misma posición que el objeto
+            Z_cam_offset = depth - self.offset_distancia 
 
             # Convertir a coordenadas globales
-
-            # OJO!!! No se está utilizando la transformación de cámara a global por ahora
-            X_global, Y_global = 0,0 #self.transform_camera_to_global(X_cam, Y_cam, Z_cam)
-
+            X_global, Y_global = self.transform_camera_to_global(X_cam, Y_cam, Z_cam_offset)
 
 
             rospy.logdebug(f"Coordenadas en el marco de la cámara: ({X_cam}, {Y_cam}, {Z_cam})")
@@ -616,6 +612,57 @@ class TurtleBotObjectDetectionAction:
     #     except Exception as e:
     #         rospy.logerr(f"Error al transformar coordenadas de cámara a globales: {e}")
     #         return None, None
+
+    def transform_camera_to_global(self, X_cam, Y_cam, Z_cam):
+        """
+        Corrige la diferencia de ejes del frame óptico de la cámara:
+        - Z_cam -> eje X_robot
+        - X_cam -> eje -Y_robot
+        - Y_cam -> eje -Z_robot (en 2D ignoramos la altura)
+        
+        Luego rota y traslada al frame global (map) usando la pose del robot.
+        """
+
+        """
+        Transforma las coordenadas desde el marco de la cámara al marco global.
+
+        Utiliza la orientación y posición actual del robot para realizar la transformación.
+
+        Args:
+            X_cam (float): Coordenada X en el marco de la cámara.
+            Y_cam (float): Coordenada Y en el marco de la cámara.
+            Z_cam (float): Coordenada Z en el marco de la cámara.
+
+        Returns:
+            tuple: Coordenadas X y Y en el marco global o (None, None) si falla la transformación.
+        """
+        try:
+            if self.latest_position is None:
+                rospy.logerr("Pose del robot no disponible.")
+                return None, None
+
+            # (1) camera_optical_frame -> base_link
+            X_robot = Z_cam               # Z_cam va hacia adelante
+            Y_robot = -X_cam             # X_cam va a la derecha => -X_cam es a la izquierda del robot
+            # (si quisiéramos la componente vertical en 3D, sería Z_robot = -Y_cam, pero lo obviamos en 2D)
+
+            # (2) Extraer yaw de la pose
+            orientation_q = self.latest_position.orientation
+            orientation_list = [orientation_q.x, orientation_q.y, orientation_q.z, orientation_q.w]
+            (roll, pitch, yaw) = tf.transformations.euler_from_quaternion(orientation_list)
+
+            # (3) base_link -> global (map)
+            robot_x = self.latest_position.position.x
+            robot_y = self.latest_position.position.y
+
+            X_global = robot_x + (X_robot * np.cos(yaw) - Y_robot * np.sin(yaw))
+            Y_global = robot_y + (X_robot * np.sin(yaw) + Y_robot * np.cos(yaw))
+
+            return X_global, Y_global
+
+        except Exception as e:
+            rospy.logerr(f"Error al transformar coords cámara->global: {e}")
+            return None, None
 
     # ************************************************
     #           OBTENER POSE DEL ROBOT
