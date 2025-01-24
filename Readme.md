@@ -4,6 +4,9 @@
 
 > **Nota:** Para detalles más extensos, por favor revisa la documentación en [Read the Docs](https://robots-exploradores-autonomos-ros1-turtlebot-2.readthedocs.io/es/latest/).
 
+[![Video](/doc-RobotsExploradores/source/img/VideoSimulacion.png)](https://drive.google.com/file/d/13IIA79M0_kRF3XvuBS5XlNPnEU61BiQG/view?usp=sharing)  
+_Haz clic para ver el video._
+
 ## Características Principales
 
 - **Exploración Autónoma**  
@@ -28,19 +31,19 @@
 Aquí te dejamos algunos "vistazos" del proyecto en acción. **Reemplaza los enlaces y rutas de las imágenes/videos con los reales cuando los tengas.**
 
 1. **Mapa y Exploración**  
-   ![Mapa de Exploración](docs/img/mapa_placeholder.png)  
+   ![Mapa de Exploración](/doc-RobotsExploradores/source/img/Exploracion.png)  
    _Figura: Ejemplo de mapeo y fronteras detectadas._
 
 2. **Detección de Objetos**  
-   ![Detección de Objetos](docs/img/deteccion_placeholder.png)  
+   ![Detección de Objetos](/doc-RobotsExploradores/source/img/Deteccion.png)  
    _Figura: Ventana de la cámara con boxes de detección YOLO._
 
 3. **Asignación Dinámica de Estaciones**  
-   ![Estaciones](docs/img/estaciones_placeholder.png)  
+   ![Estaciones](/doc-RobotsExploradores/source/img/creacionSalas.png)  
    _Figura: Se crean salas automáticamente y se visualizan en la GUI._
 
 4. **Video Demostrativo**  
-   [![Video Demostrativo](docs/img/video_thumbnail.png)](https://youtu.be/tu-video)  
+   [![Video Demostrativo](/doc-RobotsExploradores/source/img/VideoReal.png)](https://drive.google.com/file/d/13IIA79M0_kRF3XvuBS5XlNPnEU61BiQG/view?usp=sharing)  
    _Haz clic para ver el video._
 
 ## Requisitos e Instalación
